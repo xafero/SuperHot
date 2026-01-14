@@ -14,7 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\SuperHot\SuperHot.csproj" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <DefineConstants Condition=" $(TargetFramework.StartsWith(netcoreapp)) ">$(DefineConstants);HAS_SPAN</DefineConstants>
+  </PropertyGroup>
 
 </Project>
