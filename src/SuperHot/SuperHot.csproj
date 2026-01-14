@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;netstandard2.0;net45</TargetFrameworks>
+
+    <Description>SuperH disassembler and instruction decoder</Description>
+    <Title>$(Description)</Title>
+    <AssemblyTitle>SuperHot</AssemblyTitle>
+    <AssemblyName>SuperHot</AssemblyName>
+    
+    <PackageId>SuperHot</PackageId>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/xafero/SuperHot</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageVersion>$(InformationalVersion)</PackageVersion>
+    <PackageTags>disassembler;SuperH;decoder</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Nullable>enable</Nullable>
+    <Deterministic>true</Deterministic>
+    
+    <!-- From the README -->
+    <PackageDescription>
+      SuperHot is a SuperH instruction decoder and disassembler written in C#.
+    </PackageDescription>
+    <PackageReleaseNotes>
+      None.
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+    <None Include="..\..\logo.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <DefineConstants Condition=" $(TargetFramework.StartsWith(netstandard)) AND '$(TargetFramework)' != 'netstandard2.0' ">$(DefineConstants);HAS_SPAN</DefineConstants>
+  </PropertyGroup>
+
+</Project>
