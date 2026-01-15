@@ -1,13 +1,23 @@
+using System;
+using System.Threading.Tasks;
+using CliWrap;
+using CliWrap.Buffered;
+
 namespace Generator
 {
     internal static class ExecDump
     {
-        public static void Run(Options options)
+        public static async Task Run(Options options)
         {
+            var dumpCmd = await Cli.Wrap("sh-elf-objdump")
+                .WithValidation(CommandResultValidation.None)
+                .ExecuteBufferedAsync();
 
+            Console.WriteLine("'" + dumpCmd.StandardOutput + "'");
+            Console.WriteLine("'" + dumpCmd.StandardError + "'");
 
-
-            throw new System.NotImplementedException();
+            Console.WriteLine(dumpCmd.ExitCode + " " + dumpCmd.ExitTime + " "
+                              + dumpCmd.IsSuccess + " " + dumpCmd.RunTime + " " + dumpCmd.StartTime);
         }
     }
 }

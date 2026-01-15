@@ -1,17 +1,18 @@
-﻿using CommandLine;
+﻿using System.Threading.Tasks;
+using CommandLine;
 
 namespace Generator
 {
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             var parser = Parser.Default;
-            parser.ParseArguments<Options>(args).WithParsed(o =>
+            await parser.ParseArguments<Options>(args).WithParsedAsync(async o =>
             {
                 if (o.TryDecode)
                 {
-                    ExecDump.Run(o);
+                    await ExecDump.Run(o);
                 }
             });
         }
