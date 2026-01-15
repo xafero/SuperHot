@@ -7,17 +7,26 @@ namespace Generator
 {
     internal static class ExecDump
     {
-        public static async Task Run(Options options)
+        public static async Task Run(Options o)
         {
+            if (FileTool.CreateOrGetDir(o.TempDir) is not { } tmpDir)
+            {
+                await Console.Error.WriteLineAsync("No temp dir given!");
+                return;
+            }
+
             var dumpCmd = await Cli.Wrap("sh-elf-objdump")
+                .WithArguments(["--geko"])
+                .WithWorkingDirectory(tmpDir)
                 .WithValidation(CommandResultValidation.None)
                 .ExecuteBufferedAsync();
 
-            Console.WriteLine("'" + dumpCmd.StandardOutput + "'");
-            Console.WriteLine("'" + dumpCmd.StandardError + "'");
+            var error = dumpCmd.StandardError;
+            if (!string.IsNullOrWhiteSpace(error))
+                throw new InvalidOperationException(error);
 
-            Console.WriteLine(dumpCmd.ExitCode + " " + dumpCmd.ExitTime + " "
-                              + dumpCmd.IsSuccess + " " + dumpCmd.RunTime + " " + dumpCmd.StartTime);
+            var output = dumpCmd.StandardOutput;
+            Console.WriteLine($"'{output}' ({dumpCmd.ExitCode})");
         }
     }
 }
