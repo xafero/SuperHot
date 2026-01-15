@@ -17,9 +17,15 @@ namespace Generator
                 return;
             }
 
-            byte[] bytes = [0x26, 0x35];
-            const string cpu = "sh3";
+            byte[] bytes = [0x36, 0x35];
+            string[] cpuS = ["sh", "sh2", "sh2a", "sh2e", "sh3", "sh3e", "sh4", "sh4a"];
 
+            foreach (var cpu in cpuS)
+                await RunOnce(tmpDir, bytes, cpu);
+        }
+
+        private static async Task RunOnce(string tmpDir, byte[] bytes, string cpu)
+        {
             using var aOut = new TempFile();
             var aName = aOut.FileName;
             await File.WriteAllBytesAsync(aName, bytes);
