@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using CliWrap;
 using CliWrap.Buffered;
@@ -16,13 +17,14 @@ namespace Generator
                 return;
             }
 
+            byte[] bytes = [50, 30, 40];
             const string cpu = "sh3";
-            const string cmd = "sh-elf-objdump";
 
             using var aOut = new TempFile();
             var aName = aOut.FileName;
-            await File.WriteAllBytesAsync(aName, [50, 30, 40]);
+            await File.WriteAllBytesAsync(aName, bytes);
 
+            const string cmd = "sh-elf-objdump";
             var dumpCmd = await Cli.Wrap(cmd)
                 .WithArguments(["-D", "-b", "binary", "-m", cpu, "-z", aName])
                 .WithWorkingDirectory(tmpDir)
@@ -30,11 +32,20 @@ namespace Generator
                 .ExecuteBufferedAsync();
 
             var error = dumpCmd.StandardError;
-            if (!string.IsNullOrWhiteSpace(error))
-                throw new InvalidOperationException(error);
+            if (!string.IsNullOrWhiteSpace(error) || dumpCmd.ExitCode != 0)
+                throw new InvalidOperationException($"[{dumpCmd.ExitCode}] {error}");
 
             var output = dumpCmd.StandardOutput;
-            Console.WriteLine($"'{output}' ({dumpCmd.ExitCode})");
+            var lines = output.Split(Environment.NewLine);
+            var line = lines.Skip(7).Take(1).Single().Trim();
+            line = line.Split(':', 2).Last().Trim();
+            var parts = line.Split("  ", 2);
+            var hex = parts[0].Trim();
+            var txt = parts[1].Trim();
+            parts = txt.Split('\t', 2);
+            var mne = parts[0].Trim();
+            var arg = parts[1].Trim();
+            Console.WriteLine($"'{hex}' '{mne}' '{arg}'");
         }
     }
 }
