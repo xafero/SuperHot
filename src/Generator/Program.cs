@@ -1,4 +1,4 @@
-﻿using System;
+﻿using CommandLine;
 
 namespace Generator
 {
@@ -6,7 +6,14 @@ namespace Generator
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var parser = Parser.Default;
+            parser.ParseArguments<Options>(args).WithParsed(o =>
+            {
+                if (o.TryDecode)
+                {
+                    ExecDump.Run(o);
+                }
+            });
         }
     }
 }

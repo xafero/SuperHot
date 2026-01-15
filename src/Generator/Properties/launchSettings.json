@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "sh3": {
+      "commandName": "Project",
+      "commandLineArgs": "-f -t tmp"
+    }
+  }
+}
