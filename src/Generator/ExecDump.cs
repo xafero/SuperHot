@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using CliWrap;
 using CliWrap.Buffered;
@@ -15,8 +16,15 @@ namespace Generator
                 return;
             }
 
-            var dumpCmd = await Cli.Wrap("sh-elf-objdump")
-                .WithArguments(["--geko"])
+            const string cpu = "sh3";
+            const string cmd = "sh-elf-objdump";
+
+            using var aOut = new TempFile();
+            var aName = aOut.FileName;
+            await File.WriteAllBytesAsync(aName, [50, 30, 40]);
+
+            var dumpCmd = await Cli.Wrap(cmd)
+                .WithArguments(["-D", "-b", "binary", "-m", cpu, "-z", aName])
                 .WithWorkingDirectory(tmpDir)
                 .WithValidation(CommandResultValidation.None)
                 .ExecuteBufferedAsync();
