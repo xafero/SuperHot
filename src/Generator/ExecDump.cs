@@ -17,7 +17,7 @@ namespace Generator
                 return;
             }
 
-            byte[] bytes = [50, 30, 40];
+            byte[] bytes = [0x26, 0x35];
             const string cpu = "sh3";
 
             using var aOut = new TempFile();
@@ -36,16 +36,26 @@ namespace Generator
                 throw new InvalidOperationException($"[{dumpCmd.ExitCode}] {error}");
 
             var output = dumpCmd.StandardOutput;
-            var lines = output.Split(Environment.NewLine);
-            var line = lines.Skip(7).Take(1).Single().Trim();
-            line = line.Split(':', 2).Last().Trim();
-            var parts = line.Split("  ", 2);
-            var hex = parts[0].Trim();
-            var txt = parts[1].Trim();
-            parts = txt.Split('\t', 2);
-            var mne = parts[0].Trim();
-            var arg = parts[1].Trim();
-            Console.WriteLine($"'{hex}' '{mne}' '{arg}'");
+            var nl = Environment.NewLine;
+            var lines = output.Split(nl);
+            try
+            {
+                var line = lines.Skip(7).Take(1).Single().Trim();
+                line = line.Split(':', 2).Last().Trim();
+                var parts = line.Split("  ", 2);
+                var hex = parts[0].Trim();
+                var txt = parts[1].Trim();
+                parts = txt.Split('\t', 2);
+                if (parts.Length != 2 && txt.StartsWith('.'))
+                    parts = txt.Split(' ', 2);
+                var mne = parts[0].Trim();
+                var arg = parts[1].Trim();
+                Console.WriteLine($"'{hex}' '{mne}' '{arg}'");
+            }
+            catch (Exception e)
+            {
+                await Console.Error.WriteLineAsync(e + nl + output);
+            }
         }
     }
 }
