@@ -25,12 +25,15 @@ namespace Generator
             var cpuS = (o.Misc ?? "").Split(';');
 
             foreach (var chunk in numbers.Chunk(chunkSize))
-            foreach (var cpu in cpuS)
             {
-                var bits = chunk.Select(c => BitConverter.GetBytes((ushort)c)).ToArray();
-                var res = await RunOnce(tmpDir, bits, cpu);
+                foreach (var cpu in cpuS)
+                {
+                    var bits = chunk.Select(c => BitConverter.GetBytes((ushort)c)).ToArray();
+                    var res = await RunOnce(tmpDir, bits, cpu);
 
-                Console.WriteLine(JsonTool.ToJson(res));
+                    Console.WriteLine(JsonTool.ToJson(res));
+                    break;
+                }
                 break;
             }
         }
@@ -42,7 +45,7 @@ namespace Generator
             return t;
         }
 
-        private static async Task<(string c, ParsedLine[] l)> RunOnce(string tmpDir, byte[][] dBytes, string cpu)
+        private static async Task<ParsedCpu> RunOnce(string tmpDir, byte[][] dBytes, string cpu)
         {
             var aOut = dBytes.Select(CreateTf).ToArray();
 
@@ -66,7 +69,7 @@ namespace Generator
             var lines = output.Split(Nl).Where(l => l.StartsWith("   0:"));
             var parsed = lines.Select(ParseLine).ToArray();
 
-            return (cpu, parsed);
+            return new(cpu, parsed);
         }
 
         private static ParsedLine ParseLine(string one)
