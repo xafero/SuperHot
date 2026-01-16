@@ -21,21 +21,19 @@ namespace Generator
             }
 
             var numbers = Enumerable.Range(ushort.MinValue, ushort.MaxValue + 1).ToArray();
-            const int chunkSize = 100;
+            const int chunkSize = 200;
             var cpuS = (o.Misc ?? "").Split(';');
 
+            var tasks = new List<Task<ParsedCpu>>();
             foreach (var chunk in numbers.Chunk(chunkSize))
             {
+                var bits = chunk.Select(c => BitConverter.GetBytes((ushort)c)).ToArray();
                 foreach (var cpu in cpuS)
-                {
-                    var bits = chunk.Select(c => BitConverter.GetBytes((ushort)c)).ToArray();
-                    var res = await RunOnce(tmpDir, bits, cpu);
-
-                    Console.WriteLine(JsonTool.ToJson(res));
-                    break;
-                }
-                break;
+                    tasks.Add(RunOnce(tmpDir, bits, cpu));
             }
+            await Task.WhenAll(tasks);
+
+            ;
         }
 
         private static TempFile CreateTf(byte[] bytes)
