@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using CliWrap;
 using CliWrap.Buffered;
@@ -33,7 +34,26 @@ namespace Generator
             }
             await Task.WhenAll(tasks);
 
-            ;
+            foreach (var (cpu, lines) in ToDicts(tasks))
+            {
+                var val = lines.Values;
+                var jdf = Path.Combine(tmpDir, $"dump_{cpu}.json");
+                await File.WriteAllTextAsync(jdf, JsonTool.ToJson(val), Encoding.UTF8);
+            }
+        }
+
+        private static Dictionary<string, IDictionary<string, ParsedLine>> ToDicts(List<Task<ParsedCpu>> tasks)
+        {
+            var res = new Dictionary<string, IDictionary<string, ParsedLine>>();
+            foreach (var task in tasks)
+            {
+                var (cpu, lines) = task.Result;
+                if (!res.TryGetValue(cpu, out var dict))
+                    res[cpu] = dict = new SortedDictionary<string, ParsedLine>();
+                foreach (var it in lines)
+                    dict.Add(it.Hex, it);
+            }
+            return res;
         }
 
         private static TempFile CreateTf(byte[] bytes)
