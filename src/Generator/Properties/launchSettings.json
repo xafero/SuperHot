@@ -2,7 +2,8 @@
   "profiles": {
     "sh3": {
       "commandName": "Project",
-      "commandLineArgs": "-f -t tmp"
+      "commandLineArgs": "-f -t tmp -m sh3",
+      "extra": "[ sh, sh2, sh2a, sh2e, sh3, sh3e, sh4, sh4a ]"
     }
   }
 }

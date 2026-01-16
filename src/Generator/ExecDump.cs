@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace Generator
 {
     internal static class ExecDump
     {
+        private static readonly string Nl = Environment.NewLine;
+
         public static async Task Run(Options o)
         {
             if (FileTool.CreateOrGetDir(o.TempDir) is not { } tmpDir)
@@ -17,22 +20,38 @@ namespace Generator
                 return;
             }
 
-            byte[] bytes = [0x36, 0x35];
-            string[] cpuS = ["sh", "sh2", "sh2a", "sh2e", "sh3", "sh3e", "sh4", "sh4a"];
+            var numbers = Enumerable.Range(ushort.MinValue, ushort.MaxValue + 1).ToArray();
+            const int chunkSize = 100;
+            var cpuS = (o.Misc ?? "").Split(';');
 
+            foreach (var chunk in numbers.Chunk(chunkSize))
             foreach (var cpu in cpuS)
-                await RunOnce(tmpDir, bytes, cpu);
+            {
+                var bits = chunk.Select(c => BitConverter.GetBytes((ushort)c)).ToArray();
+                var res = await RunOnce(tmpDir, bits, cpu);
+
+                Console.WriteLine(JsonTool.ToJson(res));
+                break;
+            }
         }
 
-        private static async Task RunOnce(string tmpDir, byte[] bytes, string cpu)
+        private static TempFile CreateTf(byte[] bytes)
         {
-            using var aOut = new TempFile();
-            var aName = aOut.FileName;
-            await File.WriteAllBytesAsync(aName, bytes);
+            var t = new TempFile();
+            File.WriteAllBytes(t.FileName, bytes);
+            return t;
+        }
+
+        private static async Task<(string c, ParsedLine[] l)> RunOnce(string tmpDir, byte[][] dBytes, string cpu)
+        {
+            var aOut = dBytes.Select(CreateTf).ToArray();
+
+            List<string> dArgs = ["-D", "-b", "binary", "-m", cpu, "-z"];
+            dArgs.AddRange(aOut.Select(a => a.FileName));
 
             const string cmd = "sh-elf-objdump";
             var dumpCmd = await Cli.Wrap(cmd)
-                .WithArguments(["-D", "-b", "binary", "-m", cpu, "-z", aName])
+                .WithArguments(dArgs)
                 .WithWorkingDirectory(tmpDir)
                 .WithValidation(CommandResultValidation.None)
                 .ExecuteBufferedAsync();
@@ -41,12 +60,20 @@ namespace Generator
             if (!string.IsNullOrWhiteSpace(error) || dumpCmd.ExitCode != 0)
                 throw new InvalidOperationException($"[{dumpCmd.ExitCode}] {error}");
 
+            Array.ForEach(aOut, a => a.Dispose());
+
             var output = dumpCmd.StandardOutput;
-            var nl = Environment.NewLine;
-            var lines = output.Split(nl);
+            var lines = output.Split(Nl).Where(l => l.StartsWith("   0:"));
+            var parsed = lines.Select(ParseLine).ToArray();
+
+            return (cpu, parsed);
+        }
+
+        private static ParsedLine ParseLine(string one)
+        {
             try
             {
-                var line = lines.Skip(7).Take(1).Single().Trim();
+                var line = one.Trim();
                 line = line.Split(':', 2).Last().Trim();
                 var parts = line.Split("  ", 2);
                 var hex = parts[0].Trim();
@@ -55,12 +82,13 @@ namespace Generator
                 if (parts.Length != 2 && txt.StartsWith('.'))
                     parts = txt.Split(' ', 2);
                 var mne = parts[0].Trim();
-                var arg = parts[1].Trim();
-                Console.WriteLine($"'{hex}' '{mne}' '{arg}'");
+                var arg = parts.Length == 2 ? parts[1].Trim() : string.Empty;
+                return new ParsedLine(hex, mne, arg);
             }
             catch (Exception e)
             {
-                await Console.Error.WriteLineAsync(e + nl + output);
+                Console.Error.WriteLineAsync(e + Nl + one);
+                throw;
             }
         }
     }
