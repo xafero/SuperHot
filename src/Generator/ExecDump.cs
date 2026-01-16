@@ -38,8 +38,11 @@ namespace Generator
             {
                 var val = lines.Values;
                 var jdf = Path.Combine(tmpDir, $"dump_{cpu}.json");
+                Console.WriteLine($"Writing '{jdf}' with {val.Count} values...");
                 await File.WriteAllTextAsync(jdf, JsonTool.ToJson(val), Encoding.UTF8);
             }
+
+            Console.WriteLine("Done.");
         }
 
         private static Dictionary<string, IDictionary<string, ParsedLine>> ToDicts(List<Task<ParsedCpu>> tasks)
