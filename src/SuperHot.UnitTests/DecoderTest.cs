@@ -22,6 +22,11 @@ namespace SuperHot.UnitTests
         {
             var l = FromJson<ParsedLine>(await ReadFile(Get<DecoderTest>(cpu)));
             Assert.Equal(65536, l.Length);
+
+            foreach (var num in NumTool.Iter16Bit())
+            {
+                // TODO Check
+            }
         }
     }
 }
