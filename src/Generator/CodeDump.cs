@@ -54,7 +54,7 @@ namespace Generator
 
 			await t.WriteLineAsync("using System;");
 			await t.WriteLineAsync("using I = SuperHot.Instruct;");
- 			await t.WriteLineAsync();
+			await t.WriteLineAsync();
 			await t.WriteLineAsync($"namespace {nsp}");
 			await t.WriteLineAsync("{");
 			await t.WriteLineAsync($"\tpublic sealed class {cln} : IDecoder");
@@ -103,8 +103,11 @@ namespace Generator
 
 		private static string GetMethodName(string name)
 		{
-			var txt = name.Replace('.', '_');
+			var txt = name.Trim('.').Replace('.', '_');
 			txt = ToTitle(txt);
+			var tmp = txt.Split('/');
+			if (tmp.Length >= 2)
+				txt = string.Join("", tmp.Select(ToTitle));
 			return txt;
 		}
 	}
