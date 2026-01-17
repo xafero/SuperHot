@@ -54,7 +54,7 @@ namespace Generator
                 if (!res.TryGetValue(cpu, out var dict))
                     res[cpu] = dict = new SortedDictionary<string, ParsedLine>();
                 foreach (var it in lines)
-                    dict.Add(it.Hex, it);
+                    dict.Add(it.H, it);
             }
             return res;
         }

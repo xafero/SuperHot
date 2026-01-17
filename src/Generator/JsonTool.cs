@@ -5,14 +5,14 @@ namespace Generator
 {
     internal static class JsonTool
     {
-        public static string ToJson(object? obj)
+        public static string ToJson(object? obj, bool format = false)
         {
             var cfg = new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 Converters = { new StringEnumConverter() },
-                Formatting = Formatting.Indented
+                Formatting = format ? Formatting.Indented : Formatting.None
             };
             return JsonConvert.SerializeObject(obj, cfg);
         }
