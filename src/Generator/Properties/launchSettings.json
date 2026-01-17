@@ -3,6 +3,10 @@
     "od": {
       "commandName": "Project",
       "commandLineArgs": "-f -t tmp -m sh;sh2;sh2a;sh2e;sh3;sh3e;sh4;sh4a"
+    },
+    "cg": {
+      "commandName": "Project",
+      "commandLineArgs": "-g -t tmp"
     }
   }
 }
