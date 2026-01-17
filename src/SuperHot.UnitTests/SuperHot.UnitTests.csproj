@@ -27,6 +27,9 @@
     <Compile Include="..\Generator\JsonTool.cs">
       <Link>JsonTool.cs</Link>
     </Compile>
+    <Compile Include="..\Generator\NumTool.cs">
+      <Link>NumTool.cs</Link>
+    </Compile>
     <Compile Include="..\Generator\ParsedLine.cs">
       <Link>ParsedLine.cs</Link>
     </Compile>

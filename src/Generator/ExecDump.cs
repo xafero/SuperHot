@@ -20,7 +20,7 @@ namespace Generator
                 return;
             }
 
-            var numbers = Enumerable.Range(ushort.MinValue, ushort.MaxValue + 1).ToArray();
+            var numbers = NumTool.Iter16Bit();
             const int chunkSize = 200;
             var cpuS = (o.Misc ?? "").Split(';');
 
