@@ -2,6 +2,6 @@
 {
 	public interface IDecoder
 	{
-		void Decode(IByteReader reader);
+		Instruction Decode(IByteReader reader);
 	}
 }

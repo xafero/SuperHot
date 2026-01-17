@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using static Generator.FileTool;
 using static Generator.JsonTool;
+using System.Collections.Generic;
 
 namespace Generator
 {
@@ -58,35 +59,42 @@ namespace Generator
 			await t.WriteLineAsync("{");
 			await t.WriteLineAsync($"\tpublic sealed class {cln} : IDecoder");
 			await t.WriteLineAsync("\t{");
-			await t.WriteLineAsync("\t\tpublic void Decode(IByteReader reader)");
+			await t.WriteLineAsync("\t\tpublic Instruction Decode(IByteReader r)");
 			await t.WriteLineAsync("\t\t{");
-			await t.WriteLineAsync("\t\t\tbyte b0;");
-			await t.WriteLineAsync("\t\t\tbyte b1;");
+			await t.WriteLineAsync("\t\t\tbyte b0 = default;");
+			await t.WriteLineAsync("\t\t\tbyte b1 = default;");
 			await t.WriteLineAsync();
 
 			const string err = "throw new DecodeException(b0, b1);";
-			await t.WriteLineAsync("\t\t\tswitch (b0 = reader.ReadOne())");
+			await t.WriteLineAsync("\t\t\tswitch (b0 = r.ReadOne())");
 			await t.WriteLineAsync("\t\t\t{");
 
+			var a = new StringWriter();
 			foreach (var groups in lines.GroupBy(l => l.H.Split(" ", 2)[0]))
 			{
 				var fKey = groups.Key;
-				await t.WriteLineAsync($"\t\t\t\tcase 0x{fKey}:");
-				await t.WriteLineAsync("\t\t\t\t\tswitch (b1 = reader.ReadOne())");
-				await t.WriteLineAsync("\t\t\t\t\t{");
+				var dm = $"Decode_{fKey}";
+				await t.WriteLineAsync($"\t\t\t\tcase 0x{fKey}: return {dm}(r, ref b0, ref b1);");
+
+				await a.WriteLineAsync();
+				await a.WriteLineAsync($"\t\tprivate static Instruction {dm}(IByteReader r, ref byte b0, ref byte b1)");
+				await a.WriteLineAsync("\t\t{");
+				await a.WriteLineAsync("\t\t\tswitch (b1 = r.ReadOne())");
+				await a.WriteLineAsync("\t\t\t{");
 				foreach (var sub in groups)
 				{
 					var sKey = sub.H.Split(" ", 2)[1];
-					await t.WriteLineAsync($"\t\t\t\t\t\tcase 0x{sKey}:");
+					await a.WriteAsync($"\t\t\t\tcase 0x{sKey}:");
 					var mName = GetMethodName(sub.M);
-					await t.WriteLineAsync($"\t\t\t\t\t\t\treturn I.{mName}(); // {sub.A};");
+					await a.WriteLineAsync($" return I.{mName}(); // {sub.A};");
 				}
-				await t.WriteLineAsync("\t\t\t\t\t}");
-				await t.WriteLineAsync("\t\t\t\t\tbreak;");
+				await a.WriteLineAsync("\t\t\t}");
+				await a.WriteLineAsync("\t\t}");
 			}
 
 			await t.WriteLineAsync("\t\t\t}");
 			await t.WriteLineAsync("\t\t}");
+			await t.WriteLineAsync(a.ToString().TrimEnd());
 			await t.WriteLineAsync("\t}");
 			await t.WriteLineAsync("}");
 
