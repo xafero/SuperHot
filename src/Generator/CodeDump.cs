@@ -77,7 +77,8 @@ namespace Generator
 				{
 					var sKey = sub.H.Split(" ", 2)[1];
 					await t.WriteLineAsync($"\t\t\t\t\t\tcase 0x{sKey}:");
-					await t.WriteLineAsync($"\t\t\t\t\t\t\treturn; // {sub.M} {sub.A};");
+					var mName = GetMethodName(sub.M);
+					await t.WriteLineAsync($"\t\t\t\t\t\t\treturn I.{mName}(); // {sub.A};");
 				}
 				await t.WriteLineAsync("\t\t\t\t\t}");
 				await t.WriteLineAsync("\t\t\t\t\tbreak;");
@@ -89,6 +90,13 @@ namespace Generator
 			await t.WriteLineAsync("}");
 
 			return t;
+		}
+
+		private static string GetMethodName(string name)
+		{
+			var txt = name.Replace('.', '_');
+			txt = ToTitle(txt);
+			return txt;
 		}
 	}
 }
