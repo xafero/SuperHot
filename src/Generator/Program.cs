@@ -3,18 +3,22 @@ using CommandLine;
 
 namespace Generator
 {
-    internal static class Program
-    {
-        private static async Task Main(string[] args)
-        {
-            var parser = Parser.Default;
-            await parser.ParseArguments<Options>(args).WithParsedAsync(async o =>
-            {
-                if (o.TryDecode)
-                {
-                    await ExecDump.Run(o);
-                }
-            });
-        }
-    }
+	internal static class Program
+	{
+		private static async Task Main(string[] args)
+		{
+			var parser = Parser.Default;
+			await parser.ParseArguments<Options>(args).WithParsedAsync(async o =>
+			{
+				if (o.TryCoder)
+				{
+					await CodeDump.Run(o);
+				}
+				else if (o.TryDecode)
+				{
+					await ExecDump.Run(o);
+				}
+			});
+		}
+	}
 }

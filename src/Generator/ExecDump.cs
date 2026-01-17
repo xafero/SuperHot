@@ -8,15 +8,15 @@ using CliWrap.Buffered;
 
 namespace Generator
 {
-    internal static class ExecDump
+	internal static class ExecDump
     {
         private static readonly string Nl = Environment.NewLine;
 
         public static async Task Run(Options o)
         {
-            if (FileTool.CreateOrGetDir(o.TempDir) is not { } tmpDir)
+            if (FileTool.CreateOrGetDir(o.OutputDir) is not { } outDir)
             {
-                await Console.Error.WriteLineAsync("No temp dir given!");
+                await Console.Error.WriteLineAsync("No output dir given!");
                 return;
             }
 
@@ -29,14 +29,14 @@ namespace Generator
             {
                 var bits = chunk.Select(c => BitConverter.GetBytes((ushort)c)).ToArray();
                 foreach (var cpu in cpuS)
-                    tasks.Add(RunOnce(tmpDir, bits, cpu));
+                    tasks.Add(RunOnce(outDir, bits, cpu));
             }
             await Task.WhenAll(tasks);
 
             foreach (var (cpu, lines) in ToDicts(tasks))
             {
                 var val = lines.Values;
-                var jdf = Path.Combine(tmpDir, $"dump_{cpu}.json");
+                var jdf = Path.Combine(outDir, $"dump_{cpu}.json");
                 Console.WriteLine($"Writing '{jdf}' with {val.Count} values...");
                 await FileTool.WriteFile(jdf, JsonTool.ToJson(val));
             }
