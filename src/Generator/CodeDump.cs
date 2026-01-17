@@ -45,19 +45,42 @@ namespace Generator
 
 		private static async Task<StringWriter> GenerateCode(string cpu, ParsedLine[] lines)
 		{
-			var text = new StringWriter();
+			var t = new StringWriter();
 
 			const string nsp = "SuperHot.Auto";
 			var cln = $"{cpu}Decoder";
 
-			await text.WriteLineAsync($"namespace {nsp}");
-			await text.WriteLineAsync("{");
-			await text.WriteLineAsync($"\tpublic sealed class {cln}");
-			await text.WriteLineAsync("\t{");
-			await text.WriteLineAsync("\t}");
-			await text.WriteLineAsync("}");
+			await t.WriteLineAsync("using System;");
+			await t.WriteLineAsync();
+			await t.WriteLineAsync($"namespace {nsp}");
+			await t.WriteLineAsync("{");
+			await t.WriteLineAsync($"\tpublic sealed class {cln} : IDecoder");
+			await t.WriteLineAsync("\t{");
+			await t.WriteLineAsync("\t\tpublic void Decode(IByteReader reader)");
+			await t.WriteLineAsync("\t\t{");
+			await t.WriteLineAsync("\t\t\tvar b0 = reader.ReadOne();");
+			await t.WriteLineAsync("\t\t\tvar b1 = reader.ReadOne();");
+			await t.WriteLineAsync();
 
-			return text;
+			const string err = "throw new DecodeException(b0, b);";
+			await t.WriteLineAsync("\t\t\tswitch (b0)");
+			await t.WriteLineAsync("\t\t\t{");
+
+			// 	case 0x00:
+			// 		switch (second)
+			// 		{
+			// 			default: 
+			// 				throw new InvalidOperationException("Not decoded!");
+			// 		}
+
+			await t.WriteLineAsync("\t\t\t\tdefault:");
+			await t.WriteLineAsync($"\t\t\t\t\t{err}");
+			await t.WriteLineAsync("\t\t\t}");
+			await t.WriteLineAsync("\t\t}");
+			await t.WriteLineAsync("\t}");
+			await t.WriteLineAsync("}");
+
+			return t;
 		}
 	}
 }
