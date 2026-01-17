@@ -1,6 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Generator;
 using Xunit;
+using static Generator.FileTool;
+using static Generator.JsonTool;
+using static SuperHot.UnitTests.ResTool;
 
 namespace SuperHot.UnitTests
 {
@@ -17,10 +20,8 @@ namespace SuperHot.UnitTests
         [InlineData("sh4a")]
         public async Task ShouldDecode(string cpu)
         {
-            var file = ResTool.Get<DecoderTest>(cpu);
-            var json = await FileTool.ReadFile(file);
-            var list = JsonTool.FromJson<ParsedLine>(json);
-            Assert.Equal(65536, list.Length);
+            var l = FromJson<ParsedLine>(await ReadFile(Get<DecoderTest>(cpu)));
+            Assert.Equal(65536, l.Length);
         }
     }
 }
