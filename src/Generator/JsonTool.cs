@@ -5,6 +5,12 @@ namespace Generator
 {
     internal static class JsonTool
     {
+        public static T[] FromJson<T>(string text)
+        {
+            var cfg = GetConfig(format: false);
+            return JsonConvert.DeserializeObject<T[]>(text, cfg) ?? [];
+        }
+
         public static string ToJson(object? obj, bool format = false)
         {
             var cfg = GetConfig(format);

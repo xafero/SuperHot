@@ -20,5 +20,10 @@ namespace Generator
         {
             await File.WriteAllTextAsync(file, text, Encoding.UTF8);
         }
+
+        public static async Task<string> ReadFile(string file)
+        {
+            return await File.ReadAllTextAsync(file, Encoding.UTF8);
+        }
     }
 }
