@@ -56,7 +56,6 @@ namespace Generator
 			await text.WriteLineAsync("\t{");
 			await text.WriteLineAsync("\t}");
 			await text.WriteLineAsync("}");
-			await text.WriteLineAsync();
 
 			return text;
 		}
