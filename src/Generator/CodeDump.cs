@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using static Generator.FileTool;
 using static Generator.JsonTool;
-using System.Collections.Generic;
 
 namespace Generator
 {
@@ -53,7 +52,7 @@ namespace Generator
 			var cln = $"{cpu}Decoder";
 
 			await t.WriteLineAsync("using System;");
-			await t.WriteLineAsync("using I = SuperHot.Instruct;");
+			await t.WriteLineAsync("using static SuperHot.Instruct;");
 			await t.WriteLineAsync();
 			await t.WriteLineAsync($"namespace {nsp}");
 			await t.WriteLineAsync("{");
@@ -86,7 +85,8 @@ namespace Generator
 					var sKey = sub.H.Split(" ", 2)[1];
 					await a.WriteAsync($"\t\t\t\tcase 0x{sKey}:");
 					var mName = GetMethodName(sub.M);
-					await a.WriteLineAsync($" return I.{mName}(); // {sub.A};");
+					var mArg = GetMethodArgs(sub.A);
+					await a.WriteLineAsync($" return {mName}({mArg});");
 				}
 				await a.WriteLineAsync("\t\t\t}");
 				await a.WriteLineAsync("\t\t}");
@@ -99,6 +99,21 @@ namespace Generator
 			await t.WriteLineAsync("}");
 
 			return t;
+		}
+
+		private static string GetMethodArgs(string txt)
+		{
+			var mArg = txt.Trim();
+			mArg = mArg.Replace("@", "_at_");
+			mArg = mArg.Replace("#", "_h_");
+			mArg = mArg.Replace("-", "_s_");
+			mArg = mArg.Replace("+", "_a_");
+			mArg = mArg.Replace("__", "_");
+			mArg = mArg.Replace("_(", "(");
+			mArg = mArg.Replace(",_", ",");
+			mArg = mArg.Replace("_,", ",");
+			mArg = mArg.Trim('_');
+			return mArg;
 		}
 
 		private static string GetMethodName(string name)
