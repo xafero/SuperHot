@@ -52,7 +52,8 @@ namespace Generator
 			var cln = $"{cpu}Decoder";
 
 			await t.WriteLineAsync("using System;");
-			await t.WriteLineAsync();
+			await t.WriteLineAsync("using I = SuperHot.Instruct;");
+ 			await t.WriteLineAsync();
 			await t.WriteLineAsync($"namespace {nsp}");
 			await t.WriteLineAsync("{");
 			await t.WriteLineAsync($"\tpublic sealed class {cln} : IDecoder");
