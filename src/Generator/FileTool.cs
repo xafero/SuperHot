@@ -1,4 +1,6 @@
 using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Generator
 {
@@ -12,6 +14,11 @@ namespace Generator
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             return path;
+        }
+
+        public static async Task WriteFile(string file, string text)
+        {
+            await File.WriteAllTextAsync(file, text, Encoding.UTF8);
         }
     }
 }

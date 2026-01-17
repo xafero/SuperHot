@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CliWrap;
 using CliWrap.Buffered;
@@ -39,7 +38,7 @@ namespace Generator
                 var val = lines.Values;
                 var jdf = Path.Combine(tmpDir, $"dump_{cpu}.json");
                 Console.WriteLine($"Writing '{jdf}' with {val.Count} values...");
-                await File.WriteAllTextAsync(jdf, JsonTool.ToJson(val), Encoding.UTF8);
+                await FileTool.WriteFile(jdf, JsonTool.ToJson(val));
             }
 
             Console.WriteLine("Done.");

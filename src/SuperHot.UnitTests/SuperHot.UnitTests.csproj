@@ -17,6 +17,21 @@
     <ProjectReference Include="..\SuperHot\SuperHot.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="..\Generator\FileTool.cs">
+      <Link>FileTool.cs</Link>
+    </Compile>
+    <Compile Include="..\Generator\JsonTool.cs">
+      <Link>JsonTool.cs</Link>
+    </Compile>
+    <Compile Include="..\Generator\ParsedLine.cs">
+      <Link>ParsedLine.cs</Link>
+    </Compile>
+  </ItemGroup>
+
   <PropertyGroup>
     <DefineConstants Condition=" $(TargetFramework.StartsWith(netcoreapp)) ">$(DefineConstants);HAS_SPAN</DefineConstants>
   </PropertyGroup>

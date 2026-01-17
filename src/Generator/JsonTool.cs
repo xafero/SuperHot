@@ -7,14 +7,19 @@ namespace Generator
     {
         public static string ToJson(object? obj, bool format = false)
         {
-            var cfg = new JsonSerializerSettings
+            var cfg = GetConfig(format);
+            return JsonConvert.SerializeObject(obj, cfg);
+        }
+
+        private static JsonSerializerSettings GetConfig(bool format)
+        {
+            return new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 Converters = { new StringEnumConverter() },
                 Formatting = format ? Formatting.Indented : Formatting.None
             };
-            return JsonConvert.SerializeObject(obj, cfg);
         }
     }
 }
