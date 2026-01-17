@@ -1,6 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
+using static Generator.FileTool;
+using static Generator.JsonTool;
 
 namespace Generator
 {
@@ -8,13 +11,13 @@ namespace Generator
 	{
 		public static async Task Run(Options o)
 		{
-			if (FileTool.CreateOrGetDir(o.OutputDir) is not { } outDir)
+			if (CreateOrGetDir(o.OutputDir) is not { } outDir)
 			{
 				await Console.Error.WriteLineAsync("No output dir given!");
 				return;
 			}
 
-			if (FileTool.CreateOrGetDir(o.InputDir) is not { } inpDir)
+			if (CreateOrGetDir(o.InputDir) is not { } inpDir)
 			{
 				await Console.Error.WriteLineAsync("No input dir given!");
 				return;
@@ -23,25 +26,39 @@ namespace Generator
 			const SearchOption so = SearchOption.TopDirectoryOnly;
 			var files = Directory.EnumerateFiles(inpDir, "*.json", so);
 
-
-			
-
-
-
-
-
-
-			/*
-			foreach (var (cpu, lines) in ToDicts(tasks))
+			foreach (var file in files)
 			{
-				var val = lines.Values;
-				var jdf = Path.Combine(outDir, $"dump_{cpu}.json");
-				Console.WriteLine($"Writing '{jdf}' with {val.Count} values...");
-				await FileTool.WriteFile(jdf, JsonTool.ToJson(val));
+				var cpu = ToTitle(Path.GetFileNameWithoutExtension(file));
+				var lines = FromJson<ParsedLine>(await ReadFile(file));
+
+				lines = lines.Take(5).ToArray();
+
+				var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
+				var text = await GenerateCode(cpu, lines);
+
+				Console.WriteLine($"Writing '{jdf}' with {lines.Length} values...");
+				await WriteFile(jdf, text.ToString());
 			}
-			*/
 
 			Console.WriteLine("Done.");
+		}
+
+		private static async Task<StringWriter> GenerateCode(string cpu, ParsedLine[] lines)
+		{
+			var text = new StringWriter();
+
+			const string nsp = "SuperHot.Auto";
+			var cln = $"{cpu}Decoder";
+
+			await text.WriteLineAsync($"namespace {nsp}");
+			await text.WriteLineAsync("{");
+			await text.WriteLineAsync($"\tpublic sealed class {cln}");
+			await text.WriteLineAsync("\t{");
+			await text.WriteLineAsync("\t}");
+			await text.WriteLineAsync("}");
+			await text.WriteLineAsync();
+
+			return text;
 		}
 	}
 }
