@@ -31,7 +31,8 @@ namespace Generator
 				var cpu = ToTitle(Path.GetFileNameWithoutExtension(file));
 				var lines = FromJson<ParsedLine>(await ReadFile(file));
 
-				lines = lines.Take(5).ToArray();
+				if (!cpu.Equals("sh2e", StringComparison.InvariantCultureIgnoreCase))
+					continue;
 
 				var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
 				var text = await GenerateCode(cpu, lines);
@@ -58,23 +59,30 @@ namespace Generator
 			await t.WriteLineAsync("\t{");
 			await t.WriteLineAsync("\t\tpublic void Decode(IByteReader reader)");
 			await t.WriteLineAsync("\t\t{");
-			await t.WriteLineAsync("\t\t\tvar b0 = reader.ReadOne();");
-			await t.WriteLineAsync("\t\t\tvar b1 = reader.ReadOne();");
+			await t.WriteLineAsync("\t\t\tbyte b0;");
+			await t.WriteLineAsync("\t\t\tbyte b1;");
 			await t.WriteLineAsync();
 
 			const string err = "throw new DecodeException(b0, b1);";
-			await t.WriteLineAsync("\t\t\tswitch (b0)");
+			await t.WriteLineAsync("\t\t\tswitch (b0 = reader.ReadOne())");
 			await t.WriteLineAsync("\t\t\t{");
 
-			// 	case 0x00:
-			// 		switch (second)
-			// 		{
-			// 			default: 
-			// 				throw new InvalidOperationException("Not decoded!");
-			// 		}
+			foreach (var groups in lines.GroupBy(l => l.H.Split(" ", 2)[0]))
+			{
+				var fKey = groups.Key;
+				await t.WriteLineAsync($"\t\t\t\tcase 0x{fKey}:");
+				await t.WriteLineAsync("\t\t\t\t\tswitch (b1 = reader.ReadOne())");
+				await t.WriteLineAsync("\t\t\t\t\t{");
+				foreach (var sub in groups)
+				{
+					var sKey = sub.H.Split(" ", 2)[1];
+					await t.WriteLineAsync($"\t\t\t\t\t\tcase 0x{sKey}:");
+					await t.WriteLineAsync($"\t\t\t\t\t\t\treturn; // {sub.M} {sub.A};");
+				}
+				await t.WriteLineAsync("\t\t\t\t\t}");
+				await t.WriteLineAsync("\t\t\t\t\tbreak;");
+			}
 
-			await t.WriteLineAsync("\t\t\t\tdefault:");
-			await t.WriteLineAsync($"\t\t\t\t\t{err}");
 			await t.WriteLineAsync("\t\t\t}");
 			await t.WriteLineAsync("\t\t}");
 			await t.WriteLineAsync("\t}");
