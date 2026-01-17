@@ -62,7 +62,7 @@ namespace Generator
 			await t.WriteLineAsync("\t\t\tvar b1 = reader.ReadOne();");
 			await t.WriteLineAsync();
 
-			const string err = "throw new DecodeException(b0, b);";
+			const string err = "throw new DecodeException(b0, b1);";
 			await t.WriteLineAsync("\t\t\tswitch (b0)");
 			await t.WriteLineAsync("\t\t\t{");
 
