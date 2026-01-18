@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using static Generator.FileTool;
 using static Generator.JsonTool;
 
@@ -82,13 +83,13 @@ namespace Generator
 				await a.WriteLineAsync("\t\t{");
 				await a.WriteLineAsync("\t\t\tswitch (b1 = r.ReadOne())");
 				await a.WriteLineAsync("\t\t\t{");
-				foreach (var sub in groups.Skip(5 * 2).Take(5))
+				foreach (var sub in groups)
 				{
 					var sKey = sub.H.Split(" ", 2)[1];
 					await a.WriteAsync($"\t\t\t\tcase 0x{sKey}:");
 					var mName = GetMethodName(sub.M);
 					var mArg = GetMethodArgs(sub.A);
-					await a.WriteLineAsync($" return {mName}({mArg});");
+					await a.WriteLineAsync($" return {mName}({mArg}); // {sub.A}");
 				}
 				await a.WriteLineAsync($"\t\t\t\tdefault: {err}");
 				await a.WriteLineAsync("\t\t\t}");
@@ -107,16 +108,15 @@ namespace Generator
 		private static string GetMethodArgs(string txt)
 		{
 			var mArg = txt.Trim();
-			mArg = mArg.Replace("@", "_at_");
-			mArg = mArg.Replace("#", "_h_");
-			mArg = mArg.Replace("-", "_s_");
-			mArg = mArg.Replace("+", "_a_");
-			mArg = mArg.Replace("__", "_");
-			mArg = mArg.Replace("_(", "(");
-			mArg = mArg.Replace(",_", ",");
-			mArg = mArg.Replace("_,", ",");
-			mArg = mArg.Trim('_');
-			return mArg;
+
+			mArg = Regex.Replace(mArg, @"@r(\d+)\+", "at(p(r$1))");
+			mArg = Regex.Replace(mArg, @"@-r(\d+)", "at(m(r$1))");
+			mArg = Regex.Replace(mArg, @"@r(\d+)", "at(r$1)");
+			mArg = Regex.Replace(mArg, @"#-(\d+)", "h(-$1)");
+			mArg = Regex.Replace(mArg, @"#(\d+)", "h($1)");
+			mArg = mArg.Replace("@(", "at(");
+
+			return mArg.Trim();
 		}
 
 		private static string GetMethodName(string name)
