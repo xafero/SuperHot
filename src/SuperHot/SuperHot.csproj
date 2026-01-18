@@ -12,6 +12,8 @@
     <PackageId>SuperHot</PackageId>
     <PackageIcon>logo.png</PackageIcon>
     <PackageProjectUrl>https://github.com/xafero/SuperHot</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/xafero/SuperHot</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageVersion>$(InformationalVersion)</PackageVersion>
     <PackageTags>disassembler;SuperH;decoder</PackageTags>
@@ -37,6 +39,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="" />
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
     <None Include="..\..\logo.png" Pack="true" PackagePath="" />
   </ItemGroup>
