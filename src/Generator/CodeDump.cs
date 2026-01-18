@@ -65,6 +65,7 @@ namespace Generator
 				meta.Dialects.Add(cpu);
 				meta.Counts.Add(aCnt);
 				meta.Args.Add(line.A);
+				meta.Names.Add(line.M);
 			}
 		}
 
@@ -89,6 +90,7 @@ namespace Generator
 			const string nsp = "SuperHot.Auto";
 			const string cln = "Opcode";
 
+			await t.WriteLineAsync("using System.Collections.Generic;");
 			await t.WriteLineAsync("using D = SuperHot.Dialect;");
 			await t.WriteLineAsync("using O = SuperHot.OpMeta;");
 			await t.WriteLineAsync();
@@ -115,6 +117,22 @@ namespace Generator
 				await t.WriteLineAsync($"\t\t{key}{end}");
 			}
 
+			await t.WriteLineAsync("\t}");
+			await t.WriteLineAsync();
+
+			await t.WriteLineAsync($"\tpublic static class {cln}Ext");
+			await t.WriteLineAsync("\t{");
+			await t.WriteLineAsync("\t\tpublic static string ToName(this Opcode code) => _names[code];");
+			await t.WriteLineAsync();
+			await t.WriteLineAsync("\t\tprivate static readonly Dictionary<Opcode, string> _names = new()");
+			await t.WriteLineAsync("\t\t{");
+			foreach (var (key, val) in meta)
+			{
+				var end = last == key ? "" : ",";
+				var oName = val.Names.Single();
+				await t.WriteLineAsync($"\t\t\t{{ Opcode.{key}, \"{oName}\" }}{end}");
+			}
+			await t.WriteLineAsync("\t\t};");
 			await t.WriteLineAsync("\t}");
 			await t.WriteLineAsync("}");
 
