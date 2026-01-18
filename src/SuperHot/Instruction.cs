@@ -1,3 +1,4 @@
+using SuperHot.Auto;
 using static SuperHot.SuperTool;
 
 namespace SuperHot

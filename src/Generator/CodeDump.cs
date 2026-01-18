@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
@@ -26,20 +27,96 @@ namespace Generator
 
 			const SearchOption so = SearchOption.TopDirectoryOnly;
 			var files = Directory.EnumerateFiles(inpDir, "*.json", so);
+			var allMeta = new SortedDictionary<string, OpMetaTmp>();
 
 			foreach (var file in files)
 			{
 				var cpu = ToTitle(Path.GetFileNameWithoutExtension(file));
 				var lines = FromJson<ParsedLine>(await ReadFile(file));
+				Collect(lines, allMeta, cpu);
 
+				/*
 				var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
 				var text = await GenerateCode(cpu, lines);
 
 				Console.WriteLine($"Writing '{jdf}' with {lines.Length} values...");
 				await WriteFile(jdf, text.ToString());
+				*/
 			}
+			
+			var edf = Path.Combine(outDir, $"Opcode.cs");
+			var text = await GenerateEnum(allMeta);
+
+			Console.WriteLine($"Writing '{edf}' with {allMeta.Count} values...");
+			await WriteFile(edf, text.ToString());
 
 			Console.WriteLine("Done.");
+		}
+		
+		private static void Collect(ParsedLine[] lines, IDictionary<string, OpMetaTmp> dict, string cpu)
+		{
+			foreach (var line in lines)
+			{
+				var txt = GetMethodName(line.M);
+				var arg = GetMethodArgs(line.A);
+				var aCnt = GetArgCount(arg);
+				if (!dict.TryGetValue(txt, out var meta))
+					dict[txt] = meta = new();
+				meta.Dialects.Add(cpu);
+				meta.Counts.Add(aCnt);
+				meta.Args.Add(line.A);
+			}
+		}
+
+		private static int GetArgCount(string txt)
+		{
+			if (string.IsNullOrWhiteSpace(txt)) return 0;
+			var tmp = txt.Split(',');
+			var count = 0;
+			foreach (var one in tmp)
+			{
+				if (one.Contains('(') && !one.Contains(')'))
+					continue;
+				count++;
+			}
+			return count;
+		}
+
+		private static async Task<StringWriter> GenerateEnum(IDictionary<string, OpMetaTmp> meta)
+		{
+			var t = new StringWriter();
+
+			const string nsp = "SuperHot.Auto";
+			const string cln = "Opcode";
+
+			await t.WriteLineAsync("using System;");
+			await t.WriteLineAsync("using D = SuperHot.Dialect;");
+			await t.WriteLineAsync("using O = SuperHot.OpMeta;");
+			await t.WriteLineAsync();
+			await t.WriteLineAsync($"namespace {nsp}");
+			await t.WriteLineAsync("{");
+			await t.WriteLineAsync($"\tpublic enum {cln}");
+			await t.WriteLineAsync("\t{");
+			await t.WriteLineAsync("\t\tNone = 0,");
+
+			var last = meta.Keys.Last();
+			foreach (var (key, val) in meta)
+			{
+				var end = last == key ? "" : ", ";
+				var argCount = val.Counts.Single();
+				var dia = string.Join(",", val.Dialects.Select(d => $"D.{d}"));
+				var min = val.Args.MinBy(a => a.Length) ?? string.Empty;
+				var max = val.Args.MaxBy(a => a.Length) ?? string.Empty;
+				await t.WriteLineAsync();
+				var suf = max.Length >= 1 ? $", {argCount}, \"{min}\", \"{max}\"" : null;
+				await t.WriteLineAsync($"\t\t[O([{dia}]{suf})]");
+				await t.WriteLineAsync($"\t\t{key}{end}");
+			}
+
+			await t.WriteLineAsync("\t}");
+			await t.WriteLineAsync("}");
+
+			return t;
 		}
 
 		private static async Task<StringWriter> GenerateCode(string cpu, ParsedLine[] lines)

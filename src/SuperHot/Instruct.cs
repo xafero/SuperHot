@@ -1,4 +1,5 @@
 ﻿using System;
+using SuperHot.Auto;
 
 // ReSharper disable InconsistentNaming
 
@@ -298,17 +299,17 @@ namespace SuperHot
 
 		internal static Instruction Mov_b(object x, object y)
 		{
-			return new Instruction(Opcode.MovB);
+			return new Instruction(Opcode.Mov_b);
 		}
 
 		internal static Instruction Mov_l(object x, object y)
 		{
-			return new Instruction(Opcode.MovL);
+			return new Instruction(Opcode.Mov_l);
 		}
 
 		internal static Instruction Mov_w(object x, object y)
 		{
-			return new Instruction(Opcode.MovW);
+			return new Instruction(Opcode.Mov_w);
 		}
 
 		internal static Instruction Mov(object x, object y)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using SuperHot.Auto;
 
 namespace SuperHot
 {
@@ -31,9 +32,9 @@ namespace SuperHot
 		{
 			switch (code)
 			{
-				case Opcode.MovB: return "mov.b";
-				case Opcode.MovW: return "mov.w";
-				case Opcode.MovL: return "mov.l";
+				case Opcode.Mov_b: return "mov.b";
+				case Opcode.Mov_w: return "mov.w";
+				case Opcode.Mov_l: return "mov.l";
 				case Opcode.Word: return ".word";
 				default: return code.ToString().ToLower();
 			}
