@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using static Generator.FileTool;
 using static Generator.JsonTool;
+using E = System.Linq.Enumerable;
 
 namespace Generator
 {
@@ -43,16 +44,20 @@ namespace Generator
 				await WriteFile(jdf, text.ToString());
 				*/
 			}
-			
-			var edf = Path.Combine(outDir, $"Opcode.cs");
+
+			var edf = Path.Combine(outDir, "Opcode.cs");
 			var text = await GenerateEnum(allMeta);
 
 			Console.WriteLine($"Writing '{edf}' with {allMeta.Count} values...");
 			await WriteFile(edf, text.ToString());
 
+			var idf = Path.Combine(outDir, "Instruct.cs");
+			text = await GenerateInst(allMeta);
+			await WriteFile(idf, text.ToString());
+
 			Console.WriteLine("Done.");
 		}
-		
+
 		private static void Collect(ParsedLine[] lines, IDictionary<string, OpMetaTmp> dict, string cpu)
 		{
 			foreach (var line in lines)
@@ -81,6 +86,42 @@ namespace Generator
 				count++;
 			}
 			return count;
+		}
+
+		private static async Task<StringWriter> GenerateInst(IDictionary<string, OpMetaTmp> meta)
+		{
+			var t = new StringWriter();
+
+			const string nsp = "SuperHot.Auto";
+			const string cln = "Instruct";
+
+			await t.WriteLineAsync("using O = SuperHot.Auto.Opcode;");
+			await t.WriteLineAsync("using I = SuperHot.Instruction;");
+			await t.WriteLineAsync("using A = SuperHot.Arg;");
+			await t.WriteLineAsync();
+			await t.WriteLineAsync("// ReSharper disable InconsistentNaming");
+			await t.WriteLineAsync("// ReSharper disable IdentifierTypo");
+			await t.WriteLineAsync();
+			await t.WriteLineAsync($"namespace {nsp}");
+			await t.WriteLineAsync("{");
+			await t.WriteLineAsync($"\tinternal static class {cln}");
+			await t.WriteAsync("\t{");
+
+			foreach (var (key, val) in meta)
+			{
+				var argCount = val.Counts.Single();
+				var args = string.Join(", ", E.Range(1, argCount).Select(x => $"A a{x}"));
+				await t.WriteLineAsync();
+				await t.WriteLineAsync($"\t\tinternal static I {key}({args})");
+				await t.WriteLineAsync("\t\t{");
+				await t.WriteLineAsync($"\t\t\treturn new I(O.{key});");
+				await t.WriteLineAsync("\t\t}");
+			}
+
+			await t.WriteLineAsync("\t}");
+			await t.WriteLineAsync("}");
+
+			return t;
 		}
 
 		private static async Task<StringWriter> GenerateEnum(IDictionary<string, OpMetaTmp> meta)
