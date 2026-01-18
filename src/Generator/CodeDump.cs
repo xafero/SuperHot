@@ -82,7 +82,7 @@ namespace Generator
 				await a.WriteLineAsync("\t\t{");
 				await a.WriteLineAsync("\t\t\tswitch (b1 = r.ReadOne())");
 				await a.WriteLineAsync("\t\t\t{");
-				foreach (var sub in groups.Take(5))
+				foreach (var sub in groups.Skip(5).Take(5))
 				{
 					var sKey = sub.H.Split(" ", 2)[1];
 					await a.WriteAsync($"\t\t\t\tcase 0x{sKey}:");

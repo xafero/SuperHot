@@ -91,12 +91,12 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction CmpGt()
+		internal static Instruction CmpGt(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction CmpHi()
+		internal static Instruction CmpHi(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -121,7 +121,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Div0s()
+		internal static Instruction Div0s(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -141,7 +141,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Dmulu_l()
+		internal static Instruction Dmulu_l(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -186,7 +186,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction FcmpGt()
+		internal static Instruction FcmpGt(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -221,7 +221,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Fmov()
+		internal static Instruction Fmov(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -261,7 +261,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Ldc_l()
+		internal static Instruction Ldc_l(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -271,7 +271,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Lds_l()
+		internal static Instruction Lds_l(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -321,7 +321,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Mul_l()
+		internal static Instruction Mul_l(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -351,7 +351,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Not()
+		internal static Instruction Not(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -381,7 +381,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Rotr()
+		internal static Instruction Rotr(object x)
 		{
 			throw new InvalidOperationException();
 		}
@@ -416,7 +416,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Shll2()
+		internal static Instruction Shll2(object x)
 		{
 			throw new InvalidOperationException();
 		}
@@ -436,7 +436,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Shlr2()
+		internal static Instruction Shlr2(object x)
 		{
 			throw new InvalidOperationException();
 		}
@@ -486,7 +486,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Sub()
+		internal static Instruction Sub(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -496,12 +496,12 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Swap_b()
+		internal static Instruction Swap_b(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Swap_w()
+		internal static Instruction Swap_w(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -565,6 +565,21 @@ namespace SuperHot
 		
 		internal static int at_r0 = 0;
 		internal static int at_r0_a = 0;
+		internal static int at_r1_a = 0;
+		internal static int at_r2_a = 0;
+		internal static int at_r3_a = 0;
+		internal static int at_r4_a = 0;
+		internal static int at_r5_a = 0;
+		internal static int at_r6_a = 0;
+		internal static int at_r7_a = 0;
+		internal static int at_r8_a = 0;
+		internal static int at_r9_a = 0;
+		internal static int at_r10_a = 0;
+		internal static int at_r11_a = 0;
+		internal static int at_r12_a = 0;
+		internal static int at_r13_a = 0;
+		internal static int at_r14_a = 0;
+		internal static int at_r15_a = 0;
 		internal static int at_r1 = 0;
 		internal static int at_r6 = 0;
 		internal static int at_r3 = 0;
@@ -602,6 +617,17 @@ namespace SuperHot
 		internal static int h_2 = 0;
 		internal static int h_3 = 0;
 		internal static int h_4 = 0;
+		internal static int h_5 = 0;
+		internal static int h_6 = 0;
+		internal static int h_7 = 0;
+		internal static int h_8 = 0;
+		internal static int h_9 = 0;
+		internal static int h_10 = 0;
+		internal static int h_11 = 0;
+		internal static int h_12 = 0;
+		internal static int h_13 = 0;
+		internal static int h_14 = 0;
+		internal static int h_15 = 0;
 
 		internal static int r0 = 0;
 		internal static int r1 = 0;
