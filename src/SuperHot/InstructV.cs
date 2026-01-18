@@ -1,7 +1,4 @@
-using System;
 using SuperHot.Args;
-using O = SuperHot.Auto.Opcode;
-using I = SuperHot.Instruction;
 using A = SuperHot.Args.Arg;
 
 // ReSharper disable InconsistentNaming

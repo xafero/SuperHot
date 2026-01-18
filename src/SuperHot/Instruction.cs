@@ -1,7 +1,6 @@
 using System.Linq;
 using SuperHot.Args;
 using SuperHot.Auto;
-using static SuperHot.SuperTool;
 
 namespace SuperHot
 {
