@@ -32,7 +32,7 @@ namespace Generator
 			var allMeta = new SortedDictionary<string, OpMetaTmp>();
 			StringWriter text;
 
-			foreach (var file in files)
+			foreach (var file in files.OrderBy(f => f))
 			{
 				var cpu = ToTitle(Path.GetFileNameWithoutExtension(file));
 				var lines = FromJson<ParsedLine>(await ReadFile(file));
