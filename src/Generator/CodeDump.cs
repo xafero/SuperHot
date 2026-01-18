@@ -32,9 +32,6 @@ namespace Generator
 				var cpu = ToTitle(Path.GetFileNameWithoutExtension(file));
 				var lines = FromJson<ParsedLine>(await ReadFile(file));
 
-				if (!cpu.Equals("sh2e", StringComparison.InvariantCultureIgnoreCase))
-					continue;
-
 				var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
 				var text = await GenerateCode(cpu, lines);
 
