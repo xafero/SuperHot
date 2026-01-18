@@ -113,10 +113,12 @@ namespace Generator
 			{
 				var argCount = val.Counts.Single();
 				var args = string.Join(", ", E.Range(1, argCount).Select(x => $"A a{x}"));
+				var prm = string.Join(", ", E.Range(1, argCount).Select(x => $"a{x}"));
+				var call = $"O.{key}, {prm}".Trim(',', ' ').Trim();
 				await t.WriteLineAsync();
 				await t.WriteLineAsync($"\t\tinternal static I {key}({args})");
 				await t.WriteLineAsync("\t\t{");
-				await t.WriteLineAsync($"\t\t\treturn new I(O.{key});");
+				await t.WriteLineAsync($"\t\t\treturn new I({call});");
 				await t.WriteLineAsync("\t\t}");
 			}
 

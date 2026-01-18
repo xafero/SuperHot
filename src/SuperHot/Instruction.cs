@@ -1,3 +1,4 @@
+using System.Linq;
 using SuperHot.Auto;
 using static SuperHot.SuperTool;
 
@@ -6,17 +7,19 @@ namespace SuperHot
     public sealed class Instruction
     {
         public Opcode Code { get; }
-        public object? Val { get; }
+        public Arg[] Args { get; }
 
-        public Instruction(Opcode code, object? val = null)
+        public Instruction(Opcode code, params Arg[] args)
         {
             Code = code;
-            Val = val;
+            Args = args;
         }
 
         public override string ToString()
         {
-            return $"{Code.ToName()}\t{Format(Val)}";
+            var a = string.Join(", ", Args.Select(a => a.ToString()));
+            var t = $"{Code.ToName()}\t{a}";
+            return t.Trim();
         }
     }
 }
