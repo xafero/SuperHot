@@ -8,6 +8,11 @@ namespace SuperHot
         Mov,
         MovW,
         Stc,
-        Word
+        Word,
+        MovB,
+        MovL,
+        Addv,
+        Add,
+        Addc
     }
 }

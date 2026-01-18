@@ -8,17 +8,17 @@ namespace SuperHot
 	{
 		internal static Instruction Addc(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Addc);
 		}
 
 		internal static Instruction Add(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Add);
 		}
 
 		internal static Instruction Addv(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Addv);
 		}
 
 		internal static Instruction And_b(object x, object y)
@@ -298,12 +298,12 @@ namespace SuperHot
 
 		internal static Instruction Mov_b(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.MovB);
 		}
 
 		internal static Instruction Mov_l(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.MovL);
 		}
 
 		internal static Instruction Mov_w(object x, object y)

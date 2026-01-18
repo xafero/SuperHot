@@ -31,7 +31,9 @@ namespace SuperHot
 		{
 			switch (code)
 			{
+				case Opcode.MovB: return "mov.b";
 				case Opcode.MovW: return "mov.w";
+				case Opcode.MovL: return "mov.l";
 				case Opcode.Word: return ".word";
 				default: return code.ToString().ToLower();
 			}
