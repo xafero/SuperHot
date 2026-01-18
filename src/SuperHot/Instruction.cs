@@ -17,7 +17,7 @@ namespace SuperHot
 
         public override string ToString()
         {
-            var a = string.Join(", ", Args.Select(a => a.ToString()));
+            var a = string.Join(",", Args.Select(a => a.ToString()));
             var t = $"{Code.ToName()}\t{a}";
             return t.Trim();
         }
