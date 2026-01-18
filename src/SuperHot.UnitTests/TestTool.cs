@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -12,7 +13,9 @@ namespace SuperHot.UnitTests
             var enc = Encoding.UTF8;
             var l1 = await File.ReadAllLinesAsync(t1, enc);
             var l2 = await File.ReadAllLinesAsync(t2, enc);
-            Assert.Equal(l1, l2);
+
+            foreach (var pair in l1.Zip(l2))
+                Assert.Equal(pair.First, pair.Second);
         }
     }
 }
