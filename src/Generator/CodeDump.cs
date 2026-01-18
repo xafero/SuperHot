@@ -186,7 +186,7 @@ namespace Generator
 			return t;
 		}
 
-		private static async Task<StringWriter> GenerateCode(ParsedLine[] lines, 
+		private static async Task<StringWriter> GenerateCode(ParsedLine[] lines,
 			Dictionary<string, string> allMeth, string cpu)
 		{
 			var t = new StringWriter();
@@ -214,15 +214,16 @@ namespace Generator
 			await t.WriteLineAsync("\t\t\tvar i = (b0 = r.ReadOne()) switch");
 			await t.WriteLineAsync("\t\t\t{");
 
-			var a = new StringWriter();
-			foreach (var groups in lines.GroupBy(l => l.H.Split(" ", 2)[0]))
+			var grouped = lines.GroupBy(l => l.H.Split(" ", 2)[0]);
+			var aa = new List<string>();
+			foreach (var groups in grouped)
 			{
 				var fKey = groups.Key;
 				var dm = $"Decode_{fKey}";
-				await t.WriteLineAsync($"\t\t\t\t0x{fKey} => {dm}(r, ref b0, ref b1),");
 
+				var a = new StringWriter();
 				await a.WriteLineAsync();
-				await a.WriteLineAsync($"\t\tprivate static Instruction? {dm}(IByteReader r, ref byte b0, ref byte b1)");
+				await a.WriteLineAsync($"\t\tinternal static Instruction? {dm}(IByteReader r, ref byte b0, ref byte b1)");
 				await a.WriteLineAsync("\t\t{");
 				await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
 				await a.WriteLineAsync("\t\t\t{");
@@ -236,13 +237,24 @@ namespace Generator
 				}
 				await a.WriteLineAsync("\t\t\t};");
 				await a.WriteLineAsync("\t\t}");
+				var mfKey = $"{cln}.{dm}";
+				var mfBody = a.ToString();
+				if (allMeth.TryGetValue(mfBody, out var existingMk))
+					dm = existingMk;
+				else
+				{
+					allMeth[mfBody] = mfKey;
+					aa.Add(mfBody);
+				}
+				await t.WriteLineAsync($"\t\t\t\t0x{fKey} => {dm}(r, ref b0, ref b1),");
 			}
 
 			await t.WriteLineAsync("\t\t\t};");
 			await t.WriteLineAsync();
 			await t.WriteLineAsync($"\t\t\treturn fail ? {err} : i;");
 			await t.WriteLineAsync("\t\t}");
-			await t.WriteLineAsync(a.ToString().TrimEnd());
+			foreach (var a in aa)
+				await t.WriteLineAsync(a.TrimEnd());
 			await t.WriteLineAsync("\t}");
 			await t.WriteLineAsync("}");
 
