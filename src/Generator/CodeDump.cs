@@ -237,6 +237,7 @@ namespace Generator
 				}
 				await a.WriteLineAsync("\t\t\t};");
 				await a.WriteLineAsync("\t\t}");
+
 				var mfKey = $"{cln}.{dm}";
 				var mfBody = a.ToString();
 				if (allMeth.TryGetValue(mfBody, out var existingMk))
