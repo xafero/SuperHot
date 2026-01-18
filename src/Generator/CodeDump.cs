@@ -89,7 +89,7 @@ namespace Generator
 					await a.WriteAsync($"\t\t\t\tcase 0x{sKey}:");
 					var mName = GetMethodName(sub.M);
 					var mArg = GetMethodArgs(sub.A);
-					await a.WriteLineAsync($" return {mName}({mArg}); // {sub.A}");
+					await a.WriteLineAsync($" return {mName}({mArg});");
 				}
 				await a.WriteLineAsync($"\t\t\t\tdefault: {err}");
 				await a.WriteLineAsync("\t\t\t}");
