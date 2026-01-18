@@ -223,7 +223,7 @@ namespace Generator
 				await a.WriteLineAsync("\t\t{");
 				await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
 				await a.WriteLineAsync("\t\t\t{");
-				foreach (var sub in groups.Take(1))
+				foreach (var sub in groups)
 				{
 					var sKey = sub.H.Split(" ", 2)[1];
 					await a.WriteAsync($"\t\t\t\t0x{sKey} =>");
@@ -231,7 +231,6 @@ namespace Generator
 					var mArg = GetMethodArgs(sub.A);
 					await a.WriteLineAsync($" {mName}({mArg}),");
 				}
-				await a.WriteLineAsync($"\t\t\t\t_ => null");
 				await a.WriteLineAsync("\t\t\t};");
 				await a.WriteLineAsync("\t\t}");
 			}

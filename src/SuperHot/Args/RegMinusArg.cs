@@ -1,0 +1,11 @@
+namespace SuperHot
+{
+    public sealed class RegMinusArg : Arg
+    {
+        public Register Val { get; }
+
+        public RegMinusArg(Register val) => Val = val;
+
+        public override string ToString() => $"-{Val}";
+    }
+}
