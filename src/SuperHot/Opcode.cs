@@ -13,6 +13,14 @@ namespace SuperHot
         MovL,
         Addv,
         Add,
-        Addc
+        Addc,
+        Icbi,
+        JsrN,
+        Shar,
+        Shal,
+        Synco,
+        Stbank,
+        Shld,
+        Shad
     }
 }

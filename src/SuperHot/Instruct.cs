@@ -503,12 +503,12 @@ namespace SuperHot
 
 		internal static Instruction Icbi(object x)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Icbi);
 		}
 
 		internal static Instruction JsrN(object x)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.JsrN);
 		}
 
 		internal static Instruction Ldbank(object x, object y)
@@ -568,32 +568,32 @@ namespace SuperHot
 
 		internal static Instruction Shad(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Shad);
 		}
 
 		internal static Instruction Shld(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Shld);
 		}
 
 		internal static Instruction Stbank(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Stbank);
 		}
 
 		internal static Instruction Synco()
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Synco);
 		}
 
 		internal static Instruction Shal(object x)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Shal);
 		}
 
 		internal static Instruction Shar(object x)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Shar);
 		}
 
 		internal static Instruction Shll16(object x)
