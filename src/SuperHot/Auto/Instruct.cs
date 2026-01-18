@@ -1,6 +1,7 @@
-﻿using O = SuperHot.Auto.Opcode;
+﻿using SuperHot.Args;
+using O = SuperHot.Auto.Opcode;
 using I = SuperHot.Instruction;
-using A = SuperHot.Arg;
+using A = SuperHot.Args.Arg;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo

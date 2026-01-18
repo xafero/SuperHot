@@ -1,6 +1,6 @@
-using A = SuperHot.Arg;
+using A = SuperHot.Args.Arg;
 
-namespace SuperHot
+namespace SuperHot.Args
 {
     public abstract class Arg
     {

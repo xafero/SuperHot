@@ -1,4 +1,6 @@
-namespace SuperHot
+// ReSharper disable InconsistentNaming
+
+namespace SuperHot.Args
 {
     public sealed class At2bArg : Arg
     {

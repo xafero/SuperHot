@@ -1,4 +1,4 @@
-namespace SuperHot
+namespace SuperHot.Args
 {
     public sealed class HashArg : Arg
     {
