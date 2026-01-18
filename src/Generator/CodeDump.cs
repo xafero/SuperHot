@@ -89,9 +89,11 @@ namespace Generator
 			const string nsp = "SuperHot.Auto";
 			const string cln = "Opcode";
 
-			await t.WriteLineAsync("using System;");
 			await t.WriteLineAsync("using D = SuperHot.Dialect;");
 			await t.WriteLineAsync("using O = SuperHot.OpMeta;");
+			await t.WriteLineAsync();
+			await t.WriteLineAsync("// ReSharper disable InconsistentNaming");
+			await t.WriteLineAsync("// ReSharper disable IdentifierTypo");
 			await t.WriteLineAsync();
 			await t.WriteLineAsync($"namespace {nsp}");
 			await t.WriteLineAsync("{");
@@ -102,7 +104,7 @@ namespace Generator
 			var last = meta.Keys.Last();
 			foreach (var (key, val) in meta)
 			{
-				var end = last == key ? "" : ", ";
+				var end = last == key ? "" : ",";
 				var argCount = val.Counts.Single();
 				var dia = string.Join(",", val.Dialects.Select(d => $"D.{d}"));
 				var min = val.Args.MinBy(a => a.Length) ?? string.Empty;

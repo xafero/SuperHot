@@ -1,6 +1,8 @@
-﻿using System;
-using D = SuperHot.Dialect;
+﻿using D = SuperHot.Dialect;
 using O = SuperHot.OpMeta;
+
+// ReSharper disable InconsistentNaming
+// ReSharper disable IdentifierTypo
 
 namespace SuperHot.Auto
 {
@@ -9,463 +11,463 @@ namespace SuperHot.Auto
 		None = 0,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,r0", "#-100,r10")]
-		Add, 
+		Add,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Addc, 
+		Addc,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Addv, 
+		Addv,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,r0", "#100,r0")]
-		And, 
+		And,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,@(r0,gbr)", "#100,@(r0,gbr)")]
-		And_b, 
+		And_b,
 
 		[O([D.Sh2a], 2, "#0,r0", "#0,r10")]
-		Bclr, 
+		Bclr,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "0x0", "0xffffff04")]
-		Bf, 
+		Bf,
 
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "0x0", "0xffffff04")]
-		Bf_s, 
+		Bf_s,
 
 		[O([D.Sh2a], 2, "#0,r0", "#0,r10")]
-		Bld, 
+		Bld,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "0x0", "0xfffff004")]
-		Bra, 
+		Bra,
 
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Braf, 
+		Braf,
 
 		[O([D.Sh2a], 2, "#0,r0", "#0,r10")]
-		Bset, 
+		Bset,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "0x0", "0xfffff004")]
-		Bsr, 
+		Bsr,
 
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Bsrf, 
+		Bsrf,
 
 		[O([D.Sh2a], 2, "#0,r0", "#0,r10")]
-		Bst, 
+		Bst,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "0x0", "0xffffff04")]
-		Bt, 
+		Bt,
 
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "0x0", "0xffffff04")]
-		Bt_s, 
+		Bt_s,
 
 		[O([D.Sh2a], 1, "r0", "r10")]
-		Clips_b, 
+		Clips_b,
 
 		[O([D.Sh2a], 1, "r0", "r10")]
-		Clips_w, 
+		Clips_w,
 
 		[O([D.Sh2a], 1, "r0", "r10")]
-		Clipu_b, 
+		Clipu_b,
 
 		[O([D.Sh2a], 1, "r0", "r10")]
-		Clipu_w, 
+		Clipu_w,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Clrmac, 
+		Clrmac,
 
 		[O([D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Clrs, 
+		Clrs,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Clrt, 
+		Clrt,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,r0", "#-100,r0")]
-		CmpEq, 
+		CmpEq,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		CmpGe, 
+		CmpGe,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		CmpGt, 
+		CmpGt,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		CmpHi, 
+		CmpHi,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		CmpHs, 
+		CmpHs,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		CmpPl, 
+		CmpPl,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		CmpPz, 
+		CmpPz,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		CmpStr, 
+		CmpStr,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Div0s, 
+		Div0s,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Div0u, 
+		Div0u,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Div1, 
+		Div1,
 
 		[O([D.Sh2a], 2, "r0,r0", "r0,r10")]
-		Divs, 
+		Divs,
 
 		[O([D.Sh2a], 2, "r0,r0", "r0,r10")]
-		Divu, 
+		Divu,
 
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Dmuls_l, 
+		Dmuls_l,
 
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Dmulu_l, 
+		Dmulu_l,
 
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Dt, 
+		Dt,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Exts_b, 
+		Exts_b,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Exts_w, 
+		Exts_w,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Extu_b, 
+		Extu_b,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Extu_w, 
+		Extu_w,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 1, "fr0", "fr10")]
-		Fabs, 
+		Fabs,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fr0,fr0", "fr10,fr10")]
-		Fadd, 
+		Fadd,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fr0,fr0", "fr10,fr10")]
-		FcmpEq, 
+		FcmpEq,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fr0,fr0", "fr10,fr10")]
-		FcmpGt, 
+		FcmpGt,
 
 		[O([D.Sh2a,D.Sh4,D.Sh4a], 2, "dr0,fpul", "dr10,fpul")]
-		Fcnvds, 
+		Fcnvds,
 
 		[O([D.Sh2a,D.Sh4,D.Sh4a], 2, "fpul,dr0", "fpul,dr10")]
-		Fcnvsd, 
+		Fcnvsd,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fr0,fr0", "fr10,fr10")]
-		Fdiv, 
+		Fdiv,
 
 		[O([D.Sh4,D.Sh4a], 2, "fv0,fv0", "fv12,fv12")]
-		Fipr, 
+		Fipr,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 1, "fr0", "fr10")]
-		Fldi0, 
+		Fldi0,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 1, "fr0", "fr10")]
-		Fldi1, 
+		Fldi1,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fr0,fpul", "fr10,fpul")]
-		Flds, 
+		Flds,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fpul,fr0", "fpul,fr10")]
-		Float, 
+		Float,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 3, "fr0,fr0,fr0", "fr0,fr10,fr10")]
-		Fmac, 
+		Fmac,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "@r0,fr0", "@(r0,r10),fr10")]
-		Fmov, 
+		Fmov,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fr0,fr0", "fr10,fr10")]
-		Fmul, 
+		Fmul,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 1, "fr0", "fr10")]
-		Fneg, 
+		Fneg,
 
 		[O([D.Sh4a])]
-		Fpchg, 
+		Fpchg,
 
 		[O([D.Sh4,D.Sh4a])]
-		Frchg, 
+		Frchg,
 
 		[O([D.Sh4,D.Sh4a], 2, "fpul,dr0", "fpul,dr10")]
-		Fsca, 
+		Fsca,
 
 		[O([D.Sh2a,D.Sh4,D.Sh4a])]
-		Fschg, 
+		Fschg,
 
 		[O([D.Sh2a,D.Sh3e,D.Sh4,D.Sh4a], 1, "fr0", "fr10")]
-		Fsqrt, 
+		Fsqrt,
 
 		[O([D.Sh4,D.Sh4a], 1, "fr0", "fr10")]
-		Fsrra, 
+		Fsrra,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fpul,fr0", "fpul,fr10")]
-		Fsts, 
+		Fsts,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fr0,fr0", "fr10,fr10")]
-		Fsub, 
+		Fsub,
 
 		[O([D.Sh2a,D.Sh2e,D.Sh3e,D.Sh4,D.Sh4a], 2, "fr0,fpul", "fr10,fpul")]
-		Ftrc, 
+		Ftrc,
 
 		[O([D.Sh4,D.Sh4a], 2, "xmtrx,fv0", "xmtrx,fv12")]
-		Ftrv, 
+		Ftrv,
 
 		[O([D.Sh4a], 1, "@r0", "@r10")]
-		Icbi, 
+		Icbi,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "@r0", "@r10")]
-		Jmp, 
+		Jmp,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "@r0", "@r10")]
-		Jsr, 
+		Jsr,
 
 		[O([D.Sh2a], 1, "@r0", "@@(1000,tbr)")]
-		JsrN, 
+		JsrN,
 
 		[O([D.Sh2a], 2, "@r0,r0", "@r10,r0")]
-		Ldbank, 
+		Ldbank,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,sr", "r10,r0_bank")]
-		Ldc, 
+		Ldc,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "@r0+,sr", "@r10+,r0_bank")]
-		Ldc_l, 
+		Ldc_l,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,pr", "r10,fpscr")]
-		Lds, 
+		Lds,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "@r0+,pr", "@r10+,fpscr")]
-		Lds_l, 
+		Lds_l,
 
 		[O([D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Ldtlb, 
+		Ldtlb,
 
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "@r0+,@r0+", "@r10+,@r10+")]
-		Mac_l, 
+		Mac_l,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "@r0+,@r0+", "@r10+,@r10+")]
-		Mac_w, 
+		Mac_w,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,r0", "#-100,r10")]
-		Mov, 
+		Mov,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "@r0,r0", "@(100,gbr),r0")]
-		Mov_b, 
+		Mov_b,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "@r0,r0", "@(1000,gbr),r0")]
-		Mov_l, 
+		Mov_l,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "@r0,r0", "@(100,gbr),r0")]
-		Mov_w, 
+		Mov_w,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "0x4,r0", "0x100,r0")]
-		Mova, 
+		Mova,
 
 		[O([D.Sh4,D.Sh4a], 2, "r0,@r0", "r0,@r10")]
-		Movca_l, 
+		Movca_l,
 
 		[O([D.Sh4a], 2, "r0,@r0", "r0,@r10")]
-		Movco_l, 
+		Movco_l,
 
 		[O([D.Sh4a], 2, "@r0,r0", "@r10,r0")]
-		Movli_l, 
+		Movli_l,
 
 		[O([D.Sh2a], 2, "@r15+,r0", "@r15+,r10")]
-		Movml_l, 
+		Movml_l,
 
 		[O([D.Sh2a], 2, "@r15+,r0", "@r15+,r10")]
-		Movmu_l, 
+		Movmu_l,
 
 		[O([D.Sh2a], 1, "r0", "r10")]
-		Movrt, 
+		Movrt,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Movt, 
+		Movt,
 
 		[O([D.Sh4a], 2, "@r0,r0", "@r10+,r0")]
-		Movua_l, 
+		Movua_l,
 
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Mul_l, 
+		Mul_l,
 
 		[O([D.Sh2a], 2, "r0,r0", "r0,r10")]
-		Mulr, 
+		Mulr,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Muls_w, 
+		Muls_w,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Mulu_w, 
+		Mulu_w,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Neg, 
+		Neg,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Negc, 
+		Negc,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Nop, 
+		Nop,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Not, 
+		Not,
 
 		[O([D.Sh2a])]
-		Nott, 
+		Nott,
 
 		[O([D.Sh4,D.Sh4a], 1, "@r0", "@r10")]
-		Ocbi, 
+		Ocbi,
 
 		[O([D.Sh4,D.Sh4a], 1, "@r0", "@r10")]
-		Ocbp, 
+		Ocbp,
 
 		[O([D.Sh4,D.Sh4a], 1, "@r0", "@r10")]
-		Ocbwb, 
+		Ocbwb,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,r0", "#100,r0")]
-		Or, 
+		Or,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,@(r0,gbr)", "#100,@(r0,gbr)")]
-		Or_b, 
+		Or_b,
 
 		[O([D.Sh2a,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "@r0", "@r10")]
-		Pref, 
+		Pref,
 
 		[O([D.Sh4a], 1, "@r0", "@r10")]
-		Prefi, 
+		Prefi,
 
 		[O([D.Sh2a])]
-		Resbank, 
+		Resbank,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Rotcl, 
+		Rotcl,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Rotcr, 
+		Rotcr,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Rotl, 
+		Rotl,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Rotr, 
+		Rotr,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Rte, 
+		Rte,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Rts, 
+		Rts,
 
 		[O([D.Sh2a])]
-		RtsN, 
+		RtsN,
 
 		[O([D.Sh2a], 1, "r0", "r10")]
-		RtvN, 
+		RtvN,
 
 		[O([D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Sets, 
+		Sets,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Sett, 
+		Sett,
 
 		[O([D.Sh2a,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Shad, 
+		Shad,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shal, 
+		Shal,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shar, 
+		Shar,
 
 		[O([D.Sh2a,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Shld, 
+		Shld,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shll, 
+		Shll,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shll16, 
+		Shll16,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shll2, 
+		Shll2,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shll8, 
+		Shll8,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shlr, 
+		Shlr,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shlr16, 
+		Shlr16,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shlr2, 
+		Shlr2,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "r0", "r10")]
-		Shlr8, 
+		Shlr8,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a])]
-		Sleep, 
+		Sleep,
 
 		[O([D.Sh2a], 2, "r0,@r0", "r0,@r10")]
-		Stbank, 
+		Stbank,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "sr,r0", "r0_bank,r10")]
-		Stc, 
+		Stc,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "sr,@-r0", "r0_bank,@-r10")]
-		Stc_l, 
+		Stc_l,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "pr,r0", "fpscr,r10")]
-		Sts, 
+		Sts,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "pr,@-r0", "fpscr,@-r10")]
-		Sts_l, 
+		Sts_l,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Sub, 
+		Sub,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Subc, 
+		Subc,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Subv, 
+		Subv,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Swap_b, 
+		Swap_b,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
-		Swap_w, 
+		Swap_w,
 
 		[O([D.Sh4a])]
-		Synco, 
+		Synco,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "@r0", "@r10")]
-		Tas_b, 
+		Tas_b,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "#0", "#100")]
-		Trapa, 
+		Trapa,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,r0", "#100,r0")]
-		Tst, 
+		Tst,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,@(r0,gbr)", "#100,@(r0,gbr)")]
-		Tst_b, 
+		Tst_b,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "0x0000", "0x0000")]
-		Word, 
+		Word,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,r0", "#100,r0")]
-		Xor, 
+		Xor,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,@(r0,gbr)", "#100,@(r0,gbr)")]
-		Xor_b, 
+		Xor_b,
 
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
 		Xtrct
