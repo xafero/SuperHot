@@ -6,7 +6,7 @@ namespace SuperHot
 {
 	internal static class Instruct
 	{
-		internal static Instruction Addc()
+		internal static Instruction Addc(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -16,7 +16,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Addv()
+		internal static Instruction Addv(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -116,7 +116,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction CmpStr()
+		internal static Instruction CmpStr(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -136,7 +136,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Dmuls_l()
+		internal static Instruction Dmuls_l(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -146,12 +146,12 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Dt()
+		internal static Instruction Dt(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Exts_b()
+		internal static Instruction Exts_b(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -161,12 +161,12 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Extu_b()
+		internal static Instruction Extu_b(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Extu_w()
+		internal static Instruction Extu_w(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -216,7 +216,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Fmac()
+		internal static Instruction Fmac(object x, object y, object z)
 		{
 			throw new InvalidOperationException();
 		}
@@ -236,7 +236,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Fsts()
+		internal static Instruction Fsts(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -256,7 +256,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Jsr()
+		internal static Instruction Jsr(object x)
 		{
 			throw new InvalidOperationException();
 		}
@@ -266,7 +266,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Ldc()
+		internal static Instruction Ldc(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -276,7 +276,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Lds()
+		internal static Instruction Lds(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -331,17 +331,17 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Mulu_w()
+		internal static Instruction Mulu_w(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Negc()
+		internal static Instruction Negc(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Neg()
+		internal static Instruction Neg(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -476,12 +476,12 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Sts()
+		internal static Instruction Sts(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Subc()
+		internal static Instruction Subc(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -491,7 +491,7 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Subv()
+		internal static Instruction Subv(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -541,11 +541,13 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
-		internal static Instruction Xtrct()
+		internal static Instruction Xtrct(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
 
+		internal static int fpul = 0;
+		
 		internal static int fr0 = 0;
 		internal static int fr1 = 0;
 		internal static int fr2 = 0;
