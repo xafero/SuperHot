@@ -1,14 +1,16 @@
 ﻿using System;
 using static SuperHot.Instruct;
 
+// ReSharper disable RedundantAssignment
+
 namespace SuperHot.Auto
 {
 	public sealed class Sh2eDecoder : IDecoder
 	{
 		public Instruction Decode(IByteReader r)
 		{
-			byte b0 = default;
-			byte b1 = default;
+			byte b0 = 0;
+			byte b1 = 0;
 
 			switch (b0 = r.ReadOne())
 			{

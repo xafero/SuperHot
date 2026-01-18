@@ -54,14 +54,16 @@ namespace Generator
 			await t.WriteLineAsync("using System;");
 			await t.WriteLineAsync("using static SuperHot.Instruct;");
 			await t.WriteLineAsync();
+			await t.WriteLineAsync("// ReSharper disable RedundantAssignment");
+			await t.WriteLineAsync();
 			await t.WriteLineAsync($"namespace {nsp}");
 			await t.WriteLineAsync("{");
 			await t.WriteLineAsync($"\tpublic sealed class {cln} : IDecoder");
 			await t.WriteLineAsync("\t{");
 			await t.WriteLineAsync("\t\tpublic Instruction Decode(IByteReader r)");
 			await t.WriteLineAsync("\t\t{");
-			await t.WriteLineAsync("\t\t\tbyte b0 = default;");
-			await t.WriteLineAsync("\t\t\tbyte b1 = default;");
+			await t.WriteLineAsync("\t\t\tbyte b0 = 0;");
+			await t.WriteLineAsync("\t\t\tbyte b1 = 0;");
 			await t.WriteLineAsync();
 
 			const string err = "throw new DecodeException(b0, b1);";
