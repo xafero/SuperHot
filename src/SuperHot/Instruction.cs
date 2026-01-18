@@ -16,7 +16,7 @@ namespace SuperHot
 
         public override string ToString()
         {
-            return $"{GetName(Code)}\t{Format(Val)}";
+            return $"{Code.ToName()}\t{Format(Val)}";
         }
     }
 }

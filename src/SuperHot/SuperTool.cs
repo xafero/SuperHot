@@ -27,17 +27,5 @@ namespace SuperHot
 		{
 			return $"0x{val:x4}";
 		}
-
-		public static string GetName(Opcode code)
-		{
-			switch (code)
-			{
-				case Opcode.Mov_b: return "mov.b";
-				case Opcode.Mov_w: return "mov.w";
-				case Opcode.Mov_l: return "mov.l";
-				case Opcode.Word: return ".word";
-				default: return code.ToString().ToLower();
-			}
-		}
 	}
 }
