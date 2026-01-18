@@ -29,8 +29,8 @@ namespace SuperHot.UnitTests
 			var l = FromJson<ParsedLine>(await ReadFile(Get<DecoderTest>(cpu)));
 			Assert.Equal(65536, l.Length);
 
-			var src = l.Select(i => $"{i.H}\t{i.M}\t{i.A}").ToArray();
-			var got = new List<string>();
+			var src = l.Select(i => $"{i.H}\t{i.M}\t{i.A}".Trim()).ToArray();
+			var got = new SortedSet<string>();
 
 			var decoder = Decoders.GetDecoder(dialect);
 			foreach (var num in NumTool.Iter16Bit())
@@ -39,14 +39,14 @@ namespace SuperHot.UnitTests
 				string? text;
 				try
 				{
-					Instruction instr = decoder.Decode(reader);
+					var instr = decoder.Decode(reader);
 					text = instr.ToString();
 				}
 				catch (Exception e)
 				{
 					text = e.Message;
 				}
-				got.Add(text!);
+				got.Add($"{reader}\t{text!.Trim()}");
 			}
 
 			var t1F = $"{cpu}_orig.txt";
