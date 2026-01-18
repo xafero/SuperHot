@@ -53,7 +53,7 @@ namespace SuperHot
 
 		internal static Instruction Bsrf(object x)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Bsrf);
 		}
 
 		internal static Instruction Bsr(object x)
@@ -308,12 +308,12 @@ namespace SuperHot
 
 		internal static Instruction Mov_w(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.MovW);
 		}
 
 		internal static Instruction Mov(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Mov);
 		}
 
 		internal static Instruction Movt(object x)

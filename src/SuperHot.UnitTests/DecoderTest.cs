@@ -46,7 +46,8 @@ namespace SuperHot.UnitTests
 				{
 					text = e.Message;
 				}
-				got.Add($"{reader}\t{text!.Trim()}");
+				var hex = reader.ToString().ToLower();
+				got.Add($"{hex}\t{text!.Trim()}");
 			}
 
 			var t1F = $"{cpu}_orig.txt";

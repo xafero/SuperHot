@@ -4,7 +4,10 @@ namespace SuperHot
     {
         None = 0,
 
-        Word,
-        Stc
+        Bsrf,
+        Mov,
+        MovW,
+        Stc,
+        Word
     }
 }
