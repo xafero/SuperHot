@@ -31,15 +31,9 @@ namespace SuperHot
 		{
 			switch (code)
 			{
-				case Opcode.Mov:
-				case Opcode.Stc:
-					return code.ToString().ToLower();
-				case Opcode.MovW:
-					return "mov.w";
-				case Opcode.Word:
-					return ".word";
-				default:
-					throw new InvalidOperationException($"{code} ?!");
+				case Opcode.MovW: return "mov.w";
+				case Opcode.Word: return ".word";
+				default: return code.ToString().ToLower();
 			}
 		}
 	}
