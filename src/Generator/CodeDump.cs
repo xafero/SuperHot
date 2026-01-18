@@ -29,6 +29,7 @@ namespace Generator
 			const SearchOption so = SearchOption.TopDirectoryOnly;
 			var files = Directory.EnumerateFiles(inpDir, "*.json", so);
 			
+			var allMeth = new Dictionary<string, string>();
 			var allMeta = new SortedDictionary<string, OpMetaTmp>();
 			StringWriter text;
 
@@ -39,7 +40,7 @@ namespace Generator
 				Collect(lines, allMeta, cpu);
 
 				var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
-				text = await GenerateCode(cpu, lines);
+				text = await GenerateCode(lines, allMeth, cpu);
 
 				Console.WriteLine($"Writing '{jdf}' with {lines.Length} values...");
 				await WriteFile(jdf, text.ToString());
@@ -97,9 +98,10 @@ namespace Generator
 			const string nsp = "SuperHot.Auto";
 			const string cln = "Instruct";
 
+			await t.WriteLineAsync("using SuperHot.Args;");
 			await t.WriteLineAsync("using O = SuperHot.Auto.Opcode;");
 			await t.WriteLineAsync("using I = SuperHot.Instruction;");
-			await t.WriteLineAsync("using A = SuperHot.Arg;");
+			await t.WriteLineAsync("using A = SuperHot.Args.Arg;");
 			await t.WriteLineAsync();
 			await t.WriteLineAsync("// ReSharper disable InconsistentNaming");
 			await t.WriteLineAsync("// ReSharper disable IdentifierTypo");
