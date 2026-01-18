@@ -763,7 +763,7 @@ namespace SuperHot
 
 		internal static Instruction Word(int val)
 		{
-			throw new InvalidOperationException(val + " ?!");
+			throw new InvalidOperationException($"{val} ?!");
 		}
 
 		internal static Instruction Xor_b(object x, object y)
