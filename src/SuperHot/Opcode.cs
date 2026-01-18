@@ -4,6 +4,7 @@ namespace SuperHot
     {
         None = 0,
 
-        Word
+        Word,
+        Stc
     }
 }

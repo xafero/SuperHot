@@ -15,6 +15,13 @@ namespace SuperHot
 			return $"{b:X2}";
 		}
 
+		public static string Format(object? val)
+		{
+			if (val == null) return string.Empty;
+			if (val is ushort us) return Format(us);
+			throw new InvalidOperationException($"{val} ?!");
+		}
+
 		public static string Format(ushort val)
 		{
 			return $"0x{val:x4}";
@@ -24,8 +31,12 @@ namespace SuperHot
 		{
 			switch (code)
 			{
-				case Opcode.Word: return ".word";
-				default: throw new InvalidOperationException($"{code} ?!");
+				case Opcode.Stc:
+					return code.ToString().ToLower();
+				case Opcode.Word:
+					return ".word";
+				default:
+					throw new InvalidOperationException($"{code} ?!");
 			}
 		}
 	}

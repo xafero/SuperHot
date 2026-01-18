@@ -5,9 +5,9 @@ namespace SuperHot
     public sealed class Instruction
     {
         public Opcode Code { get; }
-        public ushort Val { get; }
+        public object? Val { get; }
 
-        public Instruction(Opcode code, ushort val)
+        public Instruction(Opcode code, object? val = null)
         {
             Code = code;
             Val = val;

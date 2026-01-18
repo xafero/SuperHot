@@ -653,7 +653,7 @@ namespace SuperHot
 
 		internal static Instruction Stc(object x, object y)
 		{
-			throw new InvalidOperationException();
+			return new Instruction(Opcode.Stc);
 		}
 
 		internal static Instruction Movli_l(object x, object y)
