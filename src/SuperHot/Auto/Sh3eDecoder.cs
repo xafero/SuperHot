@@ -1,4 +1,5 @@
-﻿using static SuperHot.Instruct;
+﻿using System;
+using static SuperHot.Auto.Instruct;
 
 // ReSharper disable RedundantAssignment
 

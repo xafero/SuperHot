@@ -28,7 +28,9 @@ namespace Generator
 
 			const SearchOption so = SearchOption.TopDirectoryOnly;
 			var files = Directory.EnumerateFiles(inpDir, "*.json", so);
+			
 			var allMeta = new SortedDictionary<string, OpMetaTmp>();
+			StringWriter text;
 
 			foreach (var file in files)
 			{
@@ -36,23 +38,23 @@ namespace Generator
 				var lines = FromJson<ParsedLine>(await ReadFile(file));
 				Collect(lines, allMeta, cpu);
 
-				/*
 				var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
-				var text = await GenerateCode(cpu, lines);
+				text = await GenerateCode(cpu, lines);
 
 				Console.WriteLine($"Writing '{jdf}' with {lines.Length} values...");
 				await WriteFile(jdf, text.ToString());
-				*/
 			}
 
 			var edf = Path.Combine(outDir, "Opcode.cs");
-			var text = await GenerateEnum(allMeta);
+			text = await GenerateEnum(allMeta);
 
 			Console.WriteLine($"Writing '{edf}' with {allMeta.Count} values...");
 			await WriteFile(edf, text.ToString());
 
 			var idf = Path.Combine(outDir, "Instruct.cs");
 			text = await GenerateInst(allMeta);
+			
+			Console.WriteLine($"Writing '{idf}' with {allMeta.Count} values...");
 			await WriteFile(idf, text.ToString());
 
 			Console.WriteLine("Done.");
@@ -188,7 +190,7 @@ namespace Generator
 			var cln = $"{cpu}Decoder";
 
 			await t.WriteLineAsync("using System;");
-			await t.WriteLineAsync("using static SuperHot.Instruct;");
+			await t.WriteLineAsync("using static SuperHot.Auto.Instruct;");
 			await t.WriteLineAsync();
 			await t.WriteLineAsync("// ReSharper disable RedundantAssignment");
 			await t.WriteLineAsync();
