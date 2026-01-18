@@ -250,6 +250,7 @@ namespace Generator
 		{
 			var mArg = txt.Trim();
 
+			mArg = mArg.Replace("@@(", "atb(");
 			mArg = Regex.Replace(mArg, @"@r(\d+)\+", "at(p(r$1))");
 			mArg = Regex.Replace(mArg, @"@-r(\d+)", "at(m(r$1))");
 			mArg = Regex.Replace(mArg, @"@r(\d+)", "at(r$1)");

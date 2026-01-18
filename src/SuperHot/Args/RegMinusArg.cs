@@ -4,8 +4,14 @@ namespace SuperHot
     {
         public Register Val { get; }
 
-        public RegMinusArg(Register val) => Val = val;
+        public RegMinusArg(Register val)
+        {
+            Val = val;
+        }
 
-        public override string ToString() => $"-{Val}";
+        public override string ToString()
+        {
+            return $"-{Val}";
+        }
     }
 }

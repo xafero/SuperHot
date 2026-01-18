@@ -4,8 +4,14 @@ namespace SuperHot
     {
         public Register Val { get; }
 
-        public RegArg(Register val) => Val = val;
+        public RegArg(Register val)
+        {
+            Val = val;
+        }
 
-        public override string ToString() => $"{Val}";
+        public override string ToString()
+        {
+            return $"{Val}";
+        }
     }
 }

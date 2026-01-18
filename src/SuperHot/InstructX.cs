@@ -22,6 +22,13 @@ namespace SuperHot
         }
 
         internal static A at(A a1) => new At1Arg(a1);
+        
+        internal static A atb(A a1, A a2)
+        {
+            if (a1 is IntArg ia)
+                a1 = new DecArg(ia.Val);
+            return new At2bArg(a1, a2);
+        }
 
         internal static A at(A a1, A a2)
         {

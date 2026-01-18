@@ -4,8 +4,14 @@ namespace SuperHot
     {
         public int Val { get; }
 
-        public IntArg(int val) => Val = val;
+        public IntArg(int val)
+        {
+            Val = val;
+        }
 
-        public override string ToString() => $"0x{Val:x}";
+        public override string ToString()
+        {
+            return $"0x{Val:x}";
+        }
     }
 }

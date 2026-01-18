@@ -4,8 +4,14 @@ namespace SuperHot
     {
         public int Val { get; }
 
-        public HexArg(int val) => Val = val;
+        public HexArg(int val)
+        {
+            Val = val;
+        }
 
-        public override string ToString() => $"0x{Val:x4}";
+        public override string ToString()
+        {
+            return $"0x{Val:x4}";
+        }
     }
 }
