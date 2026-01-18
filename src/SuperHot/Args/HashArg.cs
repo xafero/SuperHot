@@ -6,6 +6,6 @@ namespace SuperHot
 
         public HashArg(Arg a1) { Val1 = a1; }
 
-        public override string ToString() => $"#({Val1})";
+        public override string ToString() => $"#{Val1}";
     }
 }

@@ -6,6 +6,6 @@ namespace SuperHot
 
         public IntArg(int val) => Val = val;
 
-        public override string ToString() => $"0x{Val:x4}";
+        public override string ToString() => $"0x{Val:x}";
     }
 }
