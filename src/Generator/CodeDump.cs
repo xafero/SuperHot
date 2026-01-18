@@ -186,7 +186,8 @@ namespace Generator
 			return t;
 		}
 
-		private static async Task<StringWriter> GenerateCode(string cpu, ParsedLine[] lines)
+		private static async Task<StringWriter> GenerateCode(ParsedLine[] lines, 
+			Dictionary<string, string> allMeth, string cpu)
 		{
 			var t = new StringWriter();
 
