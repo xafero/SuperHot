@@ -189,8 +189,9 @@ namespace Generator
 			const string nsp = "SuperHot.Auto";
 			var cln = $"{cpu}Decoder";
 
-			await t.WriteLineAsync("using System;");
+			await t.WriteLineAsync("using static SuperHot.InstructV;");
 			await t.WriteLineAsync("using static SuperHot.Auto.Instruct;");
+			await t.WriteLineAsync("using static SuperHot.Register;");
 			await t.WriteLineAsync();
 			await t.WriteLineAsync("// ReSharper disable RedundantAssignment");
 			await t.WriteLineAsync();
@@ -220,7 +221,7 @@ namespace Generator
 				await a.WriteLineAsync("\t\t{");
 				await a.WriteLineAsync("\t\t\tswitch (b1 = r.ReadOne())");
 				await a.WriteLineAsync("\t\t\t{");
-				foreach (var sub in groups)
+				foreach (var sub in groups.Take(1))
 				{
 					var sKey = sub.H.Split(" ", 2)[1];
 					await a.WriteAsync($"\t\t\t\tcase 0x{sKey}:");
