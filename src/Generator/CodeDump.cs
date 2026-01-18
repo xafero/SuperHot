@@ -201,14 +201,14 @@ namespace Generator
 			await t.WriteLineAsync("{");
 			await t.WriteLineAsync($"\tpublic sealed class {cln} : IDecoder");
 			await t.WriteLineAsync("\t{");
-			await t.WriteLineAsync("\t\tpublic Instruction Decode(IByteReader r)");
+			await t.WriteLineAsync("\t\tpublic Instruction? Decode(IByteReader r, bool fail)");
 			await t.WriteLineAsync("\t\t{");
 			await t.WriteLineAsync("\t\t\tbyte b0 = 0;");
 			await t.WriteLineAsync("\t\t\tbyte b1 = 0;");
 			await t.WriteLineAsync();
 
-			const string err = "throw new DecodeException(b0, b1);";
-			await t.WriteLineAsync("\t\t\tswitch (b0 = r.ReadOne())");
+			const string err = "throw new DecodeException(b0, b1)";
+			await t.WriteLineAsync("\t\t\tvar i = (b0 = r.ReadOne()) switch");
 			await t.WriteLineAsync("\t\t\t{");
 
 			var a = new StringWriter();
@@ -216,27 +216,29 @@ namespace Generator
 			{
 				var fKey = groups.Key;
 				var dm = $"Decode_{fKey}";
-				await t.WriteLineAsync($"\t\t\t\tcase 0x{fKey}: return {dm}(r, ref b0, ref b1);");
+				await t.WriteLineAsync($"\t\t\t\t0x{fKey} => {dm}(r, ref b0, ref b1),");
 
 				await a.WriteLineAsync();
-				await a.WriteLineAsync($"\t\tprivate static Instruction {dm}(IByteReader r, ref byte b0, ref byte b1)");
+				await a.WriteLineAsync($"\t\tprivate static Instruction? {dm}(IByteReader r, ref byte b0, ref byte b1)");
 				await a.WriteLineAsync("\t\t{");
-				await a.WriteLineAsync("\t\t\tswitch (b1 = r.ReadOne())");
+				await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
 				await a.WriteLineAsync("\t\t\t{");
 				foreach (var sub in groups.Take(1))
 				{
 					var sKey = sub.H.Split(" ", 2)[1];
-					await a.WriteAsync($"\t\t\t\tcase 0x{sKey}:");
+					await a.WriteAsync($"\t\t\t\t0x{sKey} =>");
 					var mName = GetMethodName(sub.M);
 					var mArg = GetMethodArgs(sub.A);
-					await a.WriteLineAsync($" return {mName}({mArg});");
+					await a.WriteLineAsync($" {mName}({mArg}),");
 				}
-				await a.WriteLineAsync($"\t\t\t\tdefault: {err}");
-				await a.WriteLineAsync("\t\t\t}");
+				await a.WriteLineAsync($"\t\t\t\t_ => null");
+				await a.WriteLineAsync("\t\t\t};");
 				await a.WriteLineAsync("\t\t}");
 			}
 
-			await t.WriteLineAsync("\t\t\t}");
+			await t.WriteLineAsync("\t\t\t};");
+			await t.WriteLineAsync();
+			await t.WriteLineAsync($"\t\t\treturn fail ? {err} : i;");
 			await t.WriteLineAsync("\t\t}");
 			await t.WriteLineAsync(a.ToString().TrimEnd());
 			await t.WriteLineAsync("\t}");

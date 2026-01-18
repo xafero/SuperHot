@@ -33,21 +33,14 @@ namespace SuperHot.UnitTests
 			var got = new SortedSet<string>();
 
 			var decoder = Decoders.GetDecoder(dialect);
+			var reader = new ArrayReader([]);
+
 			foreach (var num in NumTool.Iter16Bit())
 			{
-				var reader = new ArrayReader(BitConverter.GetBytes((ushort)num));
-				string? text;
-				try
-				{
-					var instr = decoder.Decode(reader);
-					text = instr.ToString();
-				}
-				catch (Exception e)
-				{
-					text = e.Message;
-				}
+				reader.Reset(BitConverter.GetBytes((ushort)num));
+				var text = decoder.Decode(reader, fail: false)?.ToString();
 				var hex = reader.ToString().ToLower();
-				got.Add($"{hex}\t{text!.Trim()}");
+				got.Add($"{hex}\t{text?.Trim()}");
 			}
 
 			const int TODO_max = 20; // TODO

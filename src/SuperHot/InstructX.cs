@@ -10,19 +10,10 @@ namespace SuperHot
 {
     internal static class InstructV
     {
-        internal static A h(A a1)
-        {
-            throw new InvalidOperationException();
-        }
+        internal static A h(A a1) => new HashArg(a1);
 
-        internal static A at(A a1)
-        {
-            throw new InvalidOperationException();
-        }
+        internal static A at(A a1) => new At1Arg(a1);
 
-        internal static A at(A a1, A a2)
-        {
-            throw new InvalidOperationException();
-        }
+        internal static A at(A a1, A a2) => new At2Arg(a1, a2);
     }
 }
