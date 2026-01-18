@@ -250,7 +250,7 @@ namespace SuperHot
 		{
 			throw new InvalidOperationException();
 		}
-		
+
 		internal static Instruction Jmp(object x)
 		{
 			throw new InvalidOperationException();
@@ -305,7 +305,7 @@ namespace SuperHot
 		{
 			throw new InvalidOperationException();
 		}
-		
+
 		internal static Instruction Mov_w(object x, object y)
 		{
 			throw new InvalidOperationException();
@@ -401,6 +401,191 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
+		internal static Instruction Bclr(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Bld(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Bset(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Bst(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Clips_b(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Clips_w(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Clipu_b(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Clipu_w(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Divs(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Divu(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Fcnvds(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Fcnvsd(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Fipr(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Fpchg()
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Frchg()
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Fsca(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Fschg()
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Fsqrt(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Fsrra(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Ftrv(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Icbi(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction JsrN(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Ldbank(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Movml_l(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Movmu_l(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Movua_l(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Mulr(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Nott()
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Pref(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Prefi(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction RtsN()
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction RtvN(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Sets()
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Shad(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Shld(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Stbank(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Synco()
+		{
+			throw new InvalidOperationException();
+		}
+
 		internal static Instruction Shal(object x)
 		{
 			throw new InvalidOperationException();
@@ -465,8 +650,33 @@ namespace SuperHot
 		{
 			throw new InvalidOperationException();
 		}
-		
+
 		internal static Instruction Stc(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Movli_l(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Ocbp(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Ocbwb(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Movco_l(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Ocbi(object x)
 		{
 			throw new InvalidOperationException();
 		}
@@ -501,7 +711,32 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
+		internal static Instruction Ldtlb()
+		{
+			throw new InvalidOperationException();
+		}
+
 		internal static Instruction Swap_w(object x, object y)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Resbank()
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Clrs()
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Movrt(object x)
+		{
+			throw new InvalidOperationException();
+		}
+
+		internal static Instruction Movca_l(object x, object y)
 		{
 			throw new InvalidOperationException();
 		}
@@ -546,9 +781,30 @@ namespace SuperHot
 			throw new InvalidOperationException();
 		}
 
+		internal static int dbr = 0;
+
+		internal static int dr0 = 0;
+		internal static int dr2 = 0;
+		internal static int dr4 = 0;
+		internal static int dr6 = 0;
+		internal static int dr8 = 0;
+		internal static int dr10 = 0;
+		internal static int dr12 = 0;
+		internal static int dr14 = 0;
+
+		internal static int fv0 = 0;
+		internal static int fv4 = 0;
+		internal static int fv8 = 0;
+		internal static int fv12 = 0;
+
+		internal static int sgr = 0;
+		internal static int spc = 0;
+		internal static int tbr = 0;
+		internal static int xmtrx = 0;
+
 		internal static int fpul = 0;
 		internal static int fpscr = 0;
-		
+
 		internal static int fr0 = 0;
 		internal static int fr1 = 0;
 		internal static int fr2 = 0;
@@ -565,7 +821,7 @@ namespace SuperHot
 		internal static int fr13 = 0;
 		internal static int fr14 = 0;
 		internal static int fr15 = 0;
-		
+
 		internal static int at_r0 = 0;
 		internal static int at_r0_a = 0;
 		internal static int at_r1_a = 0;
@@ -657,19 +913,33 @@ namespace SuperHot
 		internal static int r13 = 0;
 		internal static int r14 = 0;
 		internal static int r15 = 0;
-		
+
 		internal static int mach = 0;
 		internal static int macl = 0;
 		internal static int sr = 0;
 		internal static int gbr = 0;
 		internal static int pr = 0;
 		internal static int vbr = 0;
+		internal static int ssr = 0;
+
+		internal static int r0_bank = 0;
+		internal static int r1_bank = 0;
+		internal static int r2_bank = 0;
+		internal static int r3_bank = 0;
+		internal static int r4_bank = 0;
+		internal static int r5_bank = 0;
+		internal static int r6_bank = 0;
+		internal static int r7_bank = 0;
+		internal static int r8_bank = 0;
+		internal static int r9_bank = 0;
+		internal static int r10_bank = 0;
+		internal static int r11_bank = 0;
 
 		internal static object at(object x)
 		{
 			throw new InvalidOperationException();
 		}
-		
+
 		internal static object h(object x)
 		{
 			throw new InvalidOperationException();
@@ -679,12 +949,12 @@ namespace SuperHot
 		{
 			throw new InvalidOperationException();
 		}
-		
+
 		internal static object p(object x)
 		{
 			throw new InvalidOperationException();
 		}
-		
+
 		internal static object at(object x, object y)
 		{
 			throw new InvalidOperationException();
