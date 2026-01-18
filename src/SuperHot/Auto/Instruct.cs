@@ -761,6 +761,8 @@ namespace SuperHot.Auto
 
 		internal static I Word(A a1)
 		{
+			if (a1 is IntArg ia)
+				a1 = new HexArg(ia.Val);
 			return new I(O.Word, a1);
 		}
 
