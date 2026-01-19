@@ -12,6 +12,7 @@
     <PackageId>SuperHot</PackageId>
     <PackageIcon>logo.png</PackageIcon>
     <PackageProjectUrl>https://github.com/xafero/SuperHot</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/xafero/SuperHot.git</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -29,9 +30,7 @@
     <PackageDescription>
       SuperHot is a SuperH instruction decoder and disassembler written in C#.
     </PackageDescription>
-    <PackageReleaseNotes>
-      None.
-    </PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/xafero/SuperHot/releases</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
@@ -47,6 +46,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="PolySharp" Version="1.15.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <PropertyGroup>
