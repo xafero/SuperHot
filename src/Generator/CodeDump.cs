@@ -251,9 +251,10 @@ namespace Generator
 
 			return t;
 		}
-		
-		private static IDictionary<string, ISet<string>> GenerateScon(G groups)
+
+		private static IDictionary<string, ISet<string>> GenerateScon(string dm, G groups)
 		{
+			var e = dm.Split('_').Last();
 			var dict = new SortedDictionary<string, ISet<string>>();
 			foreach (var sub in groups)
 			{
@@ -261,12 +262,22 @@ namespace Generator
 				var gKey = $"0x{sKey}";
 				var mName = GetMethodName(sub.M);
 				var mArg = GetMethodArgs(sub.A);
-				var gVal = $"{mName}({mArg}),";
+				var mArgT = FixMethodArgs(e, gKey, mArg);
+				var gVal = $"{mName}({mArgT}),";
 				if (!dict.TryGetValue(gVal, out var found))
 					dict[gVal] = found = new SortedSet<string>();
 				found.Add(gKey);
 			}
 			return dict;
+		}
+
+		private static string FixMethodArgs(string e, string k, string val)
+		{
+			var txt = val;
+			var two = $"0x{e}{k.Split('x', 2)[1]}";
+			if (txt.Contains(two))
+				txt = txt.Replace(two, "(b0 << 8) | b1");
+			return txt;
 		}
 
 		private static async Task<StringWriter> GenerateSecondly(string dm, G groups)
@@ -278,7 +289,7 @@ namespace Generator
 			await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
 			await a.WriteLineAsync("\t\t\t{");
 
-			var dict = GenerateScon(groups);
+			var dict = GenerateScon(dm, groups);
 			foreach (var (val, keys) in dict)
 			{
 				await a.WriteAsync($"\t\t\t\t");
