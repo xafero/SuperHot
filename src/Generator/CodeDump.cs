@@ -120,6 +120,10 @@ namespace Generator
 				await t.WriteLineAsync();
 				await t.WriteLineAsync($"\t\tinternal static I {key}({args})");
 				await t.WriteLineAsync("\t\t{");
+				if (key.Equals("Word"))
+				{
+					await t.WriteLineAsync("\t\t\tif (a1 is IntArg ia) a1 = new HexArg(ia.Val);");
+				}
 				await t.WriteLineAsync($"\t\t\treturn new I({call});");
 				await t.WriteLineAsync("\t\t}");
 			}
