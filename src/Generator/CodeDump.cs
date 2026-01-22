@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using static Generator.FileTool;
 using static Generator.JsonTool;
 using E = System.Linq.Enumerable;
+using G = System.Linq.IGrouping<string, Generator.ParsedLine>;
 
 namespace Generator
 {
@@ -225,22 +226,7 @@ namespace Generator
 				var fKey = groups.Key;
 				var dm = $"Decode_{fKey}";
 
-				var a = new StringWriter();
-				await a.WriteLineAsync();
-				await a.WriteLineAsync($"\t\tinternal static Instruction? {dm}(IByteReader r, ref byte b0, ref byte b1)");
-				await a.WriteLineAsync("\t\t{");
-				await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
-				await a.WriteLineAsync("\t\t\t{");
-				foreach (var sub in groups)
-				{
-					var sKey = sub.H.Split(" ", 2)[1];
-					await a.WriteAsync($"\t\t\t\t0x{sKey} =>");
-					var mName = GetMethodName(sub.M);
-					var mArg = GetMethodArgs(sub.A);
-					await a.WriteLineAsync($" {mName}({mArg}),");
-				}
-				await a.WriteLineAsync("\t\t\t};");
-				await a.WriteLineAsync("\t\t}");
+				var a = await GenerateSecondly(dm, groups);
 
 				var mfKey = $"{cln}.{dm}";
 				var mfBody = a.ToString();
@@ -264,6 +250,46 @@ namespace Generator
 			await t.WriteLineAsync("}");
 
 			return t;
+		}
+		
+		private static IDictionary<string, ISet<string>> GenerateScon(G groups)
+		{
+			var dict = new SortedDictionary<string, ISet<string>>();
+			foreach (var sub in groups)
+			{
+				var sKey = sub.H.Split(" ", 2)[1];
+				var gKey = $"0x{sKey}";
+				var mName = GetMethodName(sub.M);
+				var mArg = GetMethodArgs(sub.A);
+				var gVal = $"{mName}({mArg}),";
+				if (!dict.TryGetValue(gVal, out var found))
+					dict[gVal] = found = new SortedSet<string>();
+				found.Add(gKey);
+			}
+			return dict;
+		}
+
+		private static async Task<StringWriter> GenerateSecondly(string dm, G groups)
+		{
+			var a = new StringWriter();
+			await a.WriteLineAsync();
+			await a.WriteLineAsync($"\t\tinternal static Instruction? {dm}(IByteReader r, ref byte b0, ref byte b1)");
+			await a.WriteLineAsync("\t\t{");
+			await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
+			await a.WriteLineAsync("\t\t\t{");
+
+			var dict = GenerateScon(groups);
+			foreach (var (val, keys) in dict)
+			{
+				await a.WriteAsync($"\t\t\t\t");
+				var pat = string.Join(" or ", keys);
+				await a.WriteAsync($"{pat} => ");
+				await a.WriteLineAsync(val);
+			}
+
+			await a.WriteLineAsync("\t\t\t};");
+			await a.WriteLineAsync("\t\t}");
+			return a;
 		}
 
 		private static string GetMethodArgs(string txt)
