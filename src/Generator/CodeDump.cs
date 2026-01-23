@@ -10,6 +10,7 @@ using static Generator.JsonTool;
 using E = System.Linq.Enumerable;
 using G = System.Linq.IGrouping<string, Generator.ParsedLine>;
 using N = System.Globalization.NumberStyles;
+using KV = (string key, string val);
 
 namespace Generator
 {
@@ -254,10 +255,9 @@ namespace Generator
 			return t;
 		}
 
-		private static IDictionary<string, ISet<string>> GenerateScon(string dm, G groups)
+		private static IEnumerable<KV> GenerateScon(string dm, G groups)
 		{
 			var e = dm.Split('_').Last();
-			var dict = new SortedDictionary<string, ISet<string>>();
 			foreach (var sub in groups)
 			{
 				var sKey = sub.H.Split(" ", 2)[1];
@@ -266,9 +266,18 @@ namespace Generator
 				var mArg = GetMethodArgs(sub.A);
 				var mArgT = FixMethodArgs(e, gKey, mArg);
 				var gVal = $"{mName}({mArgT}),";
-				if (!dict.TryGetValue(gVal, out var found))
-					dict[gVal] = found = new SortedSet<string>();
-				found.Add(gKey);
+				yield return (gKey, gVal);
+			}
+		}
+
+		private static IDictionary<string, ISet<string>> GenerateScon(IEnumerable<KV> items)
+		{
+			var dict = new SortedDictionary<string, ISet<string>>();
+			foreach (var (key, val) in items)
+			{
+				if (!dict.TryGetValue(val, out var found))
+					dict[val] = found = new SortedSet<string>();
+				found.Add(key);
 			}
 			return dict;
 		}
@@ -310,7 +319,9 @@ namespace Generator
 			await a.WriteLineAsync($"\t\tinternal static Instruction? {dm}(IByteReader r, ref byte b0, ref byte b1)");
 			await a.WriteLineAsync("\t\t{");
 
-			var dict = GenerateScon(dm, groups);
+			var list = GenerateScon(dm, groups).ToArray();
+			
+			var dict = GenerateScon(list);
 			if (dict.Count == 1 && dict.Single() is { Value.Count: 256 } single)
 			{
 				await WriteOne(a, single);
