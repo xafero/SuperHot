@@ -286,19 +286,28 @@ namespace Generator
 			await a.WriteLineAsync();
 			await a.WriteLineAsync($"\t\tinternal static Instruction? {dm}(IByteReader r, ref byte b0, ref byte b1)");
 			await a.WriteLineAsync("\t\t{");
-			await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
-			await a.WriteLineAsync("\t\t\t{");
 
 			var dict = GenerateScon(dm, groups);
-			foreach (var (val, keys) in dict)
+			if (dict.Count == 1 && dict.Single() is { Value.Count: 256 } single)
 			{
-				await a.WriteAsync($"\t\t\t\t");
-				var pat = string.Join(" or ", keys);
-				await a.WriteAsync($"{pat} => ");
-				await a.WriteLineAsync(val);
+				var sCode = single.Key.Trim(',');
+				await a.WriteLineAsync("\t\t\tb1 = r.ReadOne();");
+				await a.WriteLineAsync($"\t\t\treturn {sCode};");
+			}
+			else
+			{
+				await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
+				await a.WriteLineAsync("\t\t\t{");
+				foreach (var (val, keys) in dict)
+				{
+					await a.WriteAsync("\t\t\t\t");
+					var pat = string.Join(" or ", keys);
+					await a.WriteAsync($"{pat} => ");
+					await a.WriteLineAsync(val);
+				}
+				await a.WriteLineAsync("\t\t\t};");
 			}
 
-			await a.WriteLineAsync("\t\t\t};");
 			await a.WriteLineAsync("\t\t}");
 			return a;
 		}
