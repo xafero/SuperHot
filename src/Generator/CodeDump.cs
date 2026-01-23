@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
@@ -8,6 +9,7 @@ using static Generator.FileTool;
 using static Generator.JsonTool;
 using E = System.Linq.Enumerable;
 using G = System.Linq.IGrouping<string, Generator.ParsedLine>;
+using N = System.Globalization.NumberStyles;
 
 namespace Generator
 {
@@ -274,9 +276,30 @@ namespace Generator
 		private static string FixMethodArgs(string e, string k, string val)
 		{
 			var txt = val;
-			var two = $"0x{e}{k.Split('x', 2)[1]}";
+			var f = k.Split('x', 2)[1];
+			var two = $"0x{e}{f}";
 			if (txt.Contains(two))
+			{
 				txt = txt.Replace(two, "(b0 << 8) | b1");
+				return txt;
+			}
+			var fVs = sbyte.Parse(f, N.HexNumber);
+			two = $"({fVs})";
+			if (txt.Contains(two))
+			{
+				txt = txt.Replace(two, "((sbyte)b1)");
+				return txt;
+			}
+			var fVu = byte.Parse(f, N.HexNumber);
+			two = $"({fVu})";
+			if (txt.Contains(two))
+			{
+				txt = txt.Replace(two, "((byte)b1)");
+				return txt;
+			}
+			
+			// TODO throw new InvalidOperationException("'" + two + "' '" + txt + "'!");
+			
 			return txt;
 		}
 
@@ -290,9 +313,12 @@ namespace Generator
 			var dict = GenerateScon(dm, groups);
 			if (dict.Count == 1 && dict.Single() is { Value.Count: 256 } single)
 			{
-				var sCode = single.Key.Trim(',');
-				await a.WriteLineAsync("\t\t\tb1 = r.ReadOne();");
-				await a.WriteLineAsync($"\t\t\treturn {sCode};");
+				await WriteOne(a, single);
+			}
+			else if (dict.Count == 2 && dict.Keys.Select(k =>
+				         k.Replace("(sbyte)", "(byte)")).Distinct().Count() == 1)
+			{
+				await WriteOne(a, dict.Single(k => !k.Key.Contains("(sbyte)")));
 			}
 			else
 			{
@@ -310,6 +336,13 @@ namespace Generator
 
 			await a.WriteLineAsync("\t\t}");
 			return a;
+		}
+
+		private static async Task WriteOne(StringWriter a, KeyValuePair<string, ISet<string>> single)
+		{
+			var sCode = single.Key.Trim(',');
+			await a.WriteLineAsync("\t\t\tb1 = r.ReadOne();");
+			await a.WriteLineAsync($"\t\t\treturn {sCode};");
 		}
 
 		private static string GetMethodArgs(string txt)
