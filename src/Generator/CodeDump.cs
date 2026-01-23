@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using static Generator.FileTool;
 using static Generator.JsonTool;
@@ -32,7 +32,7 @@ namespace Generator
 
 			const SearchOption so = SearchOption.TopDirectoryOnly;
 			var files = Directory.EnumerateFiles(inpDir, "*.json", so);
-			
+
 			var allMeth = new Dictionary<string, string>();
 			var allMeta = new SortedDictionary<string, OpMetaTmp>();
 			StringWriter text;
@@ -58,7 +58,7 @@ namespace Generator
 
 			var idf = Path.Combine(outDir, "Instruct.cs");
 			text = await GenerateInst(allMeta);
-			
+
 			Console.WriteLine($"Writing '{idf}' with {allMeta.Count} values...");
 			await WriteFile(idf, text.ToString());
 
@@ -306,9 +306,9 @@ namespace Generator
 				txt = txt.Replace(two, "((byte)b1)");
 				return txt;
 			}
-			
+
 			// TODO throw new InvalidOperationException("'" + two + "' '" + txt + "'!");
-			
+
 			return txt;
 		}
 
@@ -319,8 +319,9 @@ namespace Generator
 			await a.WriteLineAsync($"\t\tinternal static Instruction? {dm}(IByteReader r, ref byte b0, ref byte b1)");
 			await a.WriteLineAsync("\t\t{");
 
-			var list = GenerateScon(dm, groups).ToArray();
-			
+			var all = GenerateScon(dm, groups).ToArray();
+			var list = Dedup.Cluster(all);
+
 			var dict = GenerateScon(list);
 			if (dict.Count == 1 && dict.Single() is { Value.Count: 256 } single)
 			{
