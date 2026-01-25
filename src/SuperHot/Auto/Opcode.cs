@@ -48,7 +48,7 @@ namespace SuperHot.Auto
 
 		/// <summary>
 		/// Bit Clear
-		/// <remarks>systemControl</remarks>
+		/// <remarks>System Control</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "#0,r0", "#0,r10")]
 		Bclr,
@@ -69,7 +69,7 @@ namespace SuperHot.Auto
 
 		/// <summary>
 		/// Bit Load
-		/// <remarks>systemControl</remarks>
+		/// <remarks>System Control</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "#0,r0", "#0,r10")]
 		Bld,
@@ -90,7 +90,7 @@ namespace SuperHot.Auto
 
 		/// <summary>
 		/// Bit Set
-		/// <remarks>systemControl</remarks>
+		/// <remarks>System Control</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "#0,r0", "#0,r10")]
 		Bset,
@@ -111,7 +111,7 @@ namespace SuperHot.Auto
 
 		/// <summary>
 		/// Bit Store
-		/// <remarks>systemControl</remarks>
+		/// <remarks>System Control</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "#0,r0", "#0,r10")]
 		Bst,
@@ -132,28 +132,28 @@ namespace SuperHot.Auto
 
 		/// <summary>
 		/// Signed Saturation Value Comparison (Byte)
-		/// <remarks>arithmetic</remarks>
+		/// <remarks>Arithmetic</remarks>
 		/// </summary>
 		[O([D.Sh2a], 1, "r0", "r10")]
 		Clips_b,
 
 		/// <summary>
 		/// Signed Saturation Value Comparison (Word)
-		/// <remarks>arithmetic</remarks>
+		/// <remarks>Arithmetic</remarks>
 		/// </summary>
 		[O([D.Sh2a], 1, "r0", "r10")]
 		Clips_w,
 
 		/// <summary>
 		/// Unsigned Saturation Value Comparison (Byte)
-		/// <remarks>arithmetic</remarks>
+		/// <remarks>Arithmetic</remarks>
 		/// </summary>
 		[O([D.Sh2a], 1, "r0", "r10")]
 		Clipu_b,
 
 		/// <summary>
 		/// Unsigned Saturation Value Comparison (Word)
-		/// <remarks>arithmetic</remarks>
+		/// <remarks>Arithmetic</remarks>
 		/// </summary>
 		[O([D.Sh2a], 1, "r0", "r10")]
 		Clipu_w,
@@ -258,20 +258,20 @@ namespace SuperHot.Auto
 
 		/// <summary>
 		/// Division Signed
-		/// <remarks>arithmetic</remarks>
+		/// <remarks>Arithmetic</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "r0,r0", "r0,r10")]
 		Divs,
 
 		/// <summary>
 		/// Division Unsigned
-		/// <remarks>arithmetic</remarks>
+		/// <remarks>Arithmetic</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "r0,r0", "r0,r10")]
 		Divu,
 
 		/// <summary>
-		/// Double-length Multiply as Signed
+		/// Double-length Multiply as Signed (Long)
 		/// <remarks>Arithmetic</remarks>
 		/// </summary>
 		[O([D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "r0,r0", "r10,r10")]
@@ -531,7 +531,7 @@ namespace SuperHot.Auto
 
 		/// <summary>
 		/// Load from Register Bank
-		/// <remarks>systemControl</remarks>
+		/// <remarks>System Control</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "@r0,r0", "@r10,r0")]
 		Ldbank,
@@ -642,22 +642,22 @@ namespace SuperHot.Auto
 		Movli_l,
 
 		/// <summary>
-		/// R0-Rn Register Save/Restore
-		/// <remarks>dataTransfer</remarks>
+		/// Move Multi-register Lower part
+		/// <remarks>Data Transfer</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "@r15+,r0", "@r15+,r10")]
 		Movml_l,
 
 		/// <summary>
-		/// Rn-R14 and PR Register Save/Restore
-		/// <remarks>dataTransfer</remarks>
+		/// Move Multi-register Upper part
+		/// <remarks>Data Transfer</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "@r15+,r0", "@r15+,r10")]
 		Movmu_l,
 
 		/// <summary>
 		/// T Bit Inversion and Transfer to Rn
-		/// <remarks>dataTransfer</remarks>
+		/// <remarks>Data Transfer</remarks>
 		/// </summary>
 		[O([D.Sh2a], 1, "r0", "r10")]
 		Movrt,
@@ -684,8 +684,8 @@ namespace SuperHot.Auto
 		Mul_l,
 
 		/// <summary>
-		/// Signed Multiplication with Result Storage in Rn
-		/// <remarks>arithmetic</remarks>
+		/// Signed Multiplication with Storage in Rn
+		/// <remarks>Arithmetic</remarks>
 		/// </summary>
 		[O([D.Sh2a], 2, "r0,r0", "r0,r10")]
 		Mulr,
@@ -734,7 +734,7 @@ namespace SuperHot.Auto
 
 		/// <summary>
 		/// T Bit Inversion
-		/// <remarks>dataTransfer</remarks>
+		/// <remarks>Data Transfer</remarks>
 		/// </summary>
 		[O([D.Sh2a])]
 		Nott,
@@ -790,7 +790,7 @@ namespace SuperHot.Auto
 
 		/// <summary>
 		/// Register Restoration from Bank
-		/// <remarks>systemControl</remarks>
+		/// <remarks>System Control</remarks>
 		/// </summary>
 		[O([D.Sh2a])]
 		Resbank,
@@ -838,14 +838,14 @@ namespace SuperHot.Auto
 		Rts,
 
 		/// <summary>
-		/// Return from Subroutine
+		/// Return from Subroutine (No Delay)
 		/// <remarks>Branch</remarks>
 		/// </summary>
 		[O([D.Sh2a])]
 		RtsN,
 
 		/// <summary>
-		/// Return from Subroutine with Rm→R0 Transfer
+		/// Return to Value from Subroutine (No Delay)
 		/// <remarks>Branch</remarks>
 		/// </summary>
 		[O([D.Sh2a], 1, "r0", "r10")]
@@ -1061,10 +1061,6 @@ namespace SuperHot.Auto
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 2, "#0,@(r0,gbr)", "#100,@(r0,gbr)")]
 		Tst_b,
 
-		/// <summary>
-		/// 
-		/// <remarks></remarks>
-		/// </summary>
 		[O([D.Sh,D.Sh2,D.Sh2a,D.Sh2e,D.Sh3,D.Sh3e,D.Sh4,D.Sh4a], 1, "0x0000", "0x0000")]
 		Word,
 

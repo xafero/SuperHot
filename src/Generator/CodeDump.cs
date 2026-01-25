@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
 using System.Text.RegularExpressions;
 using Generator.Meta;
 using static Generator.FileTool;
@@ -45,11 +43,11 @@ namespace Generator
 				var lines = FromJson<ParsedLine>(await ReadFile(file));
 				Collect(lines, allMeta, cpu);
 
-				// var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
-				// text = await GenerateCode(lines, allMeth, cpu);
+				var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
+				text = await GenerateCode(lines, allMeth, cpu);
 
-				// Console.WriteLine($"Writing '{jdf}' with {lines.Length} values...");
-				// await WriteFile(jdf, text.ToString());
+				Console.WriteLine($"Writing '{jdf}' with {lines.Length} values...");
+				await WriteFile(jdf, text.ToString());
 			}
 
 			var edf = Path.Combine(outDir, "Opcode.cs");
@@ -324,11 +322,7 @@ namespace Generator
 			if (txt.Contains(two))
 			{
 				txt = txt.Replace(two, "((byte)b1)");
-				return txt;
 			}
-
-			// TODO throw new InvalidOperationException("'" + two + "' '" + txt + "'!");
-
 			return txt;
 		}
 
