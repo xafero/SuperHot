@@ -66,6 +66,7 @@ namespace SuperHot
         r6_bank,
         r7_bank,
         sgr,
+        pc,
         spc,
         sr,
         ssr,
