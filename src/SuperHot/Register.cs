@@ -88,7 +88,7 @@ namespace SuperHot
         r14,
 
         /// <summary>
-        /// R15: Stack Pointer Register
+        /// R15: General Purpose Register 15 (stack pointer)
         /// </summary>
         r15,
 
