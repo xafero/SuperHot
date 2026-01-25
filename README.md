@@ -14,6 +14,7 @@ This project should disassemble the following:
 |  SH-2A  | SH7201, SH7206, SH7211, SH7214         |
 |  SH-2E  | SH7055, SH7058                         |
 |  SH-3   | SH7706, SH7709S                        |
+|  SH-3E  | SH7718R                                |
 |  SH-4   | SH7091, SH7750                         |
 |  SH-4A  | SH7450, SH7451, SH7734, SH7785         |
 
