@@ -190,7 +190,7 @@ namespace SuperHot
         ssr,
 
         /// <summary>
-        /// SGR: Saved General Register 15 (stack pointer)",
+        /// SGR: Saved General Register 15 (stack pointer)
         /// </summary>
         sgr,
 
