@@ -1,6 +1,6 @@
 ﻿[
   {
-    "Item": "Add",
+    "Item": "ADD",
     "Label": "Add binary",
     "Group": "Arithmetic"
   },
@@ -25,10 +25,9 @@
     "Group": "Logic Operation"
   },
   {
-    "Item": "Bclr",
+    "Item": "BCLR",
     "Label": "Bit Clear",
-    "Group": "systemControl",
-    "Desc":"Clears a specified bit in memory"
+    "Group": "System Control"
   },
   {
     "Item": "BF",
@@ -41,10 +40,9 @@
     "Group": "Branch"
   },
   {
-    "Item": "Bld",
+    "Item": "BLD",
     "Label": "Bit Load",
-    "Group": "systemControl",
-    "Desc":"Loads a specified bit from memory to T flag"
+    "Group": "System Control"
   },
   {
     "Item": "BRA",
@@ -57,10 +55,9 @@
     "Group": "Branch"
   },
   {
-    "Item": "Bset",
+    "Item": "BSET",
     "Label": "Bit Set",
-    "Group": "systemControl",
-    "Desc":"Sets a specified bit in memory"
+    "Group": "System Control"
   },
   {
     "Item": "BSR",
@@ -73,10 +70,9 @@
     "Group": "Branch"
   },
   {
-    "Item": "Bst",
+    "Item": "BST",
     "Label": "Bit Store",
-    "Group": "systemControl",
-    "Desc":"Stores T flag to a specified bit in memory"
+    "Group": "System Control"
   },
   {
     "Item": "BT",
@@ -89,28 +85,24 @@
     "Group": "Branch"
   },
   {
-    "Item": "Clips_b",
+    "Item": "CLIPS_B",
     "Label": "Signed Saturation Value Comparison (Byte)",
-    "Group": "arithmetic",
-    "Desc":"Performs signed saturation comparison for byte values"
+    "Group": "Arithmetic"
   },
   {
-    "Item": "Clips_w",
+    "Item": "CLIPS_W",
     "Label": "Signed Saturation Value Comparison (Word)",
-    "Group": "arithmetic",
-    "Desc":"Performs signed saturation comparison for word values"
+    "Group": "Arithmetic"
   },
   {
-    "Item": "Clipu_b",
+    "Item": "CLIPU_B",
     "Label": "Unsigned Saturation Value Comparison (Byte)",
-    "Group": "arithmetic",
-    "Desc":"Performs unsigned saturation comparison for byte values"
+    "Group": "Arithmetic"
   },
   {
-    "Item": "Clipu_w",
+    "Item": "CLIPU_W",
     "Label": "Unsigned Saturation Value Comparison (Word)",
-    "Group": "arithmetic",
-    "Desc":"Performs unsigned saturation comparison for word values"
+    "Group": "Arithmetic"
   },
   {
     "Item": "CLRMAC",
@@ -183,20 +175,18 @@
     "Group": "Arithmetic"
   },
   {
-    "Item": "Divs",
+    "Item": "DIVS",
     "Label": "Division Signed",
-    "Group": "arithmetic",
-    "Desc":"Performs signed division operation"
+    "Group": "Arithmetic"
   },
   {
-    "Item": "Divu",
+    "Item": "DIVU",
     "Label": "Division Unsigned",
-    "Group": "arithmetic",
-    "Desc":"Performs unsigned division operation"
+    "Group": "Arithmetic"
   },
   {
     "Item": "DMULS_L",
-    "Label": "Double-length Multiply as Signed",
+    "Label": "Double-length Multiply as Signed (Long)",
     "Group": "Arithmetic"
   },
   {
@@ -380,9 +370,9 @@
     "Group": "Branch"
   },
   {
-    "Item": "Ldbank",
+    "Item": "LDBANK",
     "Label": "Load from Register Bank",
-    "Group": "systemControl"
+    "Group": "System Control"
   },
   {
     "Item": "LDC",
@@ -460,19 +450,19 @@
     "Group": "Data Transfer"
   },
   {
-    "Item": "movml_l",
-    "Label": "R0-Rn Register Save/Restore",
-    "Group": "dataTransfer"
+    "Item": "MOVML_L",
+    "Label": "Move Multi-register Lower part",
+    "Group": "Data Transfer"
   },
   {
-    "Item": "movmu_l",
-    "Label": "Rn-R14 and PR Register Save/Restore",
-    "Group": "dataTransfer"
+    "Item": "MOVMU_L",
+    "Label": "Move Multi-register Upper part",
+    "Group": "Data Transfer"
   },
   {
-    "Item": "movrt",
+    "Item": "MOVRT",
     "Label": "T Bit Inversion and Transfer to Rn",
-    "Group": "dataTransfer"
+    "Group": "Data Transfer"
   },
   {
     "Item": "MOVT",
@@ -490,9 +480,9 @@
     "Group": "Arithmetic"
   },
   {
-    "Item": "mulr",
-    "Label": "Signed Multiplication with Result Storage in Rn",
-    "Group": "arithmetic"
+    "Item": "MULR",
+    "Label": "Signed Multiplication with Storage in Rn",
+    "Group": "Arithmetic"
   },
   {
     "Item": "MULS_W",
@@ -525,9 +515,9 @@
     "Group": "Logic Operation"
   },
   {
-    "Item": "nott",
+    "Item": "NOTT",
     "Label": "T Bit Inversion",
-    "Group": "dataTransfer"
+    "Group": "Data Transfer"
   },
   {
     "Item": "OCBI",
@@ -565,9 +555,9 @@
     "Group": "Data Transfer"
   },
   {
-    "Item": "resbank",
+    "Item": "RESBANK",
     "Label": "Register Restoration from Bank",
-    "Group": "systemControl"
+    "Group": "System Control"
   },
   {
     "Item": "ROTCL",
@@ -600,18 +590,18 @@
     "Group": "Branch"
   },
   {
-    "Item": "rtsN",
-    "Label": "Return from Subroutine",
+    "Item": "RTSn",
+    "Label": "Return from Subroutine (No Delay)",
     "Group": "Branch"
   },
   {
-    "Item": "rtv",
-    "Label": "Return from Subroutine with Rm→R0 Transfer",
+    "Item": "RTV",
+    "Label": "Return to Value from Subroutine",
     "Group": "Branch"
   },
   {
-    "Item": "rtvN",
-    "Label": "Return from Subroutine with Rm→R0 Transfer",
+    "Item": "RTVn",
+    "Label": "Return to Value from Subroutine (No Delay)",
     "Group": "Branch"
   },
   {
