@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
 using System.Text.RegularExpressions;
+using Generator.Meta;
 using static Generator.FileTool;
 using static Generator.JsonTool;
 using E = System.Linq.Enumerable;
@@ -42,11 +45,11 @@ namespace Generator
 				var lines = FromJson<ParsedLine>(await ReadFile(file));
 				Collect(lines, allMeta, cpu);
 
-				var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
-				text = await GenerateCode(lines, allMeth, cpu);
+				// var jdf = Path.Combine(outDir, $"{cpu}Decoder.cs");
+				// text = await GenerateCode(lines, allMeth, cpu);
 
-				Console.WriteLine($"Writing '{jdf}' with {lines.Length} values...");
-				await WriteFile(jdf, text.ToString());
+				// Console.WriteLine($"Writing '{jdf}' with {lines.Length} values...");
+				// await WriteFile(jdf, text.ToString());
 			}
 
 			var edf = Path.Combine(outDir, "Opcode.cs");
@@ -166,6 +169,7 @@ namespace Generator
 				var min = val.Args.MinBy(a => a.Length) ?? string.Empty;
 				var max = val.Args.MaxBy(a => a.Length) ?? string.Empty;
 				await t.WriteLineAsync();
+				await AddComment(t, key);
 				var suf = max.Length >= 1 ? $", {argCount}, \"{min}\", \"{max}\"" : null;
 				await t.WriteLineAsync($"\t\t[O([{dia}]{suf})]");
 				await t.WriteLineAsync($"\t\t{key}{end}");
@@ -191,6 +195,23 @@ namespace Generator
 			await t.WriteLineAsync("}");
 
 			return t;
+		}
+
+		private static async Task AddComment(StringWriter t, string key)
+		{
+			if (Comments.Find(key) is not { } commO)
+				return;
+			var comm = new List<string>
+			{
+				$"{commO.Label}", $"<remarks>{commO.Group}</remarks>"
+			};
+			if (comm.Count < 1)
+				return;
+			await t.WriteLineAsync("\t\t/// <summary>");
+			var nl = Environment.NewLine;
+			var commT = string.Join(nl, comm.Select(c => $"\t\t/// {c}"));
+			await t.WriteLineAsync(commT);
+			await t.WriteLineAsync("\t\t/// </summary>");
 		}
 
 		private static async Task<StringWriter> GenerateCode(ParsedLine[] lines,
