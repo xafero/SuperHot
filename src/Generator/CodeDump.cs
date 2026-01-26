@@ -362,7 +362,7 @@ namespace Generator
 			}
 			if (txt.Contains("gbr") && HasFactor(nom, txt, out var factor, out var num))
 			{
-				txt = txt.Replace($"at({num},", $"at(b1*{factor},");
+				txt = txt.Replace($"at({num},", $"at(b1 * {factor},");
 				return txt;
 			}
 			// TODO
@@ -402,6 +402,23 @@ namespace Generator
 			{
 				await WriteOne(a, dict.Single(k => !k.Key.Contains("(sbyte)")));
 			}
+			else if (dict.Count == 16 && IsMultiple(dict.Keys, out var mult))
+			{
+				var factor = -1;
+				var min = mult.Min();
+				var max = mult.Max();
+				factor = min switch
+				{
+					0 when max == 60 => 4,
+					0 when max == 30 => 2,
+					0 when max == 15 => 1,
+					_ => throw new InvalidOperationException(string.Join(" | ", mult))
+				};
+				var mc = ReplaceIn(dict.Single(k =>
+					k.Key.Contains($"({max},")), (t0, t1) =>
+					(t0.Replace($"{max}", $"(b1 & 0x0F) * {factor}"), t1));
+				await WriteOne(a, mc);
+			}
 			else
 			{
 				await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
@@ -418,6 +435,27 @@ namespace Generator
 
 			await a.WriteLineAsync("\t\t}");
 			return a;
+		}
+
+		private static KeyValuePair<TK, TV> ReplaceIn<TK, TV>(KeyValuePair<TK, TV> p,
+			Func<TK, TV, (TK, TV)> func)
+		{
+			var (key, val) = func(p.Key, p.Value);
+			return new KeyValuePair<TK, TV>(key, val);
+		}
+
+		private static bool IsMultiple(ICollection<string> keys, out int[] parts)
+		{
+			parts = keys.Select(k =>
+			{
+				var tmp = k.Split("at(", 2);
+				if (tmp.Length != 2) return -1;
+				tmp = tmp[1].Split(",", 2);
+				if (tmp.Length != 2) return -1;
+				var b = tmp[0];
+				return short.TryParse(b, out var x) ? x : -1;
+			}).OrderBy(x => x).Distinct().ToArray();
+			return parts.Length == keys.Count;
 		}
 
 		private static async Task WriteOne(StringWriter a, KeyValuePair<string, ISet<string>> single)
