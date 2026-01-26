@@ -16,7 +16,10 @@ namespace Generator.Meta
 
         private static Comment[] Load()
         {
-            const string file = "Meta/comments.json";
+            var type = typeof(Comments);
+            var dll = Path.GetFullPath(type.Assembly.Location);
+            var dir = Path.GetDirectoryName(dll)!;
+            var file = Path.Combine(dir, "Meta", "comments.json");
             var json = File.ReadAllText(file, Encoding.UTF8);
             return JsonTool.FromJson<Comment>(json);
         }
