@@ -199,17 +199,22 @@ namespace Generator
 		{
 			if (Comments.Find(key) is not { } commO)
 				return;
+			await AddComment(t, commO, "\t\t");
+		}
+
+		private static async Task AddComment(StringWriter t, Comment commO, string pre)
+		{
 			var comm = new List<string>
 			{
 				$"{commO.Label}", $"<remarks>{commO.Group}</remarks>"
 			};
 			if (comm.Count < 1)
 				return;
-			await t.WriteLineAsync("\t\t/// <summary>");
+			await t.WriteLineAsync($"{pre}/// <summary>");
 			var nl = Environment.NewLine;
-			var commT = string.Join(nl, comm.Select(c => $"\t\t/// {c}"));
+			var commT = string.Join(nl, comm.Select(c => $"{pre}/// {c}"));
 			await t.WriteLineAsync(commT);
-			await t.WriteLineAsync("\t\t/// </summary>");
+			await t.WriteLineAsync($"{pre}/// </summary>");
 		}
 
 		private static async Task<StringWriter> GenerateCode(ParsedLine[] lines,
@@ -229,6 +234,11 @@ namespace Generator
 			await t.WriteLineAsync();
 			await t.WriteLineAsync($"namespace {nsp}");
 			await t.WriteLineAsync("{");
+
+			CreateStats(lines, out var statOps);
+			var dTxt = $"Decoder for {GetCpuName(cpu)}";
+			await AddComment(t, new Comment { Label = dTxt, Group = statOps }, "\t");
+			
 			await t.WriteLineAsync($"\tpublic sealed class {cln} : IDecoder");
 			await t.WriteLineAsync("\t{");
 			await t.WriteLineAsync("\t\tpublic Instruction? Decode(IByteReader r, bool fail)");
@@ -272,6 +282,30 @@ namespace Generator
 			await t.WriteLineAsync("}");
 
 			return t;
+		}
+
+		private static string GetCpuName(string cpu)
+		{
+			return cpu.ToUpperInvariant().Replace("H", "H-").Trim('-');
+		}
+
+		private static void CreateStats(ParsedLine[] lines, out string ops)
+		{
+			var usedBytes = 0;
+			var allBytes = 0;
+			var cmd = new SortedSet<string>();
+			foreach (var line in lines)
+			{
+				var meth = line.M;
+				if (!meth.Equals(".word"))
+				{
+					cmd.Add(meth);
+					usedBytes++;
+				}
+				allBytes++;
+			}
+			var per = usedBytes * 1.0 / allBytes * 100.0;
+			ops = $"{cmd.Count} opcodes using {per:f2} % of bytes";
 		}
 
 		private static IEnumerable<KV> GenerateScon(string dm, G groups)

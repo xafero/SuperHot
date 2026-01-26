@@ -7,6 +7,10 @@ using static SuperHot.Register;
 
 namespace SuperHot.Auto
 {
+	/// <summary>
+	/// Decoder for SH-3E
+	/// <remarks>113 opcodes using 89.98 % of bytes</remarks>
+	/// </summary>
 	public sealed class Sh3eDecoder : IDecoder
 	{
 		public Instruction? Decode(IByteReader r, bool fail)
