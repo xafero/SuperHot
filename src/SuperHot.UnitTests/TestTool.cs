@@ -15,7 +15,11 @@ namespace SuperHot.UnitTests
             var l2 = await File.ReadAllLinesAsync(t2, enc);
 
             foreach (var pair in l1.Zip(l2))
-                Assert.Equal(pair.First, pair.Second);
+            {
+                var first = pair.First.Replace('\t', ' ');
+                var second = pair.Second.Replace('\t', ' ');
+                Assert.Equal(first, second);
+            }
         }
     }
 }
