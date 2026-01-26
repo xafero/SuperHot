@@ -419,6 +419,16 @@ namespace Generator
 					(t0.Replace($"{max}", $"(b1 & 0x0F) * {factor}"), t1));
 				await WriteOne(a, mc);
 			}
+			else if (dict.Count == 256 && !dict.Keys.Any(k => k.StartsWith("Bra") || k.StartsWith("Bsr")) &&
+			         IsJumpy(dict.Keys, out var jump))
+			{
+				var min = jump.Min();
+				var max = jump.Max();
+				var mc = ReplaceIn(dict.Single(k =>
+					k.Key.Contains($"(0x{max:x})")), (t0, t1) =>
+					(t0.Replace($"(0x{max:x})", $"(4 + {(min < 0 ? "(sbyte)b1" : "b1")} * 2)"), t1));
+				await WriteOne(a, mc);
+			}
 			else
 			{
 				await a.WriteLineAsync("\t\t\treturn (b1 = r.ReadOne()) switch");
@@ -454,6 +464,20 @@ namespace Generator
 				if (tmp.Length != 2) return -1;
 				var b = tmp[0];
 				return short.TryParse(b, out var x) ? x : -1;
+			}).OrderBy(x => x).Distinct().ToArray();
+			return parts.Length == keys.Count;
+		}
+
+		private static bool IsJumpy(ICollection<string> keys, out int[] parts)
+		{
+			parts = keys.Select(k =>
+			{
+				var tmp = k.Split("(0x", 2);
+				if (tmp.Length != 2) return -1;
+				tmp = tmp[1].Split(")", 2);
+				if (tmp.Length != 2) return -1;
+				var b = tmp[0];
+				return int.TryParse(b, N.HexNumber, null, out var x) ? x : -1;
 			}).OrderBy(x => x).Distinct().ToArray();
 			return parts.Length == keys.Count;
 		}
