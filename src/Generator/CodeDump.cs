@@ -225,6 +225,7 @@ namespace Generator
 			await t.WriteLineAsync("using static SuperHot.Register;");
 			await t.WriteLineAsync();
 			await t.WriteLineAsync("// ReSharper disable RedundantAssignment");
+			await t.WriteLineAsync("// ReSharper disable InconsistentNaming");
 			await t.WriteLineAsync();
 			await t.WriteLineAsync($"namespace {nsp}");
 			await t.WriteLineAsync("{");

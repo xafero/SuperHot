@@ -3,6 +3,7 @@ using static SuperHot.Auto.Instruct;
 using static SuperHot.Register;
 
 // ReSharper disable RedundantAssignment
+// ReSharper disable InconsistentNaming
 
 namespace SuperHot.Auto
 {
