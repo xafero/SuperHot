@@ -421,14 +421,26 @@ namespace Generator
 				var min = jump.Min();
 				var max = jump.Max();
 				var nTm = $"(4 + {(min < 0 ? "(sbyte)b1" : "b1")} * 2)";
-				var k = dict.Keys.First();
-				if (k.StartsWith("Bra") || k.StartsWith("Bsr"))
+				var ny = ")";
+				var nk = dict.Keys.First();
+				if (nk.StartsWith("Bra") || nk.StartsWith("Bsr"))
 				{
 					nTm = "(4 + se(((b0 & 0x0F) << 8) | b1) * 2)";
 				}
+				else if (nk.StartsWith("Mov_w"))
+				{
+					ny = ",";
+					nTm = $"{nTm.TrimEnd(')')}, ";
+				}
+				else if (nk.StartsWith("Mova") || nk.StartsWith("Mov_l"))
+				{
+					ny = ",";
+					nTm = $"{nTm.TrimEnd(')')}, ";
+					nTm = nTm.Replace(" * 2", " * 4");
+				}
 				var mc = ReplaceIn(dict.Single(k =>
-					k.Key.Contains($"(0x{max:x})")), (t0, t1) =>
-					(t0.Replace($"(0x{max:x})", nTm), t1));
+					k.Key.Contains($"(0x{max:x}{ny}")), (t0, t1) =>
+					(t0.Replace($"(0x{max:x}{ny}", nTm), t1));
 				await WriteOne(a, mc);
 			}
 			else
@@ -479,6 +491,9 @@ namespace Generator
 				tmp = tmp[1].Split(")", 2);
 				if (tmp.Length != 2) return -1;
 				var b = tmp[0];
+				const string rM = ",r";
+				if (b.Contains(rM))
+					b = b.Split(rM, 2)[0];
 				return int.TryParse(b, N.HexNumber, null, out var x) ? x : -1;
 			}).OrderBy(x => x).Distinct().ToArray();
 			return parts.Length == keys.Count;
