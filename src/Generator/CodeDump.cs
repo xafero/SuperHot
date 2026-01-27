@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using Generator.Meta;
 using static Generator.FileTool;
 using static Generator.JsonTool;
+using S = System.StringSplitOptions;
 using E = System.Linq.Enumerable;
 using G = System.Linq.IGrouping<string, Generator.ParsedLine>;
 using N = System.Globalization.NumberStyles;
@@ -364,6 +365,11 @@ namespace Generator
 				txt = txt.Replace($"at({num},", $"at(b1 * {factor},");
 				return txt;
 			}
+			if (txt.Contains("tbr") && HasFactor(nom, txt, out var factot, out var nut))
+			{
+				txt = txt.Replace($"atb({nut},", $"atb(b1 * {factot},");
+				return txt;
+			}
 			// TODO
 			return txt;
 		}
@@ -374,9 +380,10 @@ namespace Generator
 			factor = n.EndsWith("_b") ? 1
 				: n.EndsWith("_w") ? 2
 				: n.EndsWith("_l") ? 4
+				: n.Equals("JsrN") ? 4
 				: 0;
 			return factor >= 1 &&
-			       t.Split("at(", 2) is { Length: 2 } a &&
+			       t.Split(["atb(", "at("], 2, S.None) is { Length: 2 } a &&
 			       a[1].Split(',', 2) is { Length: 2 } b &&
 			       short.TryParse(b[0], out num);
 		}
