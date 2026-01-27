@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 using Generator.Meta;
 using static Generator.FileTool;
 using static Generator.JsonTool;
-using S = System.StringSplitOptions;
 using E = System.Linq.Enumerable;
 using G = System.Linq.IGrouping<string, Generator.ParsedLine>;
 using N = System.Globalization.NumberStyles;
@@ -239,7 +238,7 @@ namespace Generator
 			CreateStats(lines, out var statOps);
 			var dTxt = $"Decoder for {GetCpuName(cpu)}";
 			await AddComment(t, new Comment { Label = dTxt, Group = statOps }, "\t");
-			
+
 			await t.WriteLineAsync($"\tpublic sealed class {cln} : IDecoder");
 			await t.WriteLineAsync("\t{");
 			await t.WriteLineAsync("\t\tpublic Instruction? Decode(IByteReader r, bool fail)");
@@ -409,9 +408,7 @@ namespace Generator
 				var max = mult.Max();
 				factor = min switch
 				{
-					0 when max == 60 => 4,
-					0 when max == 30 => 2,
-					0 when max == 15 => 1,
+					0 when max == 60 => 4, 0 when max == 30 => 2, 0 when max == 15 => 1,
 					_ => throw new InvalidOperationException(string.Join(" | ", mult))
 				};
 				var mc = ReplaceIn(dict.Single(k =>
@@ -419,14 +416,19 @@ namespace Generator
 					(t0.Replace($"{max}", $"(b1 & 0x0F) * {factor}"), t1));
 				await WriteOne(a, mc);
 			}
-			else if (dict.Count == 256 && !dict.Keys.Any(k => k.StartsWith("Bra") || k.StartsWith("Bsr")) &&
-			         IsJumpy(dict.Keys, out var jump))
+			else if (dict.Count == 256 && IsJumpy(dict.Keys, out var jump))
 			{
 				var min = jump.Min();
 				var max = jump.Max();
+				var nTm = $"(4 + {(min < 0 ? "(sbyte)b1" : "b1")} * 2)";
+				var k = dict.Keys.First();
+				if (k.StartsWith("Bra") || k.StartsWith("Bsr"))
+				{
+					nTm = "(4 + se(((b0 & 0x0F) << 8) | b1) * 2)";
+				}
 				var mc = ReplaceIn(dict.Single(k =>
 					k.Key.Contains($"(0x{max:x})")), (t0, t1) =>
-					(t0.Replace($"(0x{max:x})", $"(4 + {(min < 0 ? "(sbyte)b1" : "b1")} * 2)"), t1));
+					(t0.Replace($"(0x{max:x})", nTm), t1));
 				await WriteOne(a, mc);
 			}
 			else

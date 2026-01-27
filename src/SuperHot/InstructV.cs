@@ -85,5 +85,12 @@ namespace SuperHot
                 default: throw new InvalidOperationException($"{iV} ?!");
             }
         }
+
+        internal static int se(int number)
+        {
+            if ((number & 0x800) != 0)
+                number = (int)(0xFFFFF000 | number);
+            return number;
+        }
     }
 }
