@@ -1,0 +1,20 @@
+using CsvHelper.Configuration.Attributes;
+
+// ReSharper disable InconsistentNaming
+// ReSharper disable ClassNeverInstantiated.Global
+
+namespace Generator.Meta
+{
+    public sealed record Instruct
+    {
+        [Index(0)] public string? Format { get; set; }
+
+        [Index(1)] public string? Summary { get; set; }
+
+        [Index(2)] public string? Instruction { get; set; }
+
+        [Index(3)] public string? States { get; set; }
+
+        [Index(4)] public string? TBit { get; set; }
+    }
+}
