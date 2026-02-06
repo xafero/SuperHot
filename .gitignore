@@ -418,3 +418,4 @@ FodyWeavers.xsd
 *.msp
 .idea/
 /src/Generator/tmp/
+/src2/
