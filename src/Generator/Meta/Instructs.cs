@@ -33,7 +33,7 @@ namespace Generator.Meta
 
         private const StringComparison Cmp = StringComparison.InvariantCultureIgnoreCase;
 
-        public static Instruct Find(string txt)
+        private static Instruct Find(string txt)
         {
             if (Data.FirstOrDefault(d =>
                 {

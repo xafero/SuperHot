@@ -81,7 +81,7 @@ namespace Generator.Meta
             return res;
         }
 
-        internal static string? ToRegex(Instruct record)
+        private static string? ToRegex(Instruct record)
         {
             var bitPat = record.Instruction;
             if (string.IsNullOrWhiteSpace(bitPat))
