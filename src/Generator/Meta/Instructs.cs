@@ -7,14 +7,14 @@ namespace Generator.Meta
 {
     internal static class Instructs
     {
-        private static readonly Instruct[] Data;
+        internal static readonly Instruct[] Data;
 
         static Instructs()
         {
             Data = Load();
         }
 
-        private static Instruct? _word;
+        internal static Instruct? _word;
 
         private static Instruct[] Load()
         {
@@ -33,11 +33,16 @@ namespace Generator.Meta
 
         private const StringComparison Cmp = StringComparison.InvariantCultureIgnoreCase;
 
-        public static Instruct Find(string key)
+        public static Instruct Find(string txt)
         {
-            if (Data.FirstOrDefault(x => key.Equals(x.Label, Cmp)) is { } f)
+            if (Data.FirstOrDefault(d =>
+                {
+                    var dd = d.Label ?? string.Empty;
+                    return txt.Equals(dd, Cmp) ||
+                           txt.Replace('.', '/').Equals(dd, Cmp);
+                }) is { } f)
                 return f;
-            throw new InvalidOperationException(key);
+            throw new InvalidOperationException(txt);
         }
     }
 }
