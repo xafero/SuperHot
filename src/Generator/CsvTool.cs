@@ -8,13 +8,22 @@ namespace Generator
 {
     internal static class CsvTool
     {
-        public static T[] FromCsv<T>(string file)
+        private static readonly CultureInfo Cult = CultureInfo.InvariantCulture;
+
+        public static T[] ReadCsv<T>(string file)
         {
-            var enc = Encoding.UTF8;
-            var cult = CultureInfo.InvariantCulture;
-            using var reader = new StreamReader(file, enc);
-            using var csv = new CsvReader(reader, cult);
-            return csv.GetRecords<T>().ToArray();
+            using var reader = File.OpenText(file);
+            using var csv = new CsvReader(reader, Cult);
+            var records = csv.GetRecords<T>();
+            return records.ToArray();
+        }
+
+        public static void WriteCsv<T>(T[] records, string file)
+        {
+            using var writer = File.CreateText(file);
+            using var csv = new CsvWriter(writer, Cult);
+            csv.WriteRecords(records);
+            csv.Flush();
         }
     }
 }

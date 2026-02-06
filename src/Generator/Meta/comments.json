@@ -290,6 +290,11 @@
     "Group": "Floating Point"
   },
   {
+    "Item": "FMOV_S",
+    "Label": "Floating Point Move (Single)",
+    "Group": "Floating Point"
+  },
+  {
     "Item": "FMUL",
     "Label": "Floating Point Multiply",
     "Group": "Floating Point"

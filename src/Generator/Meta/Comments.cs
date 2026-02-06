@@ -27,6 +27,9 @@ namespace Generator.Meta
         private const StringComparison Cmp = StringComparison.InvariantCultureIgnoreCase;
 
         public static Comment? Find(string txt)
-            => Data.FirstOrDefault(d => txt.Equals(d.Item, Cmp));
+            => Data.FirstOrDefault(d =>
+                txt.Equals(d.Item, Cmp) ||
+                txt.Replace('.', '_').Equals(d.Item, Cmp) ||
+                txt.Replace("/", "").Equals(d.Item, Cmp));
     }
 }
