@@ -5,7 +5,7 @@ using CsvHelper.Configuration.Attributes;
 
 namespace Generator.Meta
 {
-    public sealed record Instruct
+    public sealed record Instruct : IComment
     {
         [Index(0)] public string? Group { get; set; }
 
@@ -22,7 +22,7 @@ namespace Generator.Meta
         [Index(6)] public string? States { get; set; }
 
         [Index(7)] public string? TBit { get; set; }
-        
+
         [Index(8)] public string? UsedIn { get; set; }
     }
 }

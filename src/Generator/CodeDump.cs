@@ -198,16 +198,16 @@ namespace Generator
 
 		private static async Task AddComment(StringWriter t, string key)
 		{
-			if (Comments.Find(key) is not { } commO)
+			if (Instructs.Find(key) is not { } commO)
 				return;
 			await AddComment(t, commO, "\t\t");
 		}
 
-		private static async Task AddComment(StringWriter t, Comment commO, string pre)
+		private static async Task AddComment(StringWriter t, IComment commO, string pre)
 		{
 			var comm = new List<string>
 			{
-				$"{commO.Label}", $"<remarks>{commO.Group}</remarks>"
+				$"{commO.Description}", $"<remarks>{commO.Group}</remarks>"
 			};
 			if (comm.Count < 1)
 				return;
@@ -238,7 +238,7 @@ namespace Generator
 
 			CreateStats(lines, out var statOps);
 			var dTxt = $"Decoder for {GetCpuName(cpu)}";
-			await AddComment(t, new Comment { Label = dTxt, Group = statOps }, "\t");
+			await AddComment(t, new Instruct { Description = dTxt, Group = statOps }, "\t");
 
 			await t.WriteLineAsync($"\tpublic sealed class {cln} : IDecoder");
 			await t.WriteLineAsync("\t{");
