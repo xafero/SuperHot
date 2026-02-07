@@ -16,13 +16,13 @@ namespace Generator.Meta
             Pats = CompilePatterns(p).ToArray();
         }
 
-        private record Rx(string Key, Regex Ex, Instruct[] List);
+        private record Rx(string Key, Regex Ex, Instruct List);
 
         internal record InstrMat(char Name, string Value, int Index, int Length);
 
-        internal record InstrPat(string Text, string Pattern, Instruct Items, InstrMat[] Matches)
+        internal record InstrPat(string Text, string Pattern, Instruct Item, InstrMat[] Matches)
         {
-            internal string? GetBitStr() => Items.Instruction;
+            internal string? GetBitStr() => Item.Instruction;
 
             internal (int min, int max) MinMaxLen()
             {
@@ -43,16 +43,18 @@ namespace Generator.Meta
             }
         }
 
-        private static IEnumerable<InstrPat> FindPattern(Rx[] p, string txt)
+        private static IEnumerable<InstrPat> FindPattern(Rx[] p, string txt, string[] cpus)
         {
-            foreach (var (pattern, regex, list) in p)
+            foreach (var (pattern, regex, instr) in p)
             {
+                var used = instr.UsedIn ?? string.Empty;
+                if (!cpus.All(cpu => used.Contains($" {cpu} ")))
+                    continue;
                 var match = regex.Match(txt);
                 if (!match.Success)
                     continue;
                 var matches = ToMatch(match).ToArray();
-                var array = list.ToArray().Single();
-                yield return new InstrPat(txt, pattern, array, matches);
+                yield return new InstrPat(txt, pattern, instr, matches);
             }
         }
 
@@ -61,17 +63,17 @@ namespace Generator.Meta
             foreach (var (key, val) in p)
             {
                 var regex = new Regex(key);
-                yield return new Rx(key, regex, val.ToArray());
+                yield return new Rx(key, regex, val.Single());
             }
         }
 
-        internal static IList<InstrPat> Match(string text)
+        internal static IList<InstrPat> Match(string text, string[] cpus)
         {
-            var res = new List<InstrPat>(FindPattern(Pats, text));
+            var res = new List<InstrPat>(FindPattern(Pats, text, cpus));
             var maxLen = res.Max(r => r.MinMaxLen().max);
             while (res.Count >= 2)
             {
-                if (res.FirstOrDefault(r => r.Items.Equals(Instructs._word)) is { } nonsense)
+                if (res.FirstOrDefault(r => r.Item.Equals(Instructs._word)) is { } nonsense)
                     res.Remove(nonsense);
                 else if (res.FirstOrDefault(r => r.MinMaxLen().max < maxLen) is { } less)
                     res.Remove(less);

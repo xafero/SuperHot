@@ -26,8 +26,9 @@ namespace Generator
 			return await File.ReadAllTextAsync(file, Encoding.UTF8);
 		}
 
-		public static string ToTitle(string text)
+		public static string ToTitle(string? text)
 		{
+			if (string.IsNullOrWhiteSpace(text)) return string.Empty;
 			return text[..1].ToUpper() + text[1..];
 		}
 	}

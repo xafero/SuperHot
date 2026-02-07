@@ -26,7 +26,9 @@ namespace Generator.Meta
             list.Add(_word = new Instruct
             {
                 TBit = "_", Summary = "Some random data", Format = ".WORD d",
-                Instruction = "dddddddddddddddd", States = "0"
+                Instruction = "dddddddddddddddd", States = "0", Group = "Fake",
+                UsedIn = " sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a ",
+                Label = ".word", Description = "None"
             });
             return list.ToArray();
         }
