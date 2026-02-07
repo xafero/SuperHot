@@ -70,7 +70,7 @@ namespace Generator.Meta
         internal static IList<InstrPat> Match(string text, string[] cpus)
         {
             var res = new List<InstrPat>(FindPattern(Pats, text, cpus));
-            var maxLen = res.Max(r => r.MinMaxLen().max);
+            var maxLen = res.Count >= 1 ? res.Max(r => r.MinMaxLen().max) : 0;
             while (res.Count >= 2)
             {
                 if (res.FirstOrDefault(r => r.Item.Equals(Instructs._word)) is { } nonsense)

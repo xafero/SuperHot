@@ -23,13 +23,13 @@ namespace Generator.Meta
             var dir = Path.GetDirectoryName(dll)!;
             var file = Path.Combine(dir, "Meta", "instructs.csv");
             var list = new List<Instruct>(CsvTool.ReadCsv<Instruct>(file));
-            list.Add(_word = new Instruct
+            /* list.Add( */ _word = new Instruct
             {
                 TBit = "_", Summary = "Some random data", Format = ".WORD d",
                 Instruction = "dddddddddddddddd", States = "0", Group = "Fake",
                 UsedIn = " sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a ",
                 Label = ".word", Description = "None"
-            });
+            }/*)*/;
             return list.ToArray();
         }
 
