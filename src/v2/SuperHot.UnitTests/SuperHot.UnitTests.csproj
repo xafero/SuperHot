@@ -1,0 +1,76 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SuperHot\SuperHot.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="..\..\v1\SuperHot.UnitTests\Resources\sh.json">
+      <Link>Resources\sh.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\v1\SuperHot.UnitTests\Resources\sh2.json">
+      <Link>Resources\sh2.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\v1\SuperHot.UnitTests\Resources\sh2a.json">
+      <Link>Resources\sh2a.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\v1\SuperHot.UnitTests\Resources\sh2e.json">
+      <Link>Resources\sh2e.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\v1\SuperHot.UnitTests\Resources\sh3.json">
+      <Link>Resources\sh3.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\v1\SuperHot.UnitTests\Resources\sh3e.json">
+      <Link>Resources\sh3e.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\v1\SuperHot.UnitTests\Resources\sh4.json">
+      <Link>Resources\sh4.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\v1\SuperHot.UnitTests\Resources\sh4a.json">
+      <Link>Resources\sh4a.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="..\..\v1\SuperHot.UnitTests\TestTool.cs">
+      <Link>TestTool.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot.UnitTests\ResTool.cs">
+      <Link>ResTool.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot.UnitTests\DecoderTest.cs">
+      <Link>DecoderTest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Generator\ParsedLine.cs">
+      <Link>ParsedLine.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Generator\FileTool.cs">
+      <Link>FileTool.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Generator\JsonTool.cs">
+      <Link>JsonTool.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Generator\NumTool.cs">
+      <Link>NumTool.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+</Project>

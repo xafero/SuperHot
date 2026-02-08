@@ -9,6 +9,9 @@ using Xunit;
 using static Generator.FileTool;
 using static Generator.JsonTool;
 using static SuperHot.UnitTests.ResTool;
+using Dialect = SuperHot.Dialect;
+using ArrayReader = SuperHot.ArrayReader;
+using Decoders = SuperHot.Decoders;
 
 namespace SuperHot.UnitTests
 {
@@ -43,10 +46,10 @@ namespace SuperHot.UnitTests
 				got.Add($"{hex}\t{text?.Trim()}");
 			}
 
-			var t1F = $"{cpu}_orig.txt";
+			var t1F = $"v1_{cpu}_orig.txt";
 			await File.WriteAllLinesAsync(t1F, src, Encoding.UTF8);
 
-			var t2F = $"{cpu}_mine.txt";
+			var t2F = $"v1_{cpu}_mine.txt";
 			await File.WriteAllLinesAsync(t2F, got, Encoding.UTF8);
 
 			await TestTool.Compare(t1F, t2F);

@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NoWarn>CS1591</NoWarn>
+
+    <Description>SuperH disassembler and instruction decoder</Description>
+    <Title>$(Description)</Title>
+    <AssemblyTitle>SuperHot</AssemblyTitle>
+    <AssemblyName>SuperHot</AssemblyName>
+    
+    <PackageId>SuperHot</PackageId>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/xafero/SuperHot</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/xafero/SuperHot.git</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageVersion>$(InformationalVersion)</PackageVersion>
+    <PackageTags>disassembler;SuperH;decoder</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Nullable>enable</Nullable>
+    <Deterministic>true</Deterministic>
+    
+    <!-- From the README -->
+    <PackageDescription>
+      SuperHot is a SuperH instruction decoder and disassembler written in C#.
+    </PackageDescription>
+    <PackageReleaseNotes>https://github.com/xafero/SuperHot/releases</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\README.md" Pack="true" PackagePath="" />
+    <None Include="..\..\..\LICENSE" Pack="true" PackagePath="" />
+    <None Include="..\..\..\logo.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <!-- 
+    <PackageReference Include="PolySharp" Version="1.15.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\v1\SuperHot\Auto\Opcode.cs">
+      <Link>Auto\Opcode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\Arg.cs">
+      <Link>Args\Arg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\IntArg.cs">
+      <Link>Args\IntArg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\UIntArg.cs">
+      <Link>Args\UIntArg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\HashArg.cs">
+      <Link>Args\HashArg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\RegArg.cs">
+      <Link>Args\RegArg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\RegMinusArg.cs">
+      <Link>Args\RegMinusArg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\RegPlusArg.cs">
+      <Link>Args\RegPlusArg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\DecArg.cs">
+      <Link>Args\DecArg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\At2Arg.cs">
+      <Link>Args\At2Arg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\At2bArg.cs">
+      <Link>Args\At2bArg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\HexArg.cs">
+      <Link>Args\HexArg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Args\At1Arg.cs">
+      <Link>Args\At1Arg.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Dialect.cs">
+      <Link>Dialect.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\OpMeta.cs">
+      <Link>OpMeta.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\IDecoder.cs">
+      <Link>IDecoder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\IByteReader.cs">
+      <Link>IByteReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Instruction.cs">
+      <Link>Instruction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\InstructV.cs">
+      <Link>InstructV.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\Register.cs">
+      <Link>Register.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\DecodeException.cs">
+      <Link>DecodeException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\ArrayReader.cs">
+      <Link>ArrayReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\v1\SuperHot\SuperTool.cs">
+      <Link>SuperTool.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+</Project>
