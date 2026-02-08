@@ -12,7 +12,7 @@ Branch,BF_S,Branch if False with Delay Slot,BF/S label,"If T = 0 PC + 4 + disp �
 System Control,BLD,Bit Load,"BLD #imm3,Rn",imm of Rn → T,10000111nnnn1iii,1,--," sh2a "
 Branch,BRA,Branch,BRA label,PC + 4 + disp × 2 → PC,1010dddddddddddd,1,--," sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
 Branch,BRAF,Branch Far,BRAF Rn,PC + 4 + Rn → PC,0000nnnn00100011,2,--," sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
-System Control,BSET,Bit Set,"BSET #imm3,Rn",1 → imm of Rn,10000110nnnn1iii,1,--," sh2a "
+System Control,BSET,Bit Set,"BSET #imm3,Rn", 1 → imm of Rn,10000110nnnn1iii,1,--," sh2a "
 Branch,BSR,Branch to Subroutine,BSR label,"PC + 4 → PR, PC + 4 + disp × 2 → PC",1011dddddddddddd,1,--," sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
 Branch,BSRF,Branch to Subroutine Far,BSRF Rn,"PC + 4 → PR, PC + 4 + Rn → PC",0000nnnn00000011,2,--," sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
 System Control,BST,Bit Store,"BST #imm3,Rn",T → imm of Rn,10000111nnnn0iii,1,--," sh2a "
