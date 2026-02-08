@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <Copyright>Copyright (C) 2026 SuperHot project and contributors</Copyright>
-    <Version>1.1.0</Version>
     <Authors>SuperHot project and contributors</Authors>
     <InformationalVersion>$(Version)</InformationalVersion>
 
