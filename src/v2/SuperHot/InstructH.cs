@@ -8,7 +8,7 @@ using static SuperHot.InstructV;
 // ReSharper disable IdentifierTypo
 // ReSharper disable InconsistentNaming
 
-namespace SuperHot2
+namespace SuperHot
 {
     internal static class InstructH{
         internal static I Add(Arg n, Arg m, Arg d) {return new I(O.Add, n, m, d); }

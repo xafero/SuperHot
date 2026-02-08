@@ -109,14 +109,14 @@ namespace Generator
         private static async Task<StringWriter?> GenerateCode(string lbl, ISet<ParsedLine> lines, string cpusR)
         {
             var t = new StringWriter();
-            const string nsp = "SuperHot2.Auto.Common";
+            const string nsp = "SuperHot.Auto.Common";
             var cln = $"d{lbl}";
             await t.WriteLineAsync("using System;");
             await t.WriteLineAsync("using SuperHot;");
             await t.WriteLineAsync("using static SuperHot.InstructV;");
             await t.WriteLineAsync("using static SuperHot.Auto.Instruct;");
             await t.WriteLineAsync("using static SuperHot.Register;");
-            await t.WriteLineAsync("using I = SuperHot2.InstructH;");
+            await t.WriteLineAsync("using I = SuperHot.InstructH;");
             await t.WriteLineAsync();
             await t.WriteLineAsync("#pragma warning disable CS0164");
             await t.WriteLineAsync("#pragma warning disable CS0162");
@@ -447,11 +447,11 @@ namespace Generator
             KeyValuePair<string, ISet<ParsedLine>>[] groups, int maxKey)
         {
             var t = new StringWriter();
-            const string nsp = "SuperHot2.Auto";
+            const string nsp = "SuperHot.Auto";
             var cln = $"{cpu}Decoder";
             await t.WriteLineAsync("using SuperHot;");
-            await t.WriteLineAsync("using SuperHot2.Auto.Common;");
-            await t.WriteLineAsync("using I = SuperHot2.InstructH;");
+            await t.WriteLineAsync("using SuperHot.Auto.Common;");
+            await t.WriteLineAsync("using I = SuperHot.InstructH;");
             await t.WriteLineAsync();
             await t.WriteLineAsync("// ReSharper disable RedundantAssignment");
             await t.WriteLineAsync("// ReSharper disable InconsistentNaming");

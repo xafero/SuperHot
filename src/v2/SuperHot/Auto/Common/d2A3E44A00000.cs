@@ -2,14 +2,14 @@
 using SuperHot;
 using static SuperHot.InstructV;
 using static SuperHot.Register;
-using I = SuperHot2.InstructH;
+using I = SuperHot.InstructH;
 
 #pragma warning disable CS0164
 #pragma warning disable CS0162
 // ReSharper disable RedundantAssignment
 // ReSharper disable InconsistentNaming
 
-namespace SuperHot2.Auto.Common
+namespace SuperHot.Auto.Common
 {
 	internal static class d2A3E44A00000
 	{

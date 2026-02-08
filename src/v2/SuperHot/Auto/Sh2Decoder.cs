@@ -1,11 +1,11 @@
 ﻿using SuperHot;
-using SuperHot2.Auto.Common;
-using I = SuperHot2.InstructH;
+using SuperHot.Auto.Common;
+using I = SuperHot.InstructH;
 
 // ReSharper disable RedundantAssignment
 // ReSharper disable InconsistentNaming
 
-namespace SuperHot2.Auto
+namespace SuperHot.Auto
 {
 	public sealed class Sh2Decoder : IDecoder
 	{
