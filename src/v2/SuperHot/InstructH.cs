@@ -1,5 +1,4 @@
 using System;
-using SuperHot;
 using SuperHot.Args;
 using I = SuperHot.Instruction;
 using O = SuperHot.Auto.Opcode;

@@ -9,9 +9,6 @@ using Xunit;
 using static Generator.FileTool;
 using static Generator.JsonTool;
 using static SuperHot.UnitTests.ResTool;
-using Dialect = SuperHot.Dialect;
-using ArrayReader = SuperHot.ArrayReader;
-using Decoders = SuperHot.Decoders;
 
 namespace SuperHot.UnitTests
 {

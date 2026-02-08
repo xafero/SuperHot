@@ -1,7 +1,4 @@
-﻿using System;
-using SuperHot;
-using static SuperHot.InstructV;
-using static SuperHot.Register;
+﻿using static SuperHot.InstructV;
 using I = SuperHot.InstructH;
 
 #pragma warning disable CS0164

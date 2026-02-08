@@ -1,6 +1,4 @@
 using System;
-using IDecoder = SuperHot.IDecoder;
-using Dialect = SuperHot.Dialect;
 using SuperHot.Auto;
 
 namespace SuperHot

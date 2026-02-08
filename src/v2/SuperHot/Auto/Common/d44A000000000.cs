@@ -1,6 +1,4 @@
-﻿using System;
-using SuperHot;
-using static SuperHot.InstructV;
+﻿using static SuperHot.InstructV;
 using static SuperHot.Register;
 using I = SuperHot.InstructH;
 
