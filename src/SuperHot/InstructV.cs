@@ -63,6 +63,8 @@ namespace SuperHot
 
         internal static Register R(A a1)
         {
+            if (a1 is RegArg ra) 
+                return ra.Val;
             var iV = ((IntArg)a1).Val;
             switch (iV)
             {
