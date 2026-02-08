@@ -32,7 +32,7 @@ namespace Generator.Meta
             }
         }
 
-        private static IEnumerable<InstrMat> ToMatch(Match match)
+        internal static IEnumerable<InstrMat> ToMatch(Match match)
         {
             foreach (Group mg in match.Groups)
             {

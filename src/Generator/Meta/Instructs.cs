@@ -22,7 +22,8 @@ namespace Generator.Meta
             var dll = Path.GetFullPath(type.Assembly.Location);
             var dir = Path.GetDirectoryName(dll)!;
             var file = Path.Combine(dir, "Meta", "instructs.csv");
-            var list = new List<Instruct>(CsvTool.ReadCsv<Instruct>(file));
+            var list = new List<Instruct>(CsvTool.ReadCsv<Instruct>(file)
+                .Where(l => !(l.Group ?? "").StartsWith('#')));
             /* list.Add( */ _word = new Instruct
             {
                 TBit = "_", Summary = "Some random data", Format = ".WORD d",

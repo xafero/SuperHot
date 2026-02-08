@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,16 @@ namespace SuperHot.UnitTests
             {
                 var first = pair.First.Replace('\t', ' ');
                 var second = pair.Second.Replace('\t', ' ');
-                Assert.Equal(first, second);
+                var bin = $"({GetBinaryStr(first)}) ";
+                Assert.Equal(bin + first, bin + second);
             }
+        }
+
+        private static string GetBinaryStr(string first)
+        {
+            var txt = first.Split(' ', 3).Take(2).ToArray();
+            var num = ushort.Parse($"{txt[0]}{txt[1]}", NumberStyles.HexNumber);
+            return $"{num:b16}";
         }
     }
 }

@@ -35,6 +35,39 @@ namespace SuperHot
                 a1 = new DecArg(ia.Val);
             return new At2Arg(a1, a2);
         }
+        
+        internal static Register dR(A a1)
+        {
+            var iV = ((IntArg)a1).Val;
+            // if ((iV & 0b0001) == 1) return null;
+            switch (iV)
+            {
+                case 0: return Register.dr0;
+                case 1: return Register.dr2;
+                case 2: return Register.dr4;
+                case 3: return Register.dr6;
+                case 4: return Register.dr8;
+                case 5: return Register.dr10;
+                case 6: return Register.dr12;
+                case 7: return Register.dr14;
+                default: return default(Register);
+                // default: throw new InvalidOperationException($"{iV} ?!");
+            }
+        }
+        
+        internal static Register fV(A a1)
+        {
+            var iV = ((IntArg)a1).Val;
+            switch (iV)
+            {
+                case 0: return Register.fv0;
+                case 1: return Register.fv4;
+                case 2: return Register.fv8;
+                case 3: return Register.fv12;
+                default: return Register.fv0;
+                // default: throw new InvalidOperationException($"{iV} ?!");
+            }
+        }
 
         internal static Register fR(A a1)
         {
