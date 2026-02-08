@@ -14,6 +14,10 @@ namespace Generator
 				{
 					await CodeDump.Run(o);
 				}
+				else if (o.TryKoder)
+				{
+					await KodeDump.Run(o);
+				}
 				else if (o.TryDecode)
 				{
 					await ExecDump.Run(o);

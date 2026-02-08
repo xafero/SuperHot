@@ -4,9 +4,13 @@
       "commandName": "Project",
       "commandLineArgs": "-f -o tmp -m sh;sh2;sh2a;sh2e;sh3;sh3e;sh4;sh4a"
     },
+    "ck": {
+      "commandName": "Project",
+      "commandLineArgs": "-k -i tmp -o ../../../../SuperHot2/Auto"
+    },
     "cg": {
       "commandName": "Project",
-      "commandLineArgs": "-g -i tmp -o ../../../../SuperHot/Auto"
+      "commandLineArgs": "-g -i tmp -o ../../../../SuperHot1/Auto"
     }
   }
 }

@@ -12,6 +12,9 @@ namespace Generator
 		[Option('g', "code", HelpText = "Create C# decoder.")]
 		public bool TryCoder { get; set; }
 
+		[Option('k', "kode", HelpText = "Create C# dekoder.")]
+		public bool TryKoder { get; set; }
+
 		[Option('m', "misc", HelpText = "Set misc parameters.")]
 		public string? Misc { get; set; }
 
