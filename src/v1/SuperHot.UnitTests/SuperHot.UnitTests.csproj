@@ -18,9 +18,9 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Compile Include="..\..\Generator\ParsedLine.cs">
-      <Link>ParsedLine.cs</Link>
-    </Compile>
+    <None Update="Resources\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Include="..\..\Generator\FileTool.cs">
       <Link>FileTool.cs</Link>
     </Compile>
@@ -30,12 +30,9 @@
     <Compile Include="..\..\Generator\NumTool.cs">
       <Link>NumTool.cs</Link>
     </Compile>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <None Update="Resources\*.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Compile Include="..\..\Generator\ParsedLine.cs">
+      <Link>ParsedLine.cs</Link>
+    </Compile>
   </ItemGroup>
 
 </Project>
