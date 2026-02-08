@@ -163,7 +163,6 @@ Arithmetic,MAC_L,Multiply and Accumulate Long,"MAC.L @Rm+,@Rn+","Signed, (Rn) ×
 Arithmetic,MAC_W,Multiply and Accumulate Word,"MAC.W @Rm+,@Rn+","Signed, (Rn) × (Rm) + MAC → MAC Rn + 2 → Rn, Rm + 2 → Rm",0100nnnnmmmm1111,2,5," sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
 Data Transfer,MOV,Move Data,"MOV #imm,Rn",imm → sign extension → Rn,1110nnnniiiiiiii,1,--," sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
 Data Transfer,MOV,Move Data,"MOV Rm,Rn",Rm → Rn,0110nnnnmmmm0011,1,--," sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
-
 Data Transfer,MOV_B,Move Data (Byte),"MOV.B @(disp,GBR),R0",(disp + GBR) → sign extension → R0,11000100dddddddd,1,--," sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
 Data Transfer,MOV_B,Move Data (Byte),"MOV.B @(disp,Rm),R0",(disp + Rm) → sign extension → R0,10000100mmmmdddd,1,--," sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
 Data Transfer,MOV_B,Move Data (Byte),"MOV.B @(R0,Rm),Rn",(R0 + Rm) → sign extension → Rn,0000nnnnmmmm1100,1,--," sh sh2 sh2a sh2e sh3 sh3e sh4 sh4a "
