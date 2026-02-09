@@ -10,13 +10,10 @@ using static SuperHot.InstructV;
 namespace SuperHot
 {
     internal static class InstructH{
-        internal static I Add(Arg n, Arg m, Arg d) {return new I(O.Add, n, m, d); }
         internal static I Add(int i, Arg n) {return new I(O.Add, h((sbyte)i), n); }
         internal static I Add(Register m, Register n) {return new I(O.Add, m, n); }
         internal static I Addc(Arg n, Arg m) {return new I(O.Addc, m, n); }
         internal static I Addv(Arg n, Arg m) {return new I(O.Addv, m, n); }
-        internal static I And_b(Arg i, Arg r) {return new I(O.And_b, i, r); }
-        internal static I And_b(Arg i, Arg r, Arg n) {return new I(O.And_b, i, r, n); }
         internal static I And_b_rs(int i, Register r, Register n) {return new I(O.And_b, h(i), at(r, n)); }
         internal static I And(int i, Arg r) {return new I(O.And, h(i), r); }
         internal static I And(Register m, Register n) {return new I(O.And, m, n); }
@@ -26,21 +23,15 @@ namespace SuperHot
         internal static I Bld_or_Bst(byte n0, byte n1, byte n2, byte n3, params Func<I>[] funcs)
             => n3 switch { 0 or 1 or 2 or 3 or 4 or 5 or 6 or 7 => funcs[1](), _ => funcs[0]() };
         internal static I Bf(int d) {return new I(O.Bf, 4 + (sbyte)d * 2); }
-        internal static I Bf(Arg n, Arg m) {return new I(O.Bf, m, n); }
-        internal static I Bf_s(Arg n, Arg m) {return new I(O.Bf_s, m, n); }
         internal static I Bf_s(int d) {return new I(O.Bf_s, 4 + (sbyte)d * 2); }
         internal static I Bld(Arg i, Arg n) {return new I(O.Bld, h(i), n); }
-        internal static I Bra(Arg n, Arg m, Arg d) {return new I(O.Bra, n, m, d); }
         internal static I Bra(int d) {return new I(O.Bra, 4 + se(d) * 2); }
         internal static I Braf(Arg n) {return new I(O.Braf, n); }
         internal static I Bset(Arg i, Arg n) {return new I(O.Bset, h(i), n); }
-        internal static I Bsr(Arg n, Arg m, Arg d) {return new I(O.Bsr, n, m, d); }
         internal static I Bsr(int d) {return new I(O.Bsr, 4 + se(d) * 2); }
         internal static I Bsrf(Arg n) {return new I(O.Bsrf, n); }
         internal static I Bst(Arg i, Arg n) {return new I(O.Bst, h(i), n); }
-        internal static I Bt(Arg n, Arg m) {return new I(O.Bt, m, n); }
         internal static I Bt(int d) {return new I(O.Bt, 4 + (sbyte)d * 2); }
-        internal static I Bt_s(Arg n, Arg m) {return new I(O.Bt_s, m, n); }
         internal static I Bt_s(int d) {return new I(O.Bt_s, 4 + (sbyte)d * 2); }
         internal static I Clips_b(Arg n) {return new I(O.Clips_b, n); }
         internal static I Clips_w(Arg n) {return new I(O.Clips_w, n); }
@@ -86,10 +77,8 @@ namespace SuperHot
         internal static I Fldi1(Arg n) {return new I(O.Fldi1, n); }
         internal static I Flds(Arg m, Register r) {return new I(O.Flds, m, r); }
         internal static I Float(Register r, Arg n) {return new I(O.Float, r, n); }
-        internal static I Fmac(Arg n, Arg m) {return new I(O.Fmac, m, n); }
         internal static I Fmac(Register r, Arg n, Arg m) {return new I(O.Fmac, r, m, n); }
         internal static I Fmov(Arg m, Arg n) {return new I(O.Fmov, m, n); }
-        internal static I Fmov(Register r, Arg m, Arg n) {return new I(O.Fmov, n, m, r); }
         internal static I Fmov_ls(Register r, Register m, Arg n) {return new I(O.Fmov, at(r, m), n); }
         internal static I Fmov_rs(Arg m, Register r, Arg n) {return new I(O.Fmov, m, at(r, n)); }
         internal static I Fmul(Arg n, Arg m) {return new I(O.Fmul, m, n); }
@@ -109,7 +98,6 @@ namespace SuperHot
         internal static I Icbi(Arg n) {return new I(O.Icbi, n); }
         internal static I Jmp(Arg n) {return new I(O.Jmp, n); }
         internal static I Jsr(Arg n) {return new I(O.Jsr, n); }
-        internal static I Jsrn(Arg n, Arg m) {return new I(O.JsrN, m, n); }
         internal static I Jsrn_ls(int d, Register r) {return new I(O.JsrN, atb(d*4,r)); }
         internal static I Jsrn(Arg m) {return new I(O.JsrN, m); }
         internal static I Ldbank(Arg m, Register r) {return new I(O.Ldbank, m, r); }
@@ -120,50 +108,38 @@ namespace SuperHot
         internal static I Ldtlb() {return new I(O.Ldtlb); }
         internal static I Mac_l(Arg n, Arg m) {return new I(O.Mac_l, m, n); }
         internal static I Mac_w(Arg n, Arg m) {return new I(O.Mac_w, m, n); }
-        internal static I Mova(Arg n, Arg m) {return new I(O.Mova, m, n); }
         internal static I Mova_ls(int d, Register n, Arg r) {return n==Register.pc ? new I(O.Mova, 4+d*4, r)
                             :new I(O.Mova, at(d,n), r); }
         internal static I Mov_b(Arg n, Arg m) {return new I(O.Mov_b, m, n); }
         internal static I Mov_b(Arg n, Register r) {return new I(O.Mov_b, n, r); }
         internal static I Mov_b(Register m, Arg n) {return new I(O.Mov_b, m, n); }
-        internal static I Mov_b(Register r, Arg m, Arg n) {return new I(O.Mov_b, n, m, r); }
         internal static I Mov_b_rs(Register m, Register r, Register n) {return new I(O.Mov_b, m, at(r,n)); }
         internal static I Mov_b_ls(Register r, Register m, Register n) {return new I(O.Mov_b, at(r,m), n); }
         internal static I Mov_b_rs(Register r, Arg d, Register n) {return new I(O.Mov_b, r, at(d, n)); }
-        internal static I Mov_b(Arg m, Register r, Arg n) {return new I(O.Mov_b, n, m, r); }
         internal static I Mov_b_ls(Arg d, Register m, Register r) {return new I(O.Mov_b, at(d, m), r); }
-        internal static I Mov(Arg n, Arg m, Arg d) {return new I(O.Mov, n, m, d); }
         internal static I Mov(Arg n, Arg m) {return new I(O.Mov, m, n); }
         internal static I Mov(int i, Register n) {return new I(O.Mov, h((sbyte)i), n); }
         internal static I Movca_l(Register r, Arg n) {return new I(O.Movca_l, r, n); }
         internal static I Movco_l(Register r, Arg n) {return new I(O.Movco_l, r, n); }
-        internal static I Mov_l(Arg d, Arg m, Arg n) {return new I(O.Mov_l, n, m, d); }
-        internal static I Mov_l(Register r, Arg m, Arg n) {return new I(O.Mov_l, n, m, r); }
         internal static I Mov_l_rs(Register m, int d, Register n) {return new I(O.Mov_l, m, at(d*4, n)); }
         internal static I Mov_l_rs(Register m, Register d, Register n) {return new I(O.Mov_l, m, at(d, n)); }
         internal static I Mov_l_ls(Register r, Register m, Register n) {return new I(O.Mov_l, at(r, m), n); }
-        internal static I Mov_l(Arg m, Register r, Arg n) {return new I(O.Mov_l, m, r, n); }
         internal static I Mov_l_ls(int d, Register m, Register n) {return m==Register.pc? 
             new I(O.Mov_l, 4+d*4, n) : new I(O.Mov_l, at(d*4, m), n); }
         internal static I Mov_l(Arg n, Arg m) {return new I(O.Mov_l, m, n); }
         internal static I Mov_l(Arg n, Register r) {return new I(O.Mov_l, n, r); }
         internal static I Mov_l(Register m, Arg n) {return new I(O.Mov_l, m, n); }
         internal static I Movli_l(Arg m, Register r) {return new I(O.Movli_l, m, r); }
-        internal static I Movml_l(Arg m, Arg n) {return new I(O.Movml_l, m, n); }
         internal static I Movml_l(Register m, Arg r) {return new I(O.Movml_l, m, r); }
         internal static I Movml_l(Arg r, Register n) {return new I(O.Movml_l, r, n); }
-        internal static I Movmu_l(Arg m, Arg n) {return new I(O.Movmu_l, m, n); }
         internal static I Movmu_l(Register m, Arg r) {return new I(O.Movmu_l, m, r); }
         internal static I Movmu_l(Arg r, Register n) {return new I(O.Movmu_l, r, n); }
         internal static I Movrt(Arg n) {return new I(O.Movrt, n); }
         internal static I Movt(Arg n) {return new I(O.Movt, n); }
         internal static I Movua_l(Arg m, Register r) {return new I(O.Movua_l, m, r); }
-        internal static I Movua_l(Arg n) {return new I(O.Movua_l, n); }
-        internal static I Mov_w(Arg n, Arg m, Arg d) {return new I(O.Mov_w, n, m, d); }
         internal static I Mov_w_ls(byte d, Register m, Arg r) {return new I(O.Mov_w, at(d * 2, m), r); }
         internal static I Mov_w_rs(Register m, Register r, Register n) {return new I(O.Mov_w, m, at(r, n)); }
         internal static I Mov_w_ls(Register r, Register m, Register n) {return new I(O.Mov_w, at(r,m), n); }
-        internal static I Mov_w(Register r, Arg m, Arg n) {return new I(O.Mov_w, n, m, r); }
         internal static I Mov_w_ls(int d, Register r, Register n) {return r == Register.pc ?  
                     new I(O.Mov_w, 4+d*2, n) : new I(O.Mov_w, at(d*2, r), n); }
         internal static I Mov_w_rs(Register r, byte d, Register n) {return new I(O.Mov_w, r, at(d*2, n)); }
@@ -183,8 +159,6 @@ namespace SuperHot
         internal static I Ocbi(Arg n) {return new I(O.Ocbi, n); }
         internal static I Ocbp(Arg n) {return new I(O.Ocbp, n); }
         internal static I Ocbwb(Arg n) {return new I(O.Ocbwb, n); }
-        internal static I Or_b(Arg n, Arg m) {return new I(O.Or_b, m, n); }
-        internal static I Or_b(Arg i, Register r, Arg m) {return new I(O.Or_b, i, r, m); }
         internal static I Or_b_rs(int i, Register r, Arg m) {return new I(O.Or_b, h(i), at(r, m)); }
         internal static I Or(int i, Arg r) {return new I(O.Or, h(i), r); }
         internal static I Or(Register m, Register n) {return new I(O.Or, m, n); }
@@ -202,7 +176,6 @@ namespace SuperHot
         internal static I Sets() {return new I(O.Sets); }
         internal static I Sett() {return new I(O.Sett); }
         internal static I Shad(Register m, Register n) {return new I(O.Shad, m, n); }
-        internal static I Shad(Arg n) {return new I(O.Shad, n); }
         internal static I Shal(Arg n) {return new I(O.Shal, n); }
         internal static I Shar(Arg n) {return new I(O.Shar, n); }
         internal static I Shld(Register m, Register n) {return new I(O.Shld, m, n); }
@@ -227,20 +200,14 @@ namespace SuperHot
         internal static I Swap_w(Arg n, Arg m) {return new I(O.Swap_w, m, n); }
         internal static I Synco() {return new I(O.Synco); }
         internal static I Tas_b(Arg n) {return new I(O.Tas_b, n); }
-        internal static I Trapa(Arg n, Arg m) {return new I(O.Trapa, m, n); }
         internal static I Trapa(int i) {return new I(O.Trapa, h(i)); }
-        internal static I Tst_b(Arg n, Arg m) {return new I(O.Tst_b, m, n); }
-        internal static I Tst_b(Arg i, Arg r, Arg n) {return new I(O.Tst_b, n, i, r); }
         internal static I Tst_b_rs(int i, Register r, Register n) {return new I(O.Tst_b, h(i), at(r,n)); }
         internal static I Tst(Register m, Register n) {return new I(O.Tst, m, n); }
         internal static I Tst(int i, Arg r) {return new I(O.Tst, h(i), r); }
         internal static I Word(byte n0, byte n1, byte n2, byte n3) {var b0 = (n0 << 4) | n1;            var b1 = (n2 << 4) | n3;            var v = (b0 << 8) | b1;            var h = new HexArg(v);          return new I(O.Word, h); }
-        internal static I Xor_b(Arg n, Arg m) {return new I(O.Xor_b, m, n); }
-        internal static I Xor_b(Arg i, Arg r, Arg n) {return new I(O.Xor_b, n, i, r); }
         internal static I Xor_b_rs(int i, Register r, Register n) {return new I(O.Xor_b, h(i), at(r,n)); }
         internal static I Xor(int i, Arg r) {return new I(O.Xor, h(i), r); }
         internal static I Xor(Register m, Register n) {return new I(O.Xor, m, n); }
         internal static I Xtrct(Arg n, Arg m) {return new I(O.Xtrct, m, n); }
-        private static int FN(byte n0, byte n1) {return (n0 << 4) | n1; }
     }
 }
