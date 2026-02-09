@@ -281,7 +281,7 @@ namespace SuperHot.Auto
 			return fail ? throw new DecodeException(b0, b1) : i;
 		}
 
-		private static Instruction? Decode_00(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_00(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -310,7 +310,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_01(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_01(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -331,7 +331,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_02(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_02(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -352,7 +352,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_03(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_03(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -373,7 +373,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_04(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_04(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -394,7 +394,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_05(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_05(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -415,7 +415,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_06(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_06(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -436,7 +436,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_07(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_07(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -457,7 +457,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_08(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_08(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -478,7 +478,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_09(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_09(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -499,7 +499,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_0a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_0a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -520,7 +520,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_0b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_0b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -541,7 +541,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_0c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_0c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -562,7 +562,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_0d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_0d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -583,7 +583,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_0e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_0e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -604,7 +604,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_0f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_0f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -625,103 +625,103 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_10(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_10(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r0));
 		}
 
-		private static Instruction? Decode_11(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_11(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r1));
 		}
 
-		private static Instruction? Decode_12(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_12(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r2));
 		}
 
-		private static Instruction? Decode_13(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_13(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r3));
 		}
 
-		private static Instruction? Decode_14(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_14(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r4));
 		}
 
-		private static Instruction? Decode_15(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_15(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r5));
 		}
 
-		private static Instruction? Decode_16(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_16(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r6));
 		}
 
-		private static Instruction? Decode_17(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_17(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r7));
 		}
 
-		private static Instruction? Decode_18(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_18(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r8));
 		}
 
-		private static Instruction? Decode_19(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_19(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r9));
 		}
 
-		private static Instruction? Decode_1a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_1a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r10));
 		}
 
-		private static Instruction? Decode_1b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_1b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r11));
 		}
 
-		private static Instruction? Decode_1c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_1c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r12));
 		}
 
-		private static Instruction? Decode_1d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_1d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r13));
 		}
 
-		private static Instruction? Decode_1e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_1e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r14));
 		}
 
-		private static Instruction? Decode_1f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_1f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(R(b1 >> 4),at((b1 & 0x0F) * 4,r15));
 		}
 
-		private static Instruction? Decode_20(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_20(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -744,7 +744,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_21(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_21(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -767,7 +767,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_22(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_22(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -790,7 +790,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_23(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_23(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -813,7 +813,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_24(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_24(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -836,7 +836,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_25(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_25(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -859,7 +859,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_26(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_26(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -882,7 +882,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_27(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_27(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -905,7 +905,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_28(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_28(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -928,7 +928,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_29(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_29(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -951,7 +951,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_2a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_2a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -974,7 +974,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_2b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_2b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -997,7 +997,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_2c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_2c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1020,7 +1020,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_2d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_2d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1043,7 +1043,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_2e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_2e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1066,7 +1066,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_2f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_2f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1089,7 +1089,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_30(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_30(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1109,7 +1109,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_31(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_31(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1129,7 +1129,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_32(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_32(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1149,7 +1149,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_33(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_33(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1169,7 +1169,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_34(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_34(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1189,7 +1189,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_35(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_35(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1209,7 +1209,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_36(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_36(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1229,7 +1229,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_37(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_37(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1249,7 +1249,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_38(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_38(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1269,7 +1269,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_39(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_39(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1289,7 +1289,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1309,7 +1309,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1329,7 +1329,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1349,7 +1349,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1369,7 +1369,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1389,7 +1389,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1409,7 +1409,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_40(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_40(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1455,7 +1455,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_41(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_41(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1501,7 +1501,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_42(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_42(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1547,7 +1547,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_43(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_43(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1593,7 +1593,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_44(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_44(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1639,7 +1639,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_45(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_45(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1685,7 +1685,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_46(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_46(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1731,7 +1731,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_47(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_47(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1777,7 +1777,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_48(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_48(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1823,7 +1823,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_49(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_49(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1869,7 +1869,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_4a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_4a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1915,7 +1915,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_4b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_4b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1961,7 +1961,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_4c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_4c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2007,7 +2007,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_4d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_4d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2053,7 +2053,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_4e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_4e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2099,7 +2099,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_4f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_4f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2145,103 +2145,103 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_50(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_50(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r0);
 		}
 
-		private static Instruction? Decode_51(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_51(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r1);
 		}
 
-		private static Instruction? Decode_52(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_52(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r2);
 		}
 
-		private static Instruction? Decode_53(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_53(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r3);
 		}
 
-		private static Instruction? Decode_54(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_54(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r4);
 		}
 
-		private static Instruction? Decode_55(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_55(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r5);
 		}
 
-		private static Instruction? Decode_56(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_56(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r6);
 		}
 
-		private static Instruction? Decode_57(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_57(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r7);
 		}
 
-		private static Instruction? Decode_58(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_58(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r8);
 		}
 
-		private static Instruction? Decode_59(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_59(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r9);
 		}
 
-		private static Instruction? Decode_5a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_5a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r10);
 		}
 
-		private static Instruction? Decode_5b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_5b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r11);
 		}
 
-		private static Instruction? Decode_5c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_5c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r12);
 		}
 
-		private static Instruction? Decode_5d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_5d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r13);
 		}
 
-		private static Instruction? Decode_5e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_5e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r14);
 		}
 
-		private static Instruction? Decode_5f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_5f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at((b1 & 0x0F) * 4,R(b1 >> 4)),r15);
 		}
 
-		private static Instruction? Decode_60(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_60(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2264,7 +2264,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_61(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_61(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2287,7 +2287,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_62(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_62(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2310,7 +2310,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_63(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_63(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2333,7 +2333,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_64(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_64(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2356,7 +2356,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_65(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_65(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2379,7 +2379,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_66(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_66(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2402,7 +2402,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_67(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_67(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2425,7 +2425,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_68(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_68(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2448,7 +2448,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_69(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_69(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2471,7 +2471,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_6a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_6a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2494,7 +2494,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_6b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_6b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2517,7 +2517,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_6c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_6c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2540,7 +2540,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_6d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_6d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2563,7 +2563,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_6e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_6e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2586,7 +2586,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_6f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_6f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -2609,865 +2609,865 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_70(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_70(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r0);
 		}
 
-		private static Instruction? Decode_71(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_71(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r1);
 		}
 
-		private static Instruction? Decode_72(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_72(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r2);
 		}
 
-		private static Instruction? Decode_73(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_73(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r3);
 		}
 
-		private static Instruction? Decode_74(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_74(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r4);
 		}
 
-		private static Instruction? Decode_75(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_75(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r5);
 		}
 
-		private static Instruction? Decode_76(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_76(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r6);
 		}
 
-		private static Instruction? Decode_77(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_77(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r7);
 		}
 
-		private static Instruction? Decode_78(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_78(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r8);
 		}
 
-		private static Instruction? Decode_79(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_79(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r9);
 		}
 
-		private static Instruction? Decode_7a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_7a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r10);
 		}
 
-		private static Instruction? Decode_7b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_7b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r11);
 		}
 
-		private static Instruction? Decode_7c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_7c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r12);
 		}
 
-		private static Instruction? Decode_7d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_7d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r13);
 		}
 
-		private static Instruction? Decode_7e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_7e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r14);
 		}
 
-		private static Instruction? Decode_7f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_7f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Add(h((sbyte)b1),r15);
 		}
 
-		private static Instruction? Decode_80(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_80(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_b(r0,at((b1 & 0x0F) * 1,R(b1 >> 4)));
 		}
 
-		private static Instruction? Decode_81(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_81(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(r0,at((b1 & 0x0F) * 2,R(b1 >> 4)));
 		}
 
-		private static Instruction? Decode_82(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_82(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_83(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_83(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_84(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_84(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_b(at((b1 & 0x0F) * 1,R(b1 >> 4)),r0);
 		}
 
-		private static Instruction? Decode_85(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_85(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(at((b1 & 0x0F) * 2,R(b1 >> 4)),r0);
 		}
 
-		private static Instruction? Decode_86(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_86(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_87(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_87(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_88(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_88(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return CmpEq(h((sbyte)b1),r0);
 		}
 
-		private static Instruction? Decode_89(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_89(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bt(4 + (sbyte)b1 * 2);
 		}
 
-		private static Instruction? Decode_8a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_8a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_8b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_8b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bf(4 + (sbyte)b1 * 2);
 		}
 
-		private static Instruction? Decode_8c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_8c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_8d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_8d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_8e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_8e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_8f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_8f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_90(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_90(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r0);
 		}
 
-		private static Instruction? Decode_91(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_91(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r1);
 		}
 
-		private static Instruction? Decode_92(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_92(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r2);
 		}
 
-		private static Instruction? Decode_93(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_93(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r3);
 		}
 
-		private static Instruction? Decode_94(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_94(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r4);
 		}
 
-		private static Instruction? Decode_95(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_95(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r5);
 		}
 
-		private static Instruction? Decode_96(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_96(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r6);
 		}
 
-		private static Instruction? Decode_97(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_97(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r7);
 		}
 
-		private static Instruction? Decode_98(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_98(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r8);
 		}
 
-		private static Instruction? Decode_99(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_99(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r9);
 		}
 
-		private static Instruction? Decode_9a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_9a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r10);
 		}
 
-		private static Instruction? Decode_9b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_9b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r11);
 		}
 
-		private static Instruction? Decode_9c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_9c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r12);
 		}
 
-		private static Instruction? Decode_9d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_9d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r13);
 		}
 
-		private static Instruction? Decode_9e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_9e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r14);
 		}
 
-		private static Instruction? Decode_9f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_9f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(4 + b1 * 2, r15);
 		}
 
-		private static Instruction? Decode_a0(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a0(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_a1(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a1(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_a2(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a2(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_a3(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a3(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_a4(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a4(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_a5(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a5(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_a6(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a6(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_a7(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a7(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_a8(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a8(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_a9(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_a9(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_aa(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_aa(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_ab(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ab(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_ac(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ac(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_ad(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ad(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_ae(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ae(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_af(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_af(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bra(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b0(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b0(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b1(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b1(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b2(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b2(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b3(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b3(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b4(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b4(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b5(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b5(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b6(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b6(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b7(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b7(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b8(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b8(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_b9(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_b9(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_ba(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ba(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_bb(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_bb(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_bc(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_bc(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_bd(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_bd(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_be(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_be(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_bf(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_bf(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bsr(4 + se(((b0 & 0x0F) << 8) | b1) * 2);
 		}
 
-		private static Instruction? Decode_c0(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c0(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_b(r0,at(b1 * 1,gbr));
 		}
 
-		private static Instruction? Decode_c1(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c1(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(r0,at(b1 * 2,gbr));
 		}
 
-		private static Instruction? Decode_c2(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c2(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(r0,at(b1 * 4,gbr));
 		}
 
-		private static Instruction? Decode_c3(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c3(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Trapa(h((byte)b1));
 		}
 
-		private static Instruction? Decode_c4(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c4(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_b(at(b1 * 1,gbr),r0);
 		}
 
-		private static Instruction? Decode_c5(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c5(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_w(at(b1 * 2,gbr),r0);
 		}
 
-		private static Instruction? Decode_c6(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c6(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(at(b1 * 4,gbr),r0);
 		}
 
-		private static Instruction? Decode_c7(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c7(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mova(4 + b1 * 4, r0);
 		}
 
-		private static Instruction? Decode_c8(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c8(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Tst(h((byte)b1),r0);
 		}
 
-		private static Instruction? Decode_c9(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_c9(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return And(h((byte)b1),r0);
 		}
 
-		private static Instruction? Decode_ca(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ca(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Xor(h((byte)b1),r0);
 		}
 
-		private static Instruction? Decode_cb(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_cb(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Or(h((byte)b1),r0);
 		}
 
-		private static Instruction? Decode_cc(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_cc(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Tst_b(h((byte)b1),at(r0,gbr));
 		}
 
-		private static Instruction? Decode_cd(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_cd(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return And_b(h((byte)b1),at(r0,gbr));
 		}
 
-		private static Instruction? Decode_ce(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ce(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Xor_b(h((byte)b1),at(r0,gbr));
 		}
 
-		private static Instruction? Decode_cf(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_cf(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Or_b(h((byte)b1),at(r0,gbr));
 		}
 
-		private static Instruction? Decode_d0(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d0(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r0);
 		}
 
-		private static Instruction? Decode_d1(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d1(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r1);
 		}
 
-		private static Instruction? Decode_d2(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d2(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r2);
 		}
 
-		private static Instruction? Decode_d3(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d3(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r3);
 		}
 
-		private static Instruction? Decode_d4(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d4(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r4);
 		}
 
-		private static Instruction? Decode_d5(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d5(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r5);
 		}
 
-		private static Instruction? Decode_d6(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d6(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r6);
 		}
 
-		private static Instruction? Decode_d7(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d7(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r7);
 		}
 
-		private static Instruction? Decode_d8(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d8(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r8);
 		}
 
-		private static Instruction? Decode_d9(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_d9(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r9);
 		}
 
-		private static Instruction? Decode_da(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_da(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r10);
 		}
 
-		private static Instruction? Decode_db(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_db(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r11);
 		}
 
-		private static Instruction? Decode_dc(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_dc(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r12);
 		}
 
-		private static Instruction? Decode_dd(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_dd(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r13);
 		}
 
-		private static Instruction? Decode_de(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_de(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r14);
 		}
 
-		private static Instruction? Decode_df(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_df(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov_l(4 + b1 * 4, r15);
 		}
 
-		private static Instruction? Decode_e0(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e0(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r0);
 		}
 
-		private static Instruction? Decode_e1(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e1(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r1);
 		}
 
-		private static Instruction? Decode_e2(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e2(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r2);
 		}
 
-		private static Instruction? Decode_e3(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e3(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r3);
 		}
 
-		private static Instruction? Decode_e4(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e4(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r4);
 		}
 
-		private static Instruction? Decode_e5(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e5(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r5);
 		}
 
-		private static Instruction? Decode_e6(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e6(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r6);
 		}
 
-		private static Instruction? Decode_e7(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e7(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r7);
 		}
 
-		private static Instruction? Decode_e8(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e8(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r8);
 		}
 
-		private static Instruction? Decode_e9(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_e9(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r9);
 		}
 
-		private static Instruction? Decode_ea(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ea(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r10);
 		}
 
-		private static Instruction? Decode_eb(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_eb(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r11);
 		}
 
-		private static Instruction? Decode_ec(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ec(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r12);
 		}
 
-		private static Instruction? Decode_ed(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ed(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r13);
 		}
 
-		private static Instruction? Decode_ee(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ee(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r14);
 		}
 
-		private static Instruction? Decode_ef(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ef(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Mov(h((sbyte)b1),r15);
 		}
 
-		private static Instruction? Decode_f0(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f0(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_f1(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f1(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_f2(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f2(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_f3(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f3(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_f4(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f4(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_f5(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f5(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_f6(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f6(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_f7(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f7(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_f8(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f8(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_f9(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_f9(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_fa(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_fa(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_fb(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_fb(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_fc(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_fc(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_fd(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_fd(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_fe(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_fe(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);
 		}
 
-		private static Instruction? Decode_ff(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_ff(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Word((b0 << 8) | b1);

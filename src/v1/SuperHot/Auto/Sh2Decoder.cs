@@ -689,7 +689,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_30(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_30(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -711,7 +711,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_31(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_31(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -733,7 +733,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_32(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_32(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -755,7 +755,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_33(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_33(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -777,7 +777,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_34(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_34(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -799,7 +799,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_35(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_35(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -821,7 +821,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_36(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_36(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -843,7 +843,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_37(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_37(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -865,7 +865,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_38(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_38(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -887,7 +887,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_39(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_39(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -909,7 +909,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3a(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3a(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -931,7 +931,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3b(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3b(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -953,7 +953,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3c(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3c(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -975,7 +975,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -997,7 +997,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3e(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3e(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1019,7 +1019,7 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_3f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_3f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			return (b1 = r.ReadOne()) switch
 			{
@@ -1793,13 +1793,13 @@ namespace SuperHot.Auto
 			};
 		}
 
-		private static Instruction? Decode_8d(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_8d(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bt_s(4 + (sbyte)b1 * 2);
 		}
 
-		private static Instruction? Decode_8f(IByteReader r, ref byte b0, ref byte b1)
+		internal static Instruction? Decode_8f(IByteReader r, ref byte b0, ref byte b1)
 		{
 			b1 = r.ReadOne();
 			return Bf_s(4 + (sbyte)b1 * 2);
