@@ -9,7 +9,7 @@ namespace Generator
     {
         private static readonly CultureInfo Cult = CultureInfo.InvariantCulture;
 
-        public static T[] ReadCsv<T>(string file)
+        internal static T[] ReadCsv<T>(string file)
         {
             using var reader = File.OpenText(file);
             using var csv = new CsvReader(reader, Cult);

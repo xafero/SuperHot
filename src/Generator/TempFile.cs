@@ -3,11 +3,11 @@ using System.IO;
 
 namespace Generator
 {
-    public sealed class TempFile : IDisposable
+    internal sealed class TempFile : IDisposable
     {
-        public string FileName { get; }
+        internal string FileName { get; }
 
-        public TempFile(string? path = null)
+        internal TempFile(string? path = null)
         {
             FileName = path ?? Path.GetTempFileName();
         }

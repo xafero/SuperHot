@@ -35,7 +35,7 @@ namespace SuperHot
                 a1 = new DecArg(ia.Val);
             return new At2Arg(a1, a2);
         }
-        
+
         internal static Register dR(A a1)
         {
             var iV = ((IntArg)a1).Val;
@@ -54,7 +54,7 @@ namespace SuperHot
                 // default: throw new InvalidOperationException($"{iV} ?!");
             }
         }
-        
+
         internal static Register fV(A a1)
         {
             var iV = ((IntArg)a1).Val;

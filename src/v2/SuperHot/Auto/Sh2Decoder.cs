@@ -6,7 +6,7 @@ using I = SuperHot.InstructH;
 
 namespace SuperHot.Auto
 {
-	public sealed class Sh2Decoder : IDecoder
+	internal sealed class Sh2Decoder : IDecoder
 	{
 		public Instruction? Decode(IByteReader reader, bool fail)
 		{

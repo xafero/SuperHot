@@ -8,11 +8,11 @@ using CliWrap.Buffered;
 
 namespace Generator
 {
-	internal static class ExecDump
+    internal static class ExecDump
     {
         private static readonly string Nl = Environment.NewLine;
 
-        public static async Task Run(Options o)
+        internal static async Task Run(Options o)
         {
             if (FileTool.CreateOrGetDir(o.OutputDir) is not { } outDir)
             {

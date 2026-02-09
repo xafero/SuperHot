@@ -9,7 +9,7 @@ namespace SuperHot.UnitTests
 {
     internal static class TestTool
     {
-        public static async Task Compare(string t1, string t2)
+        internal static async Task Compare(string t1, string t2)
         {
             var enc = Encoding.UTF8;
             var l1 = await File.ReadAllLinesAsync(t1, enc);

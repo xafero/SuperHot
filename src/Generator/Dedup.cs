@@ -7,7 +7,7 @@ namespace Generator
 {
     internal static class Dedup
     {
-        public static List<KV> Cluster(KV[] items)
+        internal static List<KV> Cluster(KV[] items)
         {
             var list = new List<KV>();
             foreach (var group in items.GroupBy(i => BuildKey(i, "rXX")))

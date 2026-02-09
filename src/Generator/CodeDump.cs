@@ -17,7 +17,7 @@ namespace Generator
 {
 	internal static class CodeDump
 	{
-		public static async Task Run(Options o)
+		internal static async Task Run(Options o)
 		{
 			if (CreateOrGetDir(o.OutputDir) is not { } outDir)
 			{

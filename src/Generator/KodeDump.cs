@@ -22,7 +22,7 @@ namespace Generator
 {
     internal static class KodeDump
     {
-        public static async Task Run(Options o)
+        internal static async Task Run(Options o)
         {
             if (CreateOrGetDir(o.OutputDir) is not { } outDir)
             {

@@ -11,7 +11,7 @@ namespace SuperHot.Auto
 	/// Decoder for SH-2
 	/// <remarks>90 opcodes using 82.02 % of bytes</remarks>
 	/// </summary>
-	public sealed class Sh2Decoder : IDecoder
+	internal sealed class Sh2Decoder : IDecoder
 	{
 		public Instruction? Decode(IByteReader r, bool fail)
 		{

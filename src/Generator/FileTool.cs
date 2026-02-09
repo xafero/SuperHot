@@ -6,7 +6,7 @@ namespace Generator
 {
 	internal static class FileTool
 	{
-		public static string? CreateOrGetDir(string? dir)
+		internal static string? CreateOrGetDir(string? dir)
 		{
 			if (string.IsNullOrWhiteSpace(dir))
 				return null;
@@ -16,17 +16,17 @@ namespace Generator
 			return path;
 		}
 
-		public static async Task WriteFile(string file, string text)
+		internal static async Task WriteFile(string file, string text)
 		{
 			await File.WriteAllTextAsync(file, text, Encoding.UTF8);
 		}
 
-		public static async Task<string> ReadFile(string file)
+		internal static async Task<string> ReadFile(string file)
 		{
 			return await File.ReadAllTextAsync(file, Encoding.UTF8);
 		}
 
-		public static string ToTitle(string? text)
+		internal static string ToTitle(string? text)
 		{
 			if (string.IsNullOrWhiteSpace(text)) return string.Empty;
 			return text[..1].ToUpper() + text[1..];

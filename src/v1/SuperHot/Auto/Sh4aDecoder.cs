@@ -11,7 +11,7 @@ namespace SuperHot.Auto
 	/// Decoder for SH-4A
 	/// <remarks>132 opcodes using 90.52 % of bytes</remarks>
 	/// </summary>
-	public sealed class Sh4aDecoder : IDecoder
+	internal sealed class Sh4aDecoder : IDecoder
 	{
 		public Instruction? Decode(IByteReader r, bool fail)
 		{

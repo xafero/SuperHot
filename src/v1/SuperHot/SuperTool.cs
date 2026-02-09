@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace SuperHot
 {
-	public static class SuperTool
+	internal static class SuperTool
 	{
-		public static string ToHexString(this byte[] bytes)
+		internal static string ToHexString(this byte[] bytes)
 		{
 			return string.Join(" ", bytes.Select(ToHexString));
 		}
@@ -15,7 +15,7 @@ namespace SuperHot
 			return $"{b:X2}";
 		}
 
-		public static string Format(ushort val)
+		private static string Format(ushort val)
 		{
 			return $"0x{val:x4}";
 		}
