@@ -14,10 +14,5 @@ namespace SuperHot
 		{
 			return $"{b:X2}";
 		}
-
-		private static string Format(ushort val)
-		{
-			return $"0x{val:x4}";
-		}
 	}
 }
