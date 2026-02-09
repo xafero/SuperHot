@@ -541,7 +541,7 @@ namespace Generator
         private static void MergeLines(SortedSet<(string g, string f)> tmp)
         {
             var items = CreateDict(tmp);
-            var diff = GetCommon(items.Keys, out var common);
+            _ = GetCommon(items.Keys, out var common);
             const string nib = "n0, n1, n2, n3"; // GetNibble(diff, 'q')?.Split(' ', 2)[0] ?? "";
             var t = new StringWriter();
             var lines = items.Values.SelectMany(v => v).ToArray();
@@ -567,28 +567,28 @@ namespace Generator
 
         private static readonly Regex Place = new("(?<q>[_]{1,4})");
 
-        private static Dictionary<char, InstrMat> GetCommon(IEnumerable<string> keys, out string txt)
-        {
-            char[]? pat = null;
-            foreach (var key in keys)
-            {
-                if (pat == null)
-                {
-                    pat = key.ToCharArray();
-                    continue;
-                }
-                for (var i = 0; i < key.Length; i++)
-                {
-                    if (pat[i] == key[i])
-                        continue;
-                    pat[i] = '_';
-                }
-            }
-            txt = new string(pat);
-            var mat = Place.Matches(txt).Single();
-            var mar = RegExs.ToMatch(mat).Single();
-            return new Dictionary<char, InstrMat> { [mar.Name] = mar };
-        }
+         private static Dictionary<char, InstrMat> GetCommon(IEnumerable<string> keys, out string txt)
+         {
+             char[]? pat = null;
+             foreach (var key in keys)
+             {
+                 if (pat == null)
+                 {
+                     pat = key.ToCharArray();
+                     continue;
+                 }
+                 for (var i = 0; i < key.Length; i++)
+                 {
+                     if (pat[i] == key[i])
+                         continue;
+                     pat[i] = '_';
+                 }
+             }
+             txt = new string(pat);
+             var mat = Place.Matches(txt).Single();
+             var mar = RegExs.ToMatch(mat).Single();
+             return new Dictionary<char, InstrMat> { [mar.Name] = mar };
+         }
 
         private static string Y(string txt)
             => txt.All(t => t is '0' or '1') ? txt : "default";

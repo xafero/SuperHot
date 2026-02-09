@@ -16,13 +16,5 @@ namespace Generator
             var records = csv.GetRecords<T>();
             return records.ToArray();
         }
-
-        public static void WriteCsv<T>(T[] records, string file)
-        {
-            using var writer = File.CreateText(file);
-            using var csv = new CsvWriter(writer, Cult);
-            csv.WriteRecords(records);
-            csv.Flush();
-        }
     }
 }
