@@ -13,7 +13,7 @@ namespace SuperHot.Auto
 	/// </summary>
 	internal sealed class Sh2aDecoder : IDecoder
 	{
-		private Instruction? Decode(IByteReader r, bool fail)
+		public Instruction? Decode(IByteReader r, bool fail)
 		{
 			byte b0 = 0;
 			byte b1 = 0;
